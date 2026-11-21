@@ -759,49 +759,6 @@ export const EN_TO_JA_DICT = {
   'Withdraw Funds': '出金申請'
 };
 
-// Universal translation trigger helper (controls the browser-level universal engine)
-export const triggerUniversalTranslate = (targetLang) => {
-  if (typeof document === 'undefined') return;
-  try {
-    const isJa = targetLang === 'ja';
-    // 1. Set cookie for universal engine persistence
-    if (isJa) {
-      document.cookie = 'googtrans=/en/ja; path=/;';
-      if (window.location.hostname) {
-        document.cookie = `googtrans=/en/ja; path=/; domain=${window.location.hostname}`;
-      }
-    } else {
-      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      if (window.location.hostname) {
-        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
-      }
-    }
-
-    // 2. Trigger Google Translate combo box if present
-    const applyToCombo = () => {
-      const select = document.querySelector('.goog-te-combo');
-      if (select) {
-        select.value = isJa ? 'ja' : 'en';
-        select.dispatchEvent(new Event('change'));
-        return true;
-      }
-      return false;
-    };
-
-    if (!applyToCombo()) {
-      let attempts = 0;
-      const interval = setInterval(() => {
-        attempts++;
-        if (applyToCombo() || attempts > 25) {
-          clearInterval(interval);
-        }
-      }, 150);
-    }
-  } catch (err) {
-    // Graceful fallback
-  }
-};
-
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState(() => {
     try {
@@ -811,20 +768,23 @@ export function LanguageProvider({ children }) {
     }
   });
 
+  // Clean up any old external translate cookies
+  useEffect(() => {
+    try {
+      document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      if (typeof window !== 'undefined' && window.location.hostname) {
+        document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+      }
+    } catch (e) {}
+  }, []);
+
   const toggleLanguage = (lang) => {
     const next = lang || (language === 'en' ? 'ja' : 'en');
     setLanguage(next);
     try {
       localStorage.setItem('samurai_language', next);
     } catch {}
-    triggerUniversalTranslate(next);
   };
-
-  useEffect(() => {
-    if (language === 'ja') {
-      triggerUniversalTranslate('ja');
-    }
-  }, []);
 
   const t = translations[language] || translations.en;
 

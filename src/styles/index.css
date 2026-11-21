@@ -260,37 +260,4 @@
   }
 }
 
-/* -------------------------------------------------------------------------
-   UNIVERSAL TRANSLATION ENGINE: Hide 3rd-party bars & keep sleek custom UI
-   ------------------------------------------------------------------------- */
-.goog-te-banner-frame.skiptranslate,
-.goog-te-banner-frame,
-iframe.goog-te-banner-frame,
-.goog-te-balloon-frame {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-body {
-  top: 0px !important;
-  position: static !important;
-}
-
-#goog-gt-tt,
-.goog-tooltip,
-.goog-tooltip:hover {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-.goog-text-highlight {
-  background: none !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-#google_translate_element,
-.goog-te-gadget {
-  display: none !important;
-}
 
