@@ -1,16 +1,21 @@
 import React from 'react';
-import { stepsData } from '../data/courses';
+import { getLocalizedSteps } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Check } from 'lucide-react';
 
 export default function StepsSection({ onOpenAuth }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+  const steps = getLocalizedSteps(language);
+
   return (
     <section className="section section-mist" id="steps">
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">THE JOURNEY</div>
+          <div className="eyebrow">{t.steps.eyebrow}</div>
           <h2 className="heading-2">
-            Four steps from sign-up to first job
+            {t.steps.heading}
           </h2>
         </div>
 
@@ -24,7 +29,7 @@ export default function StepsSection({ onOpenAuth }) {
           }}
           className="steps-grid"
         >
-          {stepsData.map((step) => (
+          {steps.map((step) => (
             <div
               key={step.number}
               style={{
@@ -114,10 +119,10 @@ export default function StepsSection({ onOpenAuth }) {
         >
           <div>
             <div style={{ fontSize: '18px', fontWeight: '700', color: 'var(--navy)', marginBottom: '4px' }}>
-              Want to see where your skills rank right now?
+              {isJa ? '現在のあなたのスキルランクを診断しませんか？' : 'Want to see where your skills rank right now?'}
             </div>
             <div style={{ fontSize: '14px', color: 'var(--muted)' }}>
-              Take our 5-minute diagnostic assessment to receive a customized curriculum roadmap.
+              {isJa ? '5分間の無料実技適性診断を受けて、あなた専用の学習ロードマップを受け取りましょう。' : 'Take our 5-minute diagnostic assessment to receive a customized curriculum roadmap.'}
             </div>
           </div>
 
@@ -126,7 +131,7 @@ export default function StepsSection({ onOpenAuth }) {
             className="btn btn-primary"
             style={{ fontSize: '14px' }}
           >
-            <span>Take free diagnostic</span>
+            <span>{isJa ? '無料スキル診断を受ける' : 'Take free diagnostic'}</span>
             <ArrowRight size={16} />
           </button>
         </div>

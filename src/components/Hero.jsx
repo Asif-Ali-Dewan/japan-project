@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, Star, Sparkles, Wrench, GraduationCap, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero({ onOpenAuth }) {
+  const { t } = useLanguage();
+
   return (
     <div className="hero-wrapper" id="top">
       <div className="hero-panel">
@@ -38,12 +41,12 @@ export default function Hero({ onOpenAuth }) {
               }}
             >
               <Sparkles size={14} color="#FFF1D2" />
-              <span>Technical Trade Cohorts Now Enrolling</span>
+              <span>{t.hero.badge}</span>
             </div>
 
             <h1 className="display-hero" style={{ color: '#FFFFFF', marginBottom: '24px' }}>
-              From Skills to <br />
-              Career Success
+              {t.hero.titleLine1} <br />
+              {t.hero.titleLine2}
             </h1>
 
             <p
@@ -56,7 +59,7 @@ export default function Hero({ onOpenAuth }) {
                 fontWeight: '400',
               }}
             >
-              The modern technical & vocational career launchpad. Learn from master technicians, build real workshop installations, and land high-demand trade roles in Japan and worldwide.
+              {t.hero.description}
             </p>
 
             {/* CTA Buttons */}
@@ -71,7 +74,7 @@ export default function Hero({ onOpenAuth }) {
                   boxShadow: '0 8px 24px rgba(11, 18, 47, 0.2)',
                 }}
               >
-                <span>Start learning</span>
+                <span>{t.hero.startLearning}</span>
                 <ArrowRight size={16} />
               </button>
 
@@ -84,7 +87,7 @@ export default function Hero({ onOpenAuth }) {
                   padding: '12px 26px',
                 }}
               >
-                <span>How it works</span>
+                <span>{t.hero.howItWorks}</span>
               </a>
             </div>
 
@@ -102,15 +105,15 @@ export default function Hero({ onOpenAuth }) {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Hands-on shop training</span>
+                <span>{t.hero.trust1}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Master craftsman inspection</span>
+                <span>{t.hero.trust2}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Certified trade credentials</span>
+                <span>{t.hero.trust3}</span>
               </div>
             </div>
           </div>
@@ -282,7 +285,7 @@ export default function Hero({ onOpenAuth }) {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--green)' }} />
-                    <span style={{ fontSize: '11px', fontWeight: '600', color: 'var(--muted)' }}>Interactive Learning Canvas</span>
+                    <span style={{ fontSize: '11px', fontWeight: '600', color: 'var(--muted)' }}>{t.hero.canvasStatus}</span>
                   </div>
                   <div style={{ display: 'flex', gap: '6px' }}>
                     <span style={{ width: '16px', height: '6px', borderRadius: '3px', backgroundColor: 'var(--lav)' }} />
@@ -315,7 +318,7 @@ export default function Hero({ onOpenAuth }) {
               }}
             >
               <Star size={14} fill="currentColor" />
-              <span>Top 5% Talent Ready</span>
+              <span>{t.hero.canvasTop}</span>
             </div>
 
             <div
@@ -339,7 +342,7 @@ export default function Hero({ onOpenAuth }) {
               }}
             >
               <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--amber)' }} />
-              <span>Applied Learning</span>
+              <span>{t.hero.canvasApplied}</span>
             </div>
 
             <div
@@ -363,7 +366,7 @@ export default function Hero({ onOpenAuth }) {
               }}
             >
               <Wrench size={14} />
-              <span>Master Craft Portfolio</span>
+              <span>{t.hero.canvasPortfolio}</span>
             </div>
           </div>
         </div>

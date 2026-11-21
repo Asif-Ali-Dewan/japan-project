@@ -1,7 +1,11 @@
 import React from 'react';
-import { Zap, Github, Twitter, Linkedin } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { Github, Twitter, Linkedin } from 'lucide-react';
 
 export default function Footer({ onOpenAuth }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
   return (
     <footer
       style={{
@@ -61,7 +65,7 @@ export default function Footer({ onOpenAuth }) {
               </div>
 
               <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#8F9BB3', maxWidth: '300px', marginBottom: '24px' }}>
-                The modern technical trade & vocational learning operating system. Built for ambitious craftsmen, verified by leading industrial and manufacturing employers.
+                {t.footer.tagline}
               </p>
 
               <div style={{ display: 'flex', gap: '12px' }}>
@@ -137,56 +141,56 @@ export default function Footer({ onOpenAuth }) {
             {/* Links Column 1: Courses */}
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', color: '#FFFFFF', marginBottom: '18px' }}>
-                Courses
+                {t.footer.colPrograms}
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Automotive & Motorcycle</a></li>
-                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Electrical Installation</a></li>
-                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>HVAC & Refrigeration</a></li>
-                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Welding & Metal Fabrication</a></li>
-                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Plumbing & Pipe Fitting</a></li>
+                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '自動車・二輪整備' : 'Automotive & Motorcycle'}</a></li>
+                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '電気工事・強電配線' : 'Electrical Installation'}</a></li>
+                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '空調・冷凍冷蔵設備' : 'HVAC & Refrigeration'}</a></li>
+                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '溶接・金属加工' : 'Welding & Metal Fabrication'}</a></li>
+                <li><a href="#courses" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '給排水・プラント配管' : 'Plumbing & Pipe Fitting'}</a></li>
               </ul>
             </div>
 
             {/* Links Column 2: Platform */}
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', color: '#FFFFFF', marginBottom: '18px' }}>
-                Platform
+                {t.footer.colPlatform}
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <li><a href="#curriculum" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Trade Pathways</a></li>
-                <li><a href="#stats" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Certificates</a></li>
-                <li><a href="#steps" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Industry Job Board</a></li>
-                <li><a href="#teach" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Teach with Us</a></li>
-                <li><a href="#features" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Master Craftsman Inspection</a></li>
+                <li><a href="#curriculum" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '専門技術パス' : 'Trade Pathways'}</a></li>
+                <li><a href="#curriculum" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'JIS技術認定証' : 'Certificates'}</a></li>
+                <li><a href="#steps" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '企業求人ボード' : 'Industry Job Board'}</a></li>
+                <li><a href="#teach" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '講師・指導員募集' : 'Teach with Us'}</a></li>
+                <li><a href="#features" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'マイスター実技審査' : 'Master Craftsman Inspection'}</a></li>
               </ul>
             </div>
 
             {/* Links Column 3: Company */}
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', color: '#FFFFFF', marginBottom: '18px' }}>
-                Company
+                {t.footer.colCommunity}
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>About SAMURAI TALENT</a></li>
-                <li><a href="#stories" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Alumni Stories</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Careers (We're Hiring)</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Press Kit</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Contact Support</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '運営会社概要' : 'About SAMURAI TALENT'}</a></li>
+                <li><a href="#stories" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '受講生の転職実績' : 'Alumni Stories'}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? '採用情報' : "Careers (We're Hiring)"}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'プレスキット' : 'Press Kit'}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'お問い合わせ' : 'Contact Support'}</a></li>
               </ul>
             </div>
 
             {/* Links Column 4: Trust & Legal */}
             <div>
               <div style={{ fontSize: '14px', fontWeight: '700', color: '#FFFFFF', marginBottom: '18px' }}>
-                Trust & Legal
+                {t.footer.colLegal}
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Privacy Policy</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Terms of Service</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Security & Verification</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Accessibility (AA Compliant)</a></li>
-                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>Cookie Settings</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{t.footer.privacy}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{t.footer.terms}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'セキュリティと認証' : 'Security & Verification'}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{isJa ? 'アクセシビリティ対応' : 'Accessibility (AA Compliant)'}</a></li>
+                <li><a href="#top" style={{ color: '#8F9BB3', fontSize: '14px', textDecoration: 'none' }}>{t.footer.cookies}</a></li>
               </ul>
             </div>
           </div>
@@ -206,7 +210,7 @@ export default function Footer({ onOpenAuth }) {
             }}
           >
             <div>
-              © 2026 SAMURAI TALENT Inc. All rights reserved.
+              {t.footer.copyright}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <span>WCAG 2.1 AA Contrast Compliant</span>

@@ -1,7 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, Award, Zap, Check } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function StatsSection({ onOpenAuth }) {
+  const { t } = useLanguage();
   const [hoveredStat, setHoveredStat] = useState(null);
   const [hoveredCompany, setHoveredCompany] = useState(null);
 
@@ -14,26 +16,26 @@ export default function StatsSection({ onOpenAuth }) {
 
   const stats = [
     {
-      value: '10 Core',
-      label: 'Technical trades',
+      value: t.stats.stat1Value,
+      label: t.stats.stat1Label,
       color: '#304FE8', // Electric Blue
       hoverBg: 'rgba(48, 79, 232, 0.05)',
     },
     {
-      value: '60,000+',
-      label: 'Active learners',
+      value: t.stats.stat2Value,
+      label: t.stats.stat2Label,
       color: '#10B981', // Emerald Green
       hoverBg: 'rgba(16, 185, 129, 0.05)',
     },
     {
-      value: '4.9/5',
-      label: 'Average rating',
+      value: t.stats.stat3Value,
+      label: t.stats.stat3Label,
       color: '#FA7317', // Vivid Orange
       hoverBg: 'rgba(250, 115, 23, 0.05)',
     },
     {
-      value: '94%',
-      label: 'Trade placement',
+      value: t.stats.stat4Value,
+      label: t.stats.stat4Label,
       color: '#EF4444', // Red
       hoverBg: 'rgba(239, 68, 68, 0.05)',
     },
@@ -117,9 +119,9 @@ export default function StatsSection({ onOpenAuth }) {
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">CAREER ACCELERATION</div>
+          <div className="eyebrow">{t.stats.eyebrow}</div>
           <h2 className="heading-2">
-            We coach, certify and <span style={{ color: 'var(--blue)' }}>connect learners to careers</span>.
+            {t.stats.headingPrefix} <span style={{ color: 'var(--blue)' }}>{t.stats.headingHighlight}</span>
           </h2>
         </div>
 
@@ -159,10 +161,10 @@ export default function StatsSection({ onOpenAuth }) {
                   boxShadow: '0 2px 6px rgba(48, 79, 232, 0.08)',
                 }}
               >
-                LIVE FEEDBACK
+                {t.stats.card1Tag}
               </span>
               <span style={{ fontSize: '13px', color: 'var(--blue)', fontWeight: '700' }}>
-                4h Response Time
+                {t.stats.card1Response}
               </span>
             </div>
 
@@ -184,7 +186,7 @@ export default function StatsSection({ onOpenAuth }) {
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--surface)', color: 'var(--navy)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px auto', fontWeight: '800', fontSize: '13px' }}>
                   01
                 </div>
-                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--navy)' }}>Workshop Lab</div>
+                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--navy)' }}>{t.stats.step1}</div>
               </div>
 
               <div style={{ height: '2px', flex: 0.6, backgroundColor: 'var(--line)', position: 'relative' }}>
@@ -195,7 +197,7 @@ export default function StatsSection({ onOpenAuth }) {
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--lav)', color: 'var(--blue)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px auto', fontWeight: '800', fontSize: '13px' }}>
                   02
                 </div>
-                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--blue)' }}>Master Inspection</div>
+                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--blue)' }}>{t.stats.step2}</div>
               </div>
 
               <div style={{ height: '2px', flex: 0.6, backgroundColor: 'var(--line)', position: 'relative' }}>
@@ -206,15 +208,15 @@ export default function StatsSection({ onOpenAuth }) {
                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--mint)', color: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 8px auto', fontWeight: '800', fontSize: '13px' }}>
                   ✓
                 </div>
-                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--green)' }}>Certified</div>
+                <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--green)' }}>{t.stats.step3}</div>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--navy)' }}>
-                Master Craft Inspections
+                {t.stats.card1Title}
               </h3>
-              <span className="badge badge-blue">100% Pass Rate</span>
+              <span className="badge badge-blue">{t.stats.card1Badge}</span>
             </div>
           </div>
 
@@ -244,10 +246,10 @@ export default function StatsSection({ onOpenAuth }) {
                   boxShadow: '0 2px 6px rgba(23, 163, 74, 0.08)',
                 }}
               >
-                PROOF OF SKILL
+                {t.stats.card2Tag}
               </span>
               <span style={{ fontSize: '13px', color: 'var(--green)', fontWeight: '700' }}>
-                JIS Certified Standard
+                {t.stats.card2Standard}
               </span>
             </div>
 
@@ -282,10 +284,10 @@ export default function StatsSection({ onOpenAuth }) {
                 </div>
                 <div>
                   <div style={{ fontSize: '16px', fontWeight: '800', color: 'var(--navy)' }}>
-                    Verified Trade Portfolio
+                    {t.stats.card2Title}
                   </div>
                   <div style={{ fontSize: '12px', color: 'var(--green)', fontWeight: '700', marginTop: '2px' }}>
-                    Direct Contractor Placement
+                    {t.stats.card2Subtitle}
                   </div>
                 </div>
               </div>
@@ -304,15 +306,15 @@ export default function StatsSection({ onOpenAuth }) {
                 }}
               >
                 <ShieldCheck size={14} />
-                <span>Verified</span>
+                <span>{t.stats.verified}</span>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <h3 style={{ fontSize: '20px', fontWeight: '800', color: 'var(--navy)' }}>
-                Industry Employer Network
+                {t.stats.card2BottomTitle}
               </h3>
-              <span className="badge badge-green">Direct Hiring</span>
+              <span className="badge badge-green">{t.stats.card2Badge}</span>
             </div>
           </div>
         </div>

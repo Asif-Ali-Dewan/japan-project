@@ -163,7 +163,7 @@ export default function ApprenticesView() {
             Master Mentorship Roster
           </div>
           <h1 style={{ fontSize: '26px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.02em', margin: 0 }}>
-            Students & Apprentice Roster
+            Learners & Apprentice Roster
           </h1>
           <p style={{ fontSize: '14px', color: '#687588', margin: '6px 0 0' }}>
             Monitor hands-on lab progress, verify technical logbooks, and endorse certified apprentices for Japanese enterprise hiring.

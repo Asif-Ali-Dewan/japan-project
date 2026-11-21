@@ -1,5 +1,6 @@
 import React from 'react';
-import { learnerNotes } from '../data/courses';
+import { getLocalizedLearnerNotes } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
 
 const learnerPhotos = [
   'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80', // Tariq Mansoor
@@ -8,14 +9,17 @@ const learnerPhotos = [
 ];
 
 export default function LearnerNotesSection() {
+  const { t, language } = useLanguage();
+  const notes = getLocalizedLearnerNotes(language);
+
   return (
     <section className="section section-white" id="stories">
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">PROOF OF TRANSFORMATION</div>
+          <div className="eyebrow">{t.learnerNotes.eyebrow}</div>
           <h2 className="heading-2">
-            Notes from our learners
+            {t.learnerNotes.heading}
           </h2>
         </div>
 
@@ -28,7 +32,7 @@ export default function LearnerNotesSection() {
           }}
           className="learner-notes-grid"
         >
-          {learnerNotes.map((note, index) => (
+          {notes.map((note, index) => (
             <div
               key={index}
               style={{
@@ -59,7 +63,7 @@ export default function LearnerNotesSection() {
                   borderRadius: 'var(--r-md)',
                   overflow: 'hidden',
                   marginBottom: '20px',
-                  position: 'relative',
+                  backgroundColor: '#FFFFFF',
                 }}
               >
                 <img
@@ -69,46 +73,36 @@ export default function LearnerNotesSection() {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    display: 'block',
                   }}
                 />
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(180deg, transparent 40%, rgba(11, 18, 47, 0.45) 100%)',
-                  }}
-                />
-                <span
-                  style={{
-                    position: 'absolute',
-                    bottom: '10px',
-                    left: '12px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(6px)',
-                    color: 'var(--navy)',
-                    fontSize: '11px',
-                    fontWeight: '700',
-                    padding: '3px 10px',
-                    borderRadius: 'var(--r-pill)',
-                  }}
-                >
-                  {note.company} Alumnus
-                </span>
               </div>
 
-              <div>
-                <p style={{ fontSize: '15px', fontWeight: '500', color: 'var(--navy)', lineHeight: '1.6', marginBottom: '20px' }}>
-                  "{note.quote}"
-                </p>
+              {/* Quote */}
+              <p
+                style={{
+                  fontSize: '14.5px',
+                  lineHeight: '1.6',
+                  color: 'var(--navy)',
+                  fontWeight: '500',
+                  marginBottom: '24px',
+                  flex: 1,
+                }}
+              >
+                "{note.quote}"
+              </p>
 
-                <div style={{ borderTop: '1px solid rgba(11, 18, 47, 0.08)', paddingTop: '16px' }}>
-                  <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--navy)' }}>
-                    {note.name}
-                  </div>
-                  <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>
-                    <span style={{ color: 'var(--blue)', fontWeight: '700' }}>{note.from}</span> → <span style={{ fontWeight: '600' }}>{note.to}</span>
-                  </div>
+              {/* Career Pivot Transition & Tags */}
+              <div style={{ borderTop: '1px solid rgba(11, 18, 47, 0.08)', paddingTop: '16px' }}>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--navy)', marginBottom: '4px' }}>
+                  {note.name}
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'var(--muted)', flexWrap: 'wrap' }}>
+                  <span>{note.from}</span>
+                  <span style={{ color: 'var(--blue)', fontWeight: '700' }}>→</span>
+                  <span style={{ fontWeight: '700', color: 'var(--navy)' }}>{note.to}</span>
+                </div>
+                <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--blue)', marginTop: '4px' }}>
+                  @ {note.company}
                 </div>
               </div>
             </div>

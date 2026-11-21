@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   LayoutDashboard,
   Compass,
@@ -18,19 +19,22 @@ import {
 } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, onLogout, onCloseMobile }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'explore', label: 'Explore Courses', icon: Compass },
-    { id: 'my-learning', label: 'My learning', icon: GraduationCap },
-    { id: 'assignments', label: 'Assignments', icon: ClipboardCheck, badge: '2' },
-    { id: 'quizzes', label: 'Quizzes & Assessments', icon: HelpCircle },
-    { id: 'certificates', label: 'Certificates', icon: Award },
-    { id: 'history', label: 'Learning History', icon: History },
-    { id: 'jobs', label: 'Jobs', icon: Briefcase, badge: 'New' },
-    { id: 'notifications', label: 'Notifications', icon: Bell, badge: '3' },
-    { id: 'profile', label: 'My Profile', icon: User },
-    { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'support', label: 'Support', icon: LifeBuoy },
+    { id: 'dashboard', label: t.studentPortal.menu.dashboard, icon: LayoutDashboard },
+    { id: 'explore', label: t.studentPortal.menu.explore, icon: Compass },
+    { id: 'my-learning', label: t.studentPortal.menu.myLearning, icon: GraduationCap },
+    { id: 'assignments', label: t.studentPortal.menu.assignments, icon: ClipboardCheck, badge: '2' },
+    { id: 'quizzes', label: t.studentPortal.menu.quizzes, icon: HelpCircle },
+    { id: 'certificates', label: t.studentPortal.menu.certificates, icon: Award },
+    { id: 'history', label: t.studentPortal.menu.history, icon: History },
+    { id: 'jobs', label: t.studentPortal.menu.jobs, icon: Briefcase, badge: 'New' },
+    { id: 'notifications', label: t.studentPortal.menu.notifications, icon: Bell, badge: '3' },
+    { id: 'profile', label: t.studentPortal.menu.profile, icon: User },
+    { id: 'settings', label: t.studentPortal.menu.settings, icon: Settings },
+    { id: 'support', label: t.studentPortal.menu.support, icon: LifeBuoy },
   ];
 
   return (
@@ -77,16 +81,16 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, onCloseMobi
           >
             <img
               src="/logo.png"
-              alt="SAMURAI TALENT Logo"
+              alt={isJa ? "サムライタレント ロゴ" : "SAMURAI TALENT Logo"}
               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
           <div>
             <div style={{ fontSize: '18px', fontWeight: '800', color: 'var(--navy)', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
-              SAMURAI TALENT
+              {isJa ? 'サムライタレント' : 'SAMURAI TALENT'}
             </div>
             <div style={{ fontSize: '9.5px', fontWeight: '700', color: 'var(--muted)', letterSpacing: '0.08em', marginTop: '3px' }}>
-              STUDENT PORTAL
+              {isJa ? '受講生ポータル' : 'LEARNER PORTAL'}
             </div>
           </div>
         </div>
@@ -211,7 +215,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, onCloseMobi
         })}
       </nav>
 
-      {/* Re-designed Bottom Logout Button (Same feature, larger & spacious) */}
+      {/* Re-designed Bottom Language Toggle & Logout Button */}
       <div
         style={{
           padding: '16px 14px 20px 14px',
@@ -251,7 +255,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, onCloseMobi
           }}
         >
           <LogOut size={19} strokeWidth={2} />
-          <span>Logout</span>
+          <span>{t.studentPortal.menu.logout}</span>
         </button>
       </div>
     </aside>

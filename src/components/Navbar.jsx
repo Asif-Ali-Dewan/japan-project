@@ -4,7 +4,8 @@ import LanguageToggle from './LanguageToggle';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar({ onOpenAuth }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeOption, setActiveOption] = useState('courses');
@@ -129,11 +130,11 @@ export default function Navbar({ onOpenAuth }) {
             >
               <img
                 src="/logo.png"
-                alt="SAMURAI TALENT Logo"
+                alt={isJa ? "サムライタレント ロゴ" : "SAMURAI TALENT Logo"}
                 style={{ width: '100%', height: '100%', objectFit: 'contain' }}
               />
             </div>
-            <span>SAMURAI TALENT</span>
+            <span>{t.nav.brand || (isJa ? 'サムライタレント' : 'SAMURAI TALENT')}</span>
           </a>
 
           {/* Desktop Navigation Links with Clear Selected / Active State */}

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import LanguageToggle from '../LanguageToggle';
 import Sidebar from './Sidebar';
 import DashboardHome from './DashboardHome';
@@ -27,6 +28,8 @@ import {
 } from 'lucide-react';
 
 export default function StudentPortal({ onLogout, onSelectCourse }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -142,9 +145,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--navy)', letterSpacing: '-0.01em' }}>
-                  {activeTab === 'dashboard'
-                    ? 'Student Dashboard'
-                    : activeTab.split('-').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
+                  {t.studentPortal.tabTitles[activeTab] || 'Learner Dashboard'}
                 </div>
               </div>
             </div>
@@ -166,7 +167,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
                 />
                 <input
                   type="text"
-                  placeholder="Search portal..."
+                  placeholder={t.studentPortal.searchPlaceholder}
                   className="input-field"
                   style={{
                     paddingLeft: '38px',
@@ -417,7 +418,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
                                 borderRadius: 'var(--r-pill)',
                               }}
                             >
-                              Verified Student
+                              {t.studentPortal.profileVerifiedBadge || (isJa ? '公認受講生' : 'Verified Learner')}
                             </span>
                           </div>
                         </div>
@@ -457,7 +458,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
                     >
                       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <User size={16} />
-                        <span>Edit Profile</span>
+                        <span>{t.studentPortal.editProfile || 'Edit Profile'}</span>
                       </div>
                       <ChevronRight size={14} color="var(--muted)" />
                     </button>
@@ -496,7 +497,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
                       }}
                     >
                       <LogOut size={16} />
-                      <span>Log out</span>
+                      <span>{t.studentPortal.logout || 'Log out'}</span>
                     </button>
                   </div>
                 )}
@@ -533,15 +534,15 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
 
           {activeTab === 'quizzes' && (
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: 'var(--r-xl)', padding: '36px', border: '1px solid var(--line)' }}>
-              <div className="eyebrow">COMPETENCY CHECKS</div>
-              <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--navy)', marginBottom: '20px' }}>Quizzes & Assessments</h2>
+              <div className="eyebrow">{t.studentPortal.quizzesEyebrow || 'COMPETENCY CHECKS'}</div>
+              <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--navy)', marginBottom: '20px' }}>{t.studentPortal.quizzesTitle || 'Quizzes & Assessments'}</h2>
               <div style={{ padding: '20px', borderRadius: 'var(--r-md)', backgroundColor: 'var(--surface)', border: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontSize: '15px', fontWeight: '700', color: 'var(--navy)' }}>Quiz 04: Database Concurrency</div>
-                  <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>15 Questions · Due in 5 days</div>
+                  <div style={{ fontSize: '15px', fontWeight: '700', color: 'var(--navy)' }}>{t.studentPortal.quizItemTitle || 'Quiz 04: Database Concurrency & Circuit Control'}</div>
+                  <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>{t.studentPortal.quizItemDesc || '15 Questions · Due in 5 days'}</div>
                 </div>
                 <button className="btn btn-primary" style={{ fontSize: '13px', padding: '6px 16px', minHeight: '36px' }}>
-                  Start Quiz
+                  {t.studentPortal.startQuiz || 'Start Quiz'}
                 </button>
               </div>
             </div>
@@ -559,7 +560,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
 
           {['history', 'settings', 'support'].includes(activeTab) && (
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: 'var(--r-xl)', padding: '36px', border: '1px solid var(--line)' }}>
-              <div className="eyebrow">STUDENT ACCOUNT</div>
+              <div className="eyebrow">{isJa ? '受講生アカウント' : 'LEARNER ACCOUNT'}</div>
               <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--navy)', textTransform: 'capitalize' }}>
                 {activeTab.replace('-', ' ')}
               </h2>

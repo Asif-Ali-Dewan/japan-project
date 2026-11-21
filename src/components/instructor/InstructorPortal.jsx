@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import LanguageToggle from '../LanguageToggle';
 import InstructorSidebar from './InstructorSidebar';
 import InstructorHome from './InstructorHome';
@@ -25,6 +26,7 @@ import {
 } from 'lucide-react';
 
 export default function InstructorPortal({ onLogout, onSelectCourse }) {
+  const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
@@ -153,7 +155,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ fontSize: '15px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.01em' }}>
-                  {tabTitles[activeTab] || 'Instructor Dashboard'}
+                  {t.instructorPortal.tabTitles[activeTab] || 'Instructor Dashboard'}
                 </div>
               </div>
             </div>
@@ -175,7 +177,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                 />
                 <input
                   type="text"
-                  placeholder="Search labs, apprentices..."
+                  placeholder={t.instructorPortal.searchPlaceholder}
                   style={{
                     width: '100%',
                     paddingLeft: '38px',
@@ -312,7 +314,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                         kenji.takahashi@toyota-denso.org
                       </div>
                       <div style={{ marginTop: '6px', display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 8px', borderRadius: '4px', backgroundColor: '#ECFDF5', color: '#059669', fontSize: '10.5px', fontWeight: '700' }}>
-                        <ShieldCheck size={11} /> Verified Instructor
+                        <ShieldCheck size={11} /> {t.instructorPortal.profileVerifiedBadge || 'Verified Instructor'}
                       </div>
                     </div>
 
@@ -340,7 +342,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#F8FAFC')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <User size={15} /> Instructor Profile & JIS Seal
+                      <User size={15} /> {t.instructorPortal.profileSeal || 'Instructor Profile & JIS Seal'}
                     </button>
 
                     {/* Settings */}
@@ -367,7 +369,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#F8FAFC')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <Settings size={15} /> Instructor Preferences
+                      <Settings size={15} /> {t.instructorPortal.profilePreferences || 'Instructor Preferences'}
                     </button>
 
                     <div style={{ height: '1px', backgroundColor: '#E2E8F0', margin: '6px 0' }} />
@@ -396,7 +398,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#FEF2F2')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <LogOut size={15} /> Sign Out
+                      <LogOut size={15} /> {t.instructorPortal.logout || 'Sign Out'}
                     </button>
                   </div>
                 )}

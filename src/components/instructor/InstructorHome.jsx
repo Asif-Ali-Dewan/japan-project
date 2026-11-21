@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   Users,
   ClipboardCheck,
@@ -19,38 +20,41 @@ import {
 } from 'lucide-react';
 
 export default function InstructorHome({ onNavigate }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
   const kpiMetrics = [
     {
-      title: 'Active Apprentices',
+      title: t.instructorPortal.kpi.activeApprentices,
       value: '1,420',
-      change: '+14% this cohort',
+      change: isJa ? '前月比 +14%' : '+14% this cohort',
       isPositive: true,
       icon: Users,
       color: '#304FE8',
       bg: '#EEF2FF'
     },
     {
-      title: 'Pending Inspections',
+      title: t.instructorPortal.kpi.pendingInspections,
       value: '18',
-      change: '5 urgent (< 12h)',
+      change: isJa ? '5件が急ぎ (< 12時間)' : '5 urgent (< 12h)',
       isWarning: true,
       icon: ClipboardCheck,
       color: '#F59E0B',
       bg: '#FFFBEB'
     },
     {
-      title: 'JIS Credentials Issued',
+      title: t.instructorPortal.kpi.credentialsIssued,
       value: '642',
-      change: '96.8% First-time pass',
+      change: isJa ? '96.8% 初回検定合格' : '96.8% First-time pass',
       isPositive: true,
       icon: Award,
       color: '#10B981',
       bg: '#ECFDF5'
     },
     {
-      title: 'Monthly Royalties',
+      title: t.instructorPortal.kpi.monthlyRoyalties,
       value: '¥1,480,000',
-      change: 'Next payout in 6 days',
+      change: isJa ? '次回振込まであと6日' : 'Next payout in 6 days',
       isPositive: true,
       icon: DollarSign,
       color: '#0B122F',

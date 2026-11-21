@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
-import { coursesData } from '../data/courses';
+import { getLocalizedCourses } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Search, Play, Clock, BarChart, User, CheckCircle2 } from 'lucide-react';
 
 export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const categories = ['All', 'Mechanical & Auto', 'Electrical & HVAC', 'Construction & Finishing', 'Welding & Piping'];
+  const categories = [
+    { id: 'All', label: t.courses.all },
+    { id: 'Mechanical & Auto', label: t.courses.catMechanical },
+    { id: 'Electrical & HVAC', label: t.courses.catElectrical },
+    { id: 'Construction & Finishing', label: t.courses.catConstruction },
+    { id: 'Welding & Piping', label: t.courses.catWelding },
+  ];
 
-  const filteredCourses = coursesData.filter((c) => {
-    const matchesCategory = activeCategory === 'All' || c.category === activeCategory;
-    const matchesSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          c.description.toLowerCase().includes(searchQuery.toLowerCase());
+  const courses = getLocalizedCourses(language);
+
+  const filteredCourses = courses.filter((c) => {
+    const matchesCategory =
+      activeCategory === 'All' ||
+      c.category === activeCategory ||
+      c.categoryJa === categories.find(cat => cat.id === activeCategory)?.label;
+    const matchesSearch =
+      c.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -20,9 +35,9 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '40px' }}>
-          <div className="eyebrow">POPULAR TRADE PROGRAMS</div>
+          <div className="eyebrow">{t.courses.eyebrow}</div>
           <h2 className="heading-2">
-            Master in-demand technical trades
+            {t.courses.heading}
           </h2>
         </div>
 
@@ -40,11 +55,11 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
           {/* Filter Pills */}
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {categories.map((cat) => {
-              const isSelected = activeCategory === cat;
+              const isSelected = activeCategory === cat.id;
               return (
                 <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  key={cat.id}
+                  onClick={() => setActiveCategory(cat.id)}
                   style={{
                     padding: '8px 20px',
                     borderRadius: 'var(--r-pill)',
@@ -58,7 +73,7 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               );
             })}
@@ -78,7 +93,7 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
             />
             <input
               type="text"
-              placeholder="Search technical trades or skills..."
+              placeholder={t.courses.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="input-field"
@@ -278,20 +293,24 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
                 marginBottom: '18px',
               }}
             >
-              ALUMNI SPOTLIGHT
+              {isJa ? '修了生ストーリー' : 'ALUMNI SPOTLIGHT'}
             </span>
             <h3 style={{ fontSize: '32px', fontWeight: '800', lineHeight: '1.25', marginBottom: '18px', color: '#FFFFFF', letterSpacing: '-0.02em' }}>
-              How Kenji transitioned from retail to Certified HVAC & Refrigeration Technician at Daikin in 4 months.
+              {isJa
+                ? '未経験から4ヶ月でダイキン提携の認定空調技術者へ転職を果たした佐藤健二さんの記録。'
+                : 'How Kenji transitioned from retail to Certified HVAC & Refrigeration Technician at Daikin in 4 months.'}
             </h3>
             <p style={{ fontSize: '16px', color: '#DCE3FF', marginBottom: '28px', lineHeight: '1.6', maxWidth: '640px' }}>
-              "The hands-on workshop capstones were the only thing hiring managers cared about. I skipped 2 screening rounds because my portfolio had master craftsman inspection sign-offs."
+              {isJa
+                ? '「面接官が最も評価したのは実技ラボでの制作記録とマイスターの検定合格印でした。技術ポートフォリオのおかげで、一次・二次選考をスキップして即日内定をいただきました。」'
+                : '"The hands-on workshop capstones were the only thing hiring managers cared about. I skipped 2 screening rounds because my portfolio had master craftsman inspection sign-offs."'}
             </p>
             <button
               onClick={() => onOpenAuth('signup')}
               className="btn btn-dark"
               style={{ fontSize: '15px', padding: '12px 28px', fontWeight: '600' }}
             >
-              Start your career pivot
+              {isJa ? 'キャリア転換を始める' : 'Start your career pivot'}
             </button>
           </div>
 
@@ -332,8 +351,12 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
             >
               <Play size={28} fill="currentColor" style={{ marginLeft: '4px' }} />
             </div>
-            <span style={{ fontSize: '15px', fontWeight: '700', color: '#FFFFFF' }}>Watch Kenji's Story (4 min)</span>
-            <span style={{ fontSize: '12.5px', color: '#DCE3FF', marginTop: '6px' }}>Recorded with Technical Placement Lead at Daikin</span>
+            <span style={{ fontSize: '15px', fontWeight: '700', color: '#FFFFFF' }}>
+              {isJa ? '健二さんのストーリーを見る (4分)' : "Watch Kenji's Story (4 min)"}
+            </span>
+            <span style={{ fontSize: '12.5px', color: '#DCE3FF', marginTop: '6px' }}>
+              {isJa ? 'ダイキン採用担当者・実技指導員との対談' : 'Recorded with Technical Placement Lead at Daikin'}
+            </span>
           </div>
         </div>
       </div>

@@ -1,16 +1,20 @@
 import React from 'react';
-import { testimonialsData } from '../data/courses';
-import { Star, CheckCircle, Quote } from 'lucide-react';
+import { getLocalizedTestimonials } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
+import { Star } from 'lucide-react';
 
 export default function TestimonialsSection() {
+  const { t, language } = useLanguage();
+  const testimonials = getLocalizedTestimonials(language);
+
   return (
     <section className="section section-white" id="testimonials">
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">STUDENT VOICES</div>
+          <div className="eyebrow">{t.testimonials.eyebrow}</div>
           <h2 className="heading-2">
-            Rated 4.9 out of 5 by learners worldwide
+            {t.testimonials.heading}
           </h2>
         </div>
 
@@ -23,7 +27,7 @@ export default function TestimonialsSection() {
           }}
           className="testimonials-grid"
         >
-          {testimonialsData.map((t, idx) => (
+          {testimonials.map((item, idx) => (
             <div
               key={idx}
               style={{
@@ -44,7 +48,7 @@ export default function TestimonialsSection() {
               <div>
                 {/* 5 Stars Rating as formatted in PDF */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '20px' }}>
-                  {[...Array(t.stars)].map((_, i) => (
+                  {[...Array(item.stars)].map((_, i) => (
                     <Star key={i} size={18} fill="#F69D0B" color="#F69D0B" />
                   ))}
                 </div>
@@ -59,34 +63,35 @@ export default function TestimonialsSection() {
                     marginBottom: '24px',
                   }}
                 >
-                  "{t.quote}"
+                  "{item.quote}"
                 </p>
               </div>
 
-              {/* Author footer: Learner name · Role */}
+              {/* Author Info */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderTop: '1px solid var(--line)', paddingTop: '16px' }}>
                 <div
                   style={{
-                    width: '36px',
-                    height: '36px',
+                    width: '40px',
+                    height: '40px',
                     borderRadius: '50%',
-                    backgroundColor: 'var(--lav)',
-                    color: 'var(--blue)',
+                    backgroundColor: 'var(--surface)',
+                    color: 'var(--navy)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '13px',
                     fontWeight: '700',
+                    fontSize: '13px',
+                    border: '1px solid var(--line)',
                   }}
                 >
-                  {t.avatar}
+                  {item.avatar}
                 </div>
                 <div>
                   <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)' }}>
-                    {t.author}
+                    {item.author}
                   </div>
-                  <div style={{ fontSize: '12px', color: 'var(--muted)' }}>
-                    {t.role}
+                  <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>
+                    {item.role}
                   </div>
                 </div>
               </div>

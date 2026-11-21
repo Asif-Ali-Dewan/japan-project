@@ -1,7 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Calendar } from 'lucide-react';
 
 export default function CtaSection({ onOpenAuth }) {
+  const { t } = useLanguage();
+
   return (
     <section
       id="cta"
@@ -63,7 +66,7 @@ export default function CtaSection({ onOpenAuth }) {
             }}
           >
             <Calendar size={14} color="#93C5FD" strokeWidth={2.2} />
-            <span>Next Cohort Begins Monday</span>
+            <span>{t.cta.badge}</span>
           </div>
 
           {/* Headline */}
@@ -77,7 +80,7 @@ export default function CtaSection({ onOpenAuth }) {
               marginBottom: '20px',
             }}
           >
-            Let's build your future.
+            {t.cta.heading}
           </h2>
 
           {/* One line of support copy */}
@@ -90,7 +93,7 @@ export default function CtaSection({ onOpenAuth }) {
               margin: '0 auto 40px auto',
             }}
           >
-            Join over 60,000 ambitious learners gaining in-demand technical trade skills and certified careers.
+            {t.cta.subtitle}
           </p>
 
           {/* Two buttons matching PDF spec */}
@@ -113,7 +116,7 @@ export default function CtaSection({ onOpenAuth }) {
                 boxShadow: '0 8px 24px rgba(48, 79, 232, 0.4)',
               }}
             >
-              <span>Start learning</span>
+              <span>{t.cta.startLearning}</span>
               <ArrowRight size={16} />
             </button>
 
@@ -126,7 +129,7 @@ export default function CtaSection({ onOpenAuth }) {
                 minHeight: '48px',
               }}
             >
-              <span>Teach with us</span>
+              <span>{t.cta.teachWithUs}</span>
             </button>
           </div>
 
@@ -142,9 +145,9 @@ export default function CtaSection({ onOpenAuth }) {
               flexWrap: 'wrap',
             }}
           >
-            <span>✓ 14-day money-back guarantee</span>
-            <span>✓ Verified alumni network</span>
-            <span>✓ Lifetime career portal access</span>
+            <span>{t.cta.guarantee}</span>
+            <span>{t.cta.alumni}</span>
+            <span>{t.cta.career}</span>
           </div>
         </div>
       </div>

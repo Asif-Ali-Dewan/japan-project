@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
-import { curriculumAccordion } from '../data/courses';
+import { getLocalizedCurriculum } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
 import { Minus, Plus, CheckCircle, Award, ShieldCheck, QrCode, Sparkles, Check } from 'lucide-react';
 
 export default function CurriculumSection({ onOpenAuth }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
   const [activeId, setActiveId] = useState('courses');
 
   const toggleAccordion = (id) => {
     setActiveId((prev) => (prev === id ? null : id));
   };
 
+  const accordionItems = getLocalizedCurriculum(language);
+
   return (
     <section className="section section-mist" id="curriculum">
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">CURRICULUM ARCHITECTURE</div>
+          <div className="eyebrow">{t.curriculum.eyebrow}</div>
           <h2 className="heading-2">
-            Everything you need, under one roof
+            {t.curriculum.heading}
           </h2>
         </div>
 
@@ -32,7 +37,7 @@ export default function CurriculumSection({ onOpenAuth }) {
         >
           {/* Left Column: Expandable list rows with Slow Smooth Animation */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {curriculumAccordion.map((item) => {
+            {accordionItems.map((item) => {
               const isOpen = activeId === item.id;
               return (
                 <div
@@ -229,10 +234,10 @@ export default function CurriculumSection({ onOpenAuth }) {
                 {/* Certificate Title */}
                 <div style={{ textAlign: 'center', padding: '12px 0 16px 0' }}>
                   <div style={{ fontSize: '11px', fontWeight: '700', color: 'var(--blue)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '6px' }}>
-                    Certificate of Mastery
+                    {isJa ? '修了技能認定証' : 'Certificate of Mastery'}
                   </div>
                   <div style={{ fontSize: '13px', color: 'var(--muted)', fontStyle: 'italic', marginBottom: '14px' }}>
-                    This is proudly awarded to
+                    {isJa ? '本証を下記の受講生に授与します' : 'This is proudly awarded to'}
                   </div>
                   <div
                     style={{
@@ -246,13 +251,15 @@ export default function CurriculumSection({ onOpenAuth }) {
                       minWidth: '220px',
                     }}
                   >
-                    Kenji Sato
+                    {isJa ? '佐藤 健二' : 'Kenji Sato'}
                   </div>
                   <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '12px', lineHeight: '1.5' }}>
-                    for successfully completing the rigorous 12-week workshop curriculum & master-inspected practicals in
+                    {isJa
+                      ? '12週間の実技集中カリキュラムおよび一級指導員による実技検定を優秀な成績で修了したことを証します'
+                      : 'for successfully completing the rigorous 12-week workshop curriculum & master-inspected practicals in'}
                   </div>
                   <div style={{ fontSize: '16px', fontWeight: '700', color: 'var(--navy)', marginTop: '6px' }}>
-                    Industrial Electrical & HVAC Systems
+                    {isJa ? '産業用電気工事・空調設備システム技術' : 'Industrial Electrical & HVAC Systems'}
                   </div>
                 </div>
               </div>
@@ -302,13 +309,13 @@ export default function CurriculumSection({ onOpenAuth }) {
 
                 <div style={{ textAlign: 'left' }}>
                   <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--navy)' }}>
-                    Top 2% Graduate Rank
+                    {isJa ? '成績上位 2% 認定' : 'Top 2% Graduate Rank'}
                   </div>
                   <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '2px' }}>
-                    Master Inspection Score: 98.6 / 100
+                    {isJa ? 'マイスター実技審査得点: 98.6 / 100' : 'Master Inspection Score: 98.6 / 100'}
                   </div>
                   <div style={{ fontSize: '11px', color: 'var(--green)', fontWeight: '600', marginTop: '2px' }}>
-                    ✓ 18/18 Workshop Lab Practicals Passed
+                    {isJa ? '✓ 18/18 実技ラボ課題全検定合格' : '✓ 18/18 Workshop Lab Practicals Passed'}
                   </div>
                 </div>
               </div>
@@ -337,7 +344,7 @@ export default function CurriculumSection({ onOpenAuth }) {
                   </div>
                   <div style={{ width: '100px', height: '1px', backgroundColor: 'var(--navy)', opacity: 0.4, margin: '4px 0' }} />
                   <div style={{ fontSize: '10px', color: 'var(--muted)', fontWeight: '600' }}>
-                    Staff Engineer & Lead Instructor
+                    {isJa ? '主任技師・首席実技指導員' : 'Staff Engineer & Lead Instructor'}
                   </div>
                 </div>
 
@@ -350,7 +357,7 @@ export default function CurriculumSection({ onOpenAuth }) {
                     ID: EDP-2026-8849
                   </div>
                   <div style={{ fontSize: '9px', color: 'var(--muted)', marginTop: '2px' }}>
-                    Issued: Nov 2026
+                    {isJa ? '発行: 2026年11月' : 'Issued: Nov 2026'}
                   </div>
                 </div>
               </div>

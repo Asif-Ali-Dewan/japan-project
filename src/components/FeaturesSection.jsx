@@ -1,5 +1,6 @@
 import React from 'react';
-import { featuresData } from '../data/courses';
+import { getLocalizedFeatures } from '../data/courses';
+import { useLanguage } from '../context/LanguageContext';
 import { GraduationCap, Wrench, ShieldCheck, Users } from 'lucide-react';
 
 const iconMap = {
@@ -9,22 +10,18 @@ const iconMap = {
   Users: Users,
 };
 
-const featureTags = [
-  'Master Tradesmen',
-  'Real Workshop Labs',
-  'Verified Trade Credential',
-  '1-on-1 Apprenticeship',
-];
-
 export default function FeaturesSection({ onOpenAuth }) {
+  const { t, language } = useLanguage();
+  const features = getLocalizedFeatures(language);
+
   return (
     <section className="section section-white" id="features">
       <div className="container">
         {/* Section Header: Clean Left Only, No Right-side text paragraph */}
         <div style={{ marginBottom: '48px' }}>
-          <div className="eyebrow">THE SAMURAI TALENT STANDARD</div>
+          <div className="eyebrow">{t.features.eyebrow}</div>
           <h2 className="heading-2">
-            Professional technical training that commands respect
+            {t.features.heading}
           </h2>
         </div>
 
@@ -37,7 +34,7 @@ export default function FeaturesSection({ onOpenAuth }) {
           }}
           className="features-grid-four"
         >
-          {featuresData.map((f, i) => {
+          {features.map((f, i) => {
             const IconComp = iconMap[f.icon] || GraduationCap;
             return (
               <div
@@ -108,7 +105,7 @@ export default function FeaturesSection({ onOpenAuth }) {
                       border: '1px solid var(--line)',
                     }}
                   >
-                    {featureTags[i]}
+                    {f.tag}
                   </span>
                 </div>
               </div>

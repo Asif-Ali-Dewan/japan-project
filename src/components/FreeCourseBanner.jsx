@@ -1,8 +1,18 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
 
 export default function FreeCourseBanner({ onOpenAuth }) {
-  const freeTracks = [
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
+  const freeTracks = isJa ? [
+    { title: '安全衛生規則・OSHA基準', tag: '安全管理', bg: 'var(--lav)' },
+    { title: '手工具・電動工具基礎101', tag: '基本工具', bg: 'var(--mint)' },
+    { title: '配管・電気設計図面読解', tag: '図面設計', bg: 'var(--peach)' },
+    { title: 'テスター測定・電圧基礎', tag: '電気測定', bg: 'var(--cream)' },
+    { title: '配管寸法採寸・継手加工', tag: '衛生配管', bg: 'var(--lav)' },
+  ] : [
     { title: 'Workshop Safety & OSHA', tag: 'Safety', bg: 'var(--lav)' },
     { title: 'Hand & Power Tool 101', tag: 'Tools', bg: 'var(--mint)' },
     { title: 'Technical Blueprint Reading', tag: 'Blueprints', bg: 'var(--peach)' },
@@ -40,7 +50,7 @@ export default function FreeCourseBanner({ onOpenAuth }) {
             }}
           >
             <Sparkles size={14} color="#FFF1D2" />
-            <span>100% Free · No Credit Card Required</span>
+            <span>{t.freeCourse.tag}</span>
           </div>
 
           <h2
@@ -52,7 +62,7 @@ export default function FreeCourseBanner({ onOpenAuth }) {
               marginBottom: '16px',
             }}
           >
-            Not ready to commit? Start with a free course.
+            {t.freeCourse.title}
           </h2>
 
           <p
@@ -64,7 +74,7 @@ export default function FreeCourseBanner({ onOpenAuth }) {
               lineHeight: '1.6',
             }}
           >
-            Explore our foundational modules, experience the hands-on workshop environment, and submit your first practical assessment for master craftsman review.
+            {t.freeCourse.subtitle}
           </p>
 
           <button
@@ -77,7 +87,7 @@ export default function FreeCourseBanner({ onOpenAuth }) {
               marginBottom: '48px',
             }}
           >
-            <span>Explore 15+ free mini-courses</span>
+            <span>{isJa ? '15以上の無料ミニ講座を体験' : 'Explore 15+ free mini-courses'}</span>
             <ArrowRight size={16} />
           </button>
 
@@ -141,7 +151,7 @@ export default function FreeCourseBanner({ onOpenAuth }) {
                       {track.title}
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--muted)' }}>
-                      Free Certificate
+                      {isJa ? '無料修了証付き' : 'Free Certificate'}
                     </div>
                   </div>
                 </div>

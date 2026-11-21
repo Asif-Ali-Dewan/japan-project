@@ -1,8 +1,37 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Video, Users, DollarSign, Sparkles } from 'lucide-react';
 
 export default function InstructorSection({ onOpenAuth }) {
-  const benefits = [
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
+  const benefits = isJa ? [
+    {
+      title: '作業場実技撮影の全面サポート',
+      desc: '専門メディアチームが手順分解動画、手元カメラ撮影、教材作成を完全にバックアップします。',
+      bg: 'var(--lav)',
+      icon: Video,
+      color: 'var(--blue)',
+      metric: '機材手配・編集負担ゼロ',
+    },
+    {
+      title: '60,000名以上の志高い受講生',
+      desc: '日本および海外の産業界で即戦力を目指す熱心な技術者の卵たちを直接育成できます。',
+      bg: 'var(--mint)',
+      icon: Users,
+      color: 'var(--green)',
+      metric: '上位エンジニアコミュニティ',
+    },
+    {
+      title: '業界最高水準のマイスター報酬',
+      desc: '毎月の継続受講ロイヤリティに加え、受講生の実技検定合格や企業就職に応じた成果報酬を進呈。',
+      bg: 'var(--cream)',
+      icon: DollarSign,
+      color: 'var(--amber)',
+      metric: '平均月額 580,000円〜 の報酬実績',
+    },
+  ] : [
     {
       title: 'Full workshop production support',
       desc: 'Our technical media team assists with step-by-step workshop demonstrations, tool breakdown diagrams, and curriculum structuring.',
@@ -35,9 +64,9 @@ export default function InstructorSection({ onOpenAuth }) {
         {/* Section Header: Clean Left Title & Right Action Button Only, No paragraph text */}
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '20px' }}>
           <div>
-            <div className="eyebrow">BECOME A MASTER INSTRUCTOR</div>
+            <div className="eyebrow">{t.instructor.eyebrow}</div>
             <h2 className="heading-2">
-              Train the next generation of certified technical tradesmen
+              {t.instructor.heading}
             </h2>
           </div>
           <button
@@ -45,7 +74,7 @@ export default function InstructorSection({ onOpenAuth }) {
             className="btn btn-primary"
             style={{ fontSize: '14px' }}
           >
-            <span>Teach with us</span>
+            <span>{t.instructor.cta}</span>
             <ArrowRight size={16} />
           </button>
         </div>

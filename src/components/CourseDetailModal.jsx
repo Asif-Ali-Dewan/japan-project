@@ -1,8 +1,20 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { X, CheckCircle, Clock, BarChart, User, ShieldCheck, ArrowRight, Award } from 'lucide-react';
 
 export default function CourseDetailModal({ course, onClose, onEnroll }) {
+  const { language } = useLanguage();
+  const isJa = language === 'ja';
+
   if (!course) return null;
+
+  const title = isJa ? course.titleJa || course.title : course.title;
+  const category = isJa ? course.categoryJa || course.category : course.category;
+  const description = isJa ? course.descriptionJa || course.description : course.description;
+  const modules = isJa ? course.modulesJa || course.modules : course.modules;
+  const duration = isJa ? course.durationJa || course.duration : course.duration;
+  const level = isJa ? course.levelJa || course.level : course.level;
+  const instructor = isJa ? course.instructorJa || course.instructor : course.instructor;
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -56,13 +68,13 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
               marginBottom: '12px',
             }}
           >
-            {course.category}
+            {category}
           </span>
           <h2 style={{ fontSize: '32px', fontWeight: '800', color: 'var(--navy)', marginBottom: '12px' }}>
-            {course.title}
+            {title}
           </h2>
           <p style={{ fontSize: '16px', color: 'var(--muted)', lineHeight: '1.6' }}>
-            {course.description}
+            {description}
           </p>
         </div>
 
@@ -80,19 +92,27 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
           }}
         >
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>Duration</div>
-            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)', marginTop: '4px' }}>{course.duration}</div>
+            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>
+              {isJa ? '受講期間' : 'Duration'}
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)', marginTop: '4px' }}>{duration}</div>
           </div>
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>Skill Level</div>
-            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)', marginTop: '4px' }}>{course.level}</div>
+            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>
+              {isJa ? '対象レベル' : 'Skill Level'}
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)', marginTop: '4px' }}>{level}</div>
           </div>
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>Rating</div>
+            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>
+              {isJa ? '満足度' : 'Rating'}
+            </div>
             <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--amber)', marginTop: '4px' }}>★ {course.rating} / 5.0</div>
           </div>
           <div>
-            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>Graduates</div>
+            <div style={{ fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', fontWeight: '600' }}>
+              {isJa ? '受講生数' : 'Graduates'}
+            </div>
             <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)', marginTop: '4px' }}>{course.students}</div>
           </div>
         </div>
@@ -100,10 +120,10 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
         {/* Course Modules Syllabus */}
         <div style={{ marginBottom: '32px' }}>
           <h3 style={{ fontSize: '18px', fontWeight: '700', color: 'var(--navy)', marginBottom: '16px' }}>
-            What you will master & build:
+            {isJa ? '習得できる実践技術・制作課題:' : 'What you will master & build:'}
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {course.modules?.map((mod, i) => (
+            {modules?.map((mod, i) => (
               <div
                 key={i}
                 style={{
@@ -154,13 +174,15 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
           }}
         >
           <div>
-            <div style={{ fontSize: '12px', color: 'var(--muted)' }}>Taught by:</div>
-            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)' }}>{course.instructor}</div>
+            <div style={{ fontSize: '12px', color: 'var(--muted)' }}>
+              {isJa ? '担当指導員:' : 'Taught by:'}
+            </div>
+            <div style={{ fontSize: '14px', fontWeight: '700', color: 'var(--navy)' }}>{instructor}</div>
           </div>
 
           <div style={{ display: 'flex', gap: '12px' }}>
             <button onClick={onClose} className="btn btn-secondary">
-              Close
+              {isJa ? '閉じる' : 'Close'}
             </button>
             <button
               onClick={() => {
@@ -169,7 +191,7 @@ export default function CourseDetailModal({ course, onClose, onEnroll }) {
               }}
               className="btn btn-primary"
             >
-              <span>Enroll in Winter Cohort</span>
+              <span>{isJa ? '受講申込みへ進む' : 'Enroll in Winter Cohort'}</span>
               <ArrowRight size={16} />
             </button>
           </div>

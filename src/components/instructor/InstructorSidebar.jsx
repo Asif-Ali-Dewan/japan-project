@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   LayoutDashboard,
   BookOpen,
@@ -22,30 +23,33 @@ export default function InstructorSidebar({
   onLogout,
   onCloseMobile
 }) {
+  const { t, language } = useLanguage();
+  const isJa = language === 'ja';
+
   const menuGroups = [
     {
-      title: 'Teaching & Classroom',
+      title: t.instructorPortal.menuGroups.teaching,
       items: [
-        { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-        { id: 'courses', label: 'My Courses & Labs', icon: BookOpen, badge: '4' },
-        { id: 'workshops', label: 'Live Workshops', icon: Video, badge: 'Live' },
-        { id: 'inspections', label: 'Assignments & Grading', icon: ClipboardCheck, badge: '5' },
-        { id: 'apprentices', label: 'Students & Apprentices', icon: Users }
+        { id: 'dashboard', label: t.instructorPortal.menu.dashboard, icon: LayoutDashboard },
+        { id: 'courses', label: t.instructorPortal.menu.courses, icon: BookOpen, badge: '4' },
+        { id: 'workshops', label: t.instructorPortal.menu.workshops, icon: Video, badge: 'Live' },
+        { id: 'inspections', label: t.instructorPortal.menu.inspections, icon: ClipboardCheck, badge: '5' },
+        { id: 'apprentices', label: t.instructorPortal.menu.apprentices, icon: Users }
       ]
     },
     {
-      title: 'Finance & Earnings',
+      title: t.instructorPortal.menuGroups.finance,
       items: [
-        { id: 'earnings', label: 'Earnings & Payouts', icon: DollarSign }
+        { id: 'earnings', label: t.instructorPortal.menu.earnings, icon: DollarSign }
       ]
     },
     {
-      title: 'Account & Support',
+      title: t.instructorPortal.menuGroups.account,
       items: [
-        { id: 'notifications', label: 'Notifications', icon: Bell, badge: '3' },
-        { id: 'profile', label: 'Instructor Profile', icon: User },
-        { id: 'settings', label: 'Settings', icon: Settings },
-        { id: 'support', label: 'Help & Support', icon: LifeBuoy }
+        { id: 'notifications', label: t.instructorPortal.menu.notifications, icon: Bell, badge: '3' },
+        { id: 'profile', label: t.instructorPortal.menu.profile, icon: User },
+        { id: 'settings', label: t.instructorPortal.menu.settings, icon: Settings },
+        { id: 'support', label: t.instructorPortal.menu.support, icon: LifeBuoy }
       ]
     }
   ];
@@ -93,7 +97,7 @@ export default function InstructorSidebar({
           >
             <img
               src="/logo.png"
-              alt="SAMURAI TALENT Logo"
+              alt={isJa ? "サムライタレント ロゴ" : "SAMURAI TALENT Logo"}
               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
@@ -107,7 +111,7 @@ export default function InstructorSidebar({
                 lineHeight: '1.2'
               }}
             >
-              SAMURAI TALENT
+              {isJa ? 'サムライタレント' : 'SAMURAI TALENT'}
             </div>
             <div
               style={{
@@ -118,7 +122,7 @@ export default function InstructorSidebar({
                 marginTop: '2px'
               }}
             >
-              INSTRUCTOR PORTAL
+              {isJa ? '指導員ポータル' : 'INSTRUCTOR PORTAL'}
             </div>
           </div>
         </div>
@@ -264,8 +268,8 @@ export default function InstructorSidebar({
                           item.badge === 'Live'
                             ? '#EF4444'
                             : isActive
-                            ? '#304FE8'
-                            : '#E2E8F0',
+                              ? '#304FE8'
+                              : '#E2E8F0',
                         color: item.badge === 'Live' || isActive ? '#FFFFFF' : '#334155'
                       }}
                     >
@@ -279,14 +283,11 @@ export default function InstructorSidebar({
         ))}
       </div>
 
-      {/* 4. Bottom Sign Out */}
+      {/* 4. Bottom Language Toggle & Sign Out */}
       <div
         style={{
           padding: '14px 16px',
           borderTop: '1px solid rgba(226, 228, 238, 0.85)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '6px'
         }}
       >
         <button
@@ -316,7 +317,7 @@ export default function InstructorSidebar({
           }}
         >
           <LogOut size={16} />
-          <span>Sign Out</span>
+          <span>{t.instructorPortal.menu.logout}</span>
         </button>
       </div>
     </aside>
