@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import LanguageToggle from '../LanguageToggle';
 import Sidebar from './Sidebar';
 import DashboardHome from './DashboardHome';
 import CertificatesView from './CertificatesView';
@@ -150,6 +151,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
 
             {/* Right: Search Pill + Notification Icon + My Profile Section */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <LanguageToggle />
               {/* Search Pill */}
               <div className="portal-search-wrapper" style={{ position: 'relative', width: '240px' }}>
                 <Search

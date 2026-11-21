@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import LanguageToggle from '../LanguageToggle';
 import InstructorSidebar from './InstructorSidebar';
 import InstructorHome from './InstructorHome';
 import ManageCoursesView from './ManageCoursesView';
@@ -159,6 +160,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
 
             {/* Right: Search Pill + Notification Icon + Profile Section */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <LanguageToggle />
               {/* Quick Search */}
               <div className="portal-search-wrapper" style={{ position: 'relative', width: '250px' }}>
                 <Search

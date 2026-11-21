@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, Menu, X } from 'lucide-react';
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar({ onOpenAuth }) {
+  const { t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeOption, setActiveOption] = useState('courses');
 
   const navLinks = [
-    { id: 'acceleration', label: 'Acceleration', href: '#career-acceleration' },
-    { id: 'courses', label: 'Courses', href: '#courses' },
-    { id: 'certificates', label: 'Certificates', href: '#curriculum' },
-    { id: 'jobs', label: 'Jobs', href: '#steps' },
-    { id: 'teach', label: 'Teach', href: '#teach' },
+    { id: 'acceleration', label: t.nav.acceleration, href: '#career-acceleration' },
+    { id: 'courses', label: t.nav.courses, href: '#courses' },
+    { id: 'certificates', label: t.nav.certificates, href: '#curriculum' },
+    { id: 'jobs', label: t.nav.jobs, href: '#steps' },
+    { id: 'teach', label: t.nav.teach, href: '#teach' },
   ];
 
   useEffect(() => {
@@ -180,9 +183,10 @@ export default function Navbar({ onOpenAuth }) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '12px',
             }}
           >
+            <LanguageToggle />
             <button
               onClick={() => onOpenAuth('login')}
               className="nav-action-login"
@@ -198,7 +202,7 @@ export default function Navbar({ onOpenAuth }) {
                 transition: 'all 0.2s cubic-bezier(0.2, 0, 0, 1)',
               }}
             >
-              Log In
+              {t.nav.login}
             </button>
             <button
               onClick={() => onOpenAuth('get-started')}
@@ -219,7 +223,7 @@ export default function Navbar({ onOpenAuth }) {
                 justifyContent: 'center',
               }}
             >
-              Get Started
+              {t.nav.getStarted}
             </button>
           </div>
 
@@ -284,6 +288,9 @@ export default function Navbar({ onOpenAuth }) {
               );
             })}
             <div style={{ borderTop: '1px solid var(--line)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '4px' }}>
+                <LanguageToggle />
+              </div>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -292,7 +299,7 @@ export default function Navbar({ onOpenAuth }) {
                 className="btn btn-secondary"
                 style={{ width: '100%' }}
               >
-                Log In
+                {t.nav.login}
               </button>
               <button
                 onClick={() => {
@@ -302,7 +309,7 @@ export default function Navbar({ onOpenAuth }) {
                 className="btn btn-primary"
                 style={{ width: '100%' }}
               >
-                Get Started
+                {t.nav.getStarted}
               </button>
             </div>
           </div>
