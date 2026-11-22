@@ -77,7 +77,7 @@ export default function Navbar({ onOpenAuth }) {
           backgroundColor: scrolledPastHero ? '#FFFFFF' : 'transparent',
           borderBottom: scrolledPastHero ? '1px solid #E5E7EB' : 'none',
           boxShadow: scrolledPastHero ? '0 1px 4px rgba(0, 0, 0, 0.05)' : 'none',
-          padding: scrolledPastHero ? '12px 36px' : '22px 36px',
+          padding: scrolledPastHero ? '12px 46px' : '22px 46px',
           boxSizing: 'border-box',
           transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
