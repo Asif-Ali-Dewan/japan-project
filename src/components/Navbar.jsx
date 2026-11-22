@@ -19,12 +19,10 @@ export default function Navbar({ onOpenAuth }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate hero boundary: transparent within hero, solid floating pill once scrolled past hero
       const heroElem = document.getElementById('top') || document.querySelector('.hero-wrapper');
       const threshold = heroElem ? heroElem.offsetHeight - 90 : Math.max(window.innerHeight - 90, 480);
       setScrolledPastHero(window.scrollY > threshold);
 
-      // Dynamically detect which content section is currently on screen
       const sections = [
         { id: 'acceleration', elem: document.getElementById('career-acceleration') },
         { id: 'courses', elem: document.getElementById('courses') },
@@ -61,45 +59,38 @@ export default function Navbar({ onOpenAuth }) {
 
   return (
     <>
+      {/* 
+        Full-width navigation header:
+        - In Hero: 100% transparent edge-to-edge header with clean white text & white CTA button (Screenshot 1).
+        - Scrolled Out: Solid white edge-to-edge bar with clean dark text & dark rectangular CTA button (Screenshot 2).
+      */}
       <header
-        className="navbar-fixed-container"
         style={{
           position: 'fixed',
-          top: scrolledPastHero ? '14px' : '20px',
+          top: 0,
           left: 0,
           right: 0,
           width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
           zIndex: 1000,
-          padding: scrolledPastHero ? '0 16px' : '0 28px',
-          pointerEvents: 'none',
-          transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          backgroundColor: scrolledPastHero ? '#FFFFFF' : 'transparent',
+          borderBottom: scrolledPastHero ? '1px solid #E5E7EB' : 'none',
+          boxShadow: scrolledPastHero ? '0 1px 4px rgba(0, 0, 0, 0.05)' : 'none',
+          padding: scrolledPastHero ? '14px 36px' : '24px 36px',
+          boxSizing: 'border-box',
+          transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        {/* Navigation Bar: Transparent on Hero, Solid Frosted Pill when Scrolled Out */}
-        <nav
-          className="nav-pill"
+        <div
           style={{
-            pointerEvents: 'auto',
-            backgroundColor: scrolledPastHero ? 'rgba(255, 255, 255, 0.95)' : 'transparent',
-            backdropFilter: scrolledPastHero ? 'blur(16px)' : 'none',
-            borderRadius: 'var(--r-pill)',
-            padding: scrolledPastHero ? '6px 10px 6px 18px' : '6px 4px 6px 8px',
+            maxWidth: '1280px',
+            margin: '0 auto',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             width: '100%',
-            maxWidth: 'var(--container)',
-            boxShadow: scrolledPastHero
-              ? '0 16px 36px rgba(11, 18, 47, 0.14), 0 4px 12px rgba(11, 18, 47, 0.06)'
-              : 'none',
-            border: scrolledPastHero ? '1px solid var(--line)' : 'none',
-            transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
-            transform: scrolledPastHero ? 'translateY(-2px)' : 'translateY(0)',
           }}
         >
-          {/* Brand Logo with Tactile Click & Hover Feedback */}
+          {/* Brand Logo */}
           <a
             href="#top"
             className="nav-logo"
@@ -108,12 +99,12 @@ export default function Navbar({ onOpenAuth }) {
               alignItems: 'center',
               gap: '10px',
               textDecoration: 'none',
-              color: scrolledPastHero ? 'var(--navy)' : '#FFFFFF',
+              color: scrolledPastHero ? '#111827' : '#FFFFFF',
               fontWeight: '700',
               fontSize: '18px',
               letterSpacing: '-0.02em',
-              transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              textShadow: scrolledPastHero ? 'none' : '0 2px 10px rgba(0, 0, 0, 0.3)',
+              transition: 'color 0.25s ease',
+              textShadow: scrolledPastHero ? 'none' : '0 2px 10px rgba(0, 0, 0, 0.4)',
             }}
           >
             <div
@@ -121,15 +112,15 @@ export default function Navbar({ onOpenAuth }) {
               style={{
                 width: '34px',
                 height: '34px',
-                borderRadius: '9px',
-                border: scrolledPastHero ? '1px solid var(--line)' : '1px solid rgba(255, 255, 255, 0.4)',
+                borderRadius: '8px',
+                border: scrolledPastHero ? '1px solid #E5E7EB' : '1px solid rgba(255, 255, 255, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 backgroundColor: '#FFFFFF',
                 padding: '4px',
                 boxShadow: '0 2px 8px rgba(0, 0, 0, 0.12)',
-                transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                transition: 'all 0.3s ease',
               }}
             >
               <img
@@ -141,86 +132,60 @@ export default function Navbar({ onOpenAuth }) {
             <span>SAMURAI TALENT</span>
           </a>
 
-          {/* Desktop Navigation Links with Responsive Transparent/Glass vs Solid Styling */}
-          <div
+          {/* Desktop Navigation Links: Simple text links with NO glass background, NO pill container */}
+          <nav
             className="desktop-nav"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '4px',
-              backgroundColor: scrolledPastHero
-                ? 'rgba(244, 247, 254, 0.6)'
-                : 'rgba(255, 255, 255, 0.12)',
-              padding: '4px',
-              borderRadius: 'var(--r-pill)',
-              border: scrolledPastHero
-                ? '1px solid rgba(226, 228, 238, 0.6)'
-                : '1px solid rgba(255, 255, 255, 0.22)',
-              backdropFilter: 'blur(10px)',
-              transition: 'all 0.3s ease',
+              gap: '32px',
             }}
           >
             {navLinks.map((item) => {
               const isSelected = activeOption === item.id;
-              let linkColor = scrolledPastHero ? 'var(--muted)' : 'rgba(255, 255, 255, 0.9)';
-              let linkBg = 'transparent';
-              let linkShadow = 'none';
-
-              if (isSelected) {
-                linkBg = '#FFFFFF';
-                linkColor = '#1C36D0';
-                linkShadow = scrolledPastHero
-                  ? '0 2px 8px rgba(48, 79, 232, 0.15)'
-                  : '0 2px 10px rgba(0, 0, 0, 0.18)';
-              }
+              let linkColor = scrolledPastHero
+                ? isSelected
+                  ? '#111827'
+                  : '#4B5563'
+                : isSelected
+                ? '#FFFFFF'
+                : 'rgba(255, 255, 255, 0.88)';
 
               return (
                 <a
                   key={item.id}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item)}
-                  className={`nav-link-btn ${isSelected ? 'is-selected' : ''}`}
                   style={{
                     textDecoration: 'none',
                     color: linkColor,
-                    backgroundColor: linkBg,
-                    fontSize: '13px',
-                    fontWeight: isSelected ? '700' : '600',
-                    padding: '7px 16px',
-                    borderRadius: 'var(--r-pill)',
-                    transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    boxShadow: linkShadow,
+                    fontSize: '14.5px',
+                    fontWeight: isSelected ? '700' : '500',
+                    transition: 'all 0.2s ease',
+                    textShadow: scrolledPastHero ? 'none' : '0 1px 6px rgba(0, 0, 0, 0.3)',
+                    position: 'relative',
+                    paddingBottom: '2px',
                   }}
                   onMouseEnter={(e) => {
-                    if (!isSelected) {
-                      e.currentTarget.style.color = scrolledPastHero ? 'var(--navy)' : '#FFFFFF';
-                      e.currentTarget.style.backgroundColor = scrolledPastHero
-                        ? 'rgba(255, 255, 255, 0.85)'
-                        : 'rgba(255, 255, 255, 0.22)';
-                    }
+                    e.currentTarget.style.color = scrolledPastHero ? '#111827' : '#FFFFFF';
                   }}
                   onMouseLeave={(e) => {
-                    if (!isSelected) {
-                      e.currentTarget.style.color = linkColor;
-                      e.currentTarget.style.backgroundColor = linkBg;
-                    }
+                    e.currentTarget.style.color = linkColor;
                   }}
                 >
                   <span>{item.label}</span>
                 </a>
               );
             })}
-          </div>
+          </nav>
 
-          {/* Action Buttons: Language Switch, Login, & Get Started */}
+          {/* Action Buttons: Language Switch, Login, & Get Started Button */}
           <div
             className="desktop-nav-actions"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
+              gap: '16px',
             }}
           >
             <LanguageToggle variant={scrolledPastHero ? 'default' : 'transparent'} />
@@ -231,58 +196,58 @@ export default function Navbar({ onOpenAuth }) {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: scrolledPastHero ? 'var(--navy)' : '#FFFFFF',
-                fontSize: '14px',
+                color: scrolledPastHero ? '#111827' : '#FFFFFF',
+                fontSize: '14.5px',
                 fontWeight: '600',
                 cursor: 'pointer',
-                padding: '8px 16px',
-                borderRadius: 'var(--r-pill)',
-                transition: 'all 0.2s cubic-bezier(0.2, 0, 0, 1)',
+                padding: '8px 12px',
+                transition: 'all 0.2s ease',
                 textShadow: scrolledPastHero ? 'none' : '0 1px 6px rgba(0, 0, 0, 0.3)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = scrolledPastHero
-                  ? 'var(--surface)'
-                  : 'rgba(255, 255, 255, 0.18)';
+                e.currentTarget.style.opacity = '0.8';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.opacity = '1';
               }}
             >
               {t.nav.login}
             </button>
 
+            {/* 
+              CTA Button:
+              - In Hero: Clean white button with dark text (Framo Screenshot 1)
+              - Scrolled Out: Solid dark button with white text (Framo Screenshot 2)
+            */}
             <button
               onClick={() => onOpenAuth('get-started')}
               className="nav-action-signup"
               style={{
-                backgroundColor: scrolledPastHero ? 'var(--blue)' : '#FFFFFF',
-                color: scrolledPastHero ? '#FFFFFF' : '#1C36D0',
+                backgroundColor: scrolledPastHero ? '#18191E' : '#FFFFFF',
+                color: scrolledPastHero ? '#FFFFFF' : '#111827',
                 border: 'none',
                 fontSize: '14px',
-                fontWeight: '700',
-                padding: '9px 22px',
-                borderRadius: 'var(--r-pill)',
+                fontWeight: '600',
+                padding: '10px 22px',
+                borderRadius: '6px',
                 cursor: 'pointer',
                 boxShadow: scrolledPastHero
-                  ? '0 4px 14px rgba(48, 79, 232, 0.25)'
-                  : '0 4px 18px rgba(0, 0, 0, 0.24)',
+                  ? '0 2px 8px rgba(0, 0, 0, 0.15)'
+                  : '0 4px 14px rgba(0, 0, 0, 0.2)',
                 transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = scrolledPastHero
-                  ? '0 8px 24px rgba(48, 79, 232, 0.4)'
-                  : '0 8px 24px rgba(0, 0, 0, 0.32)';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+                e.currentTarget.style.boxShadow = '0 6px 18px rgba(0, 0, 0, 0.25)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = scrolledPastHero
-                  ? '0 4px 14px rgba(48, 79, 232, 0.25)'
-                  : '0 4px 18px rgba(0, 0, 0, 0.24)';
+                  ? '0 2px 8px rgba(0, 0, 0, 0.15)'
+                  : '0 4px 14px rgba(0, 0, 0, 0.2)';
               }}
             >
               {t.nav.getStarted}
@@ -298,33 +263,33 @@ export default function Navbar({ onOpenAuth }) {
               display: 'none',
               background: 'transparent',
               border: 'none',
-              color: scrolledPastHero ? 'var(--navy)' : '#FFFFFF',
+              color: scrolledPastHero ? '#111827' : '#FFFFFF',
               cursor: 'pointer',
               padding: '8px',
             }}
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
-        </nav>
+        </div>
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
           <div
             style={{
-              pointerEvents: 'auto',
               position: 'absolute',
-              top: '68px',
+              top: '100%',
               left: '16px',
               right: '16px',
               backgroundColor: '#FFFFFF',
-              borderRadius: 'var(--r-lg)',
-              padding: '24px',
-              boxShadow: 'var(--shadow-lg)',
-              border: '1px solid var(--line)',
+              borderRadius: '12px',
+              padding: '20px',
+              boxShadow: '0 12px 32px rgba(0, 0, 0, 0.15)',
+              border: '1px solid #E5E7EB',
               display: 'flex',
               flexDirection: 'column',
               gap: '12px',
               zIndex: 100,
+              marginTop: '8px',
             }}
           >
             {navLinks.map((item) => {
@@ -336,12 +301,12 @@ export default function Navbar({ onOpenAuth }) {
                   onClick={(e) => handleNavClick(e, item)}
                   style={{
                     textDecoration: 'none',
-                    color: isSelected ? 'var(--blue)' : 'var(--navy)',
-                    backgroundColor: isSelected ? 'var(--lav)' : 'transparent',
+                    color: isSelected ? 'var(--blue)' : '#111827',
+                    backgroundColor: isSelected ? '#F3F4F6' : 'transparent',
                     fontWeight: isSelected ? '700' : '600',
                     fontSize: '15px',
                     padding: '10px 14px',
-                    borderRadius: 'var(--r-md)',
+                    borderRadius: '8px',
                     display: 'block',
                   }}
                 >
@@ -351,7 +316,7 @@ export default function Navbar({ onOpenAuth }) {
             })}
             <div
               style={{
-                borderTop: '1px solid var(--line)',
+                borderTop: '1px solid #E5E7EB',
                 paddingTop: '16px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -377,7 +342,7 @@ export default function Navbar({ onOpenAuth }) {
                   onOpenAuth('get-started');
                 }}
                 className="btn btn-primary"
-                style={{ width: '100%' }}
+                style={{ width: '100%', backgroundColor: '#18191E', color: '#FFFFFF', border: 'none' }}
               >
                 {t.nav.getStarted}
               </button>
@@ -386,19 +351,8 @@ export default function Navbar({ onOpenAuth }) {
         )}
       </header>
 
-      {/* Embedded CSS for Hover and Click Animations */}
+      {/* Responsive Styles */}
       <style>{`
-        .nav-logo:hover .logo-icon-box {
-          transform: rotate(-8deg) scale(1.08);
-        }
-        .nav-logo:active {
-          transform: scale(0.96);
-        }
-
-        .nav-link-btn:active {
-          transform: scale(0.95);
-        }
-
         @media (max-width: 860px) {
           .desktop-nav, .desktop-nav-actions {
             display: none !important;

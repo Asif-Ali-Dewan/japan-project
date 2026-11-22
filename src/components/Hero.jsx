@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero({ onOpenAuth }) {
@@ -77,7 +77,7 @@ export default function Hero({ onOpenAuth }) {
                 position: 'absolute',
                 inset: 0,
                 opacity: isActive ? 1 : 0,
-                transform: isActive ? 'scale(1.04)' : 'scale(1)',
+                transform: isActive ? 'scale(1.03)' : 'scale(1)',
                 transition: 'opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 6s cubic-bezier(0.1, 0, 0.2, 1)',
                 pointerEvents: 'none',
                 zIndex: 0,
@@ -97,28 +97,27 @@ export default function Hero({ onOpenAuth }) {
           );
         })}
 
-        {/* Sophisticated Blue Gradient Overlay: Dense on the left, translucent on the right */}
+        {/* Moderate Blue Gradient: Perfectly balanced so the image is clearly visible while text stays readable */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(90deg, rgba(8, 20, 68, 0.96) 0%, rgba(18, 48, 168, 0.90) 36%, rgba(28, 68, 215, 0.65) 60%, rgba(15, 30, 95, 0.32) 84%, rgba(8, 16, 48, 0.18) 100%)',
+              'linear-gradient(90deg, rgba(10, 24, 76, 0.80) 0%, rgba(16, 44, 150, 0.64) 35%, rgba(22, 58, 185, 0.36) 65%, rgba(12, 28, 85, 0.12) 85%, transparent 100%)',
             zIndex: 1,
             pointerEvents: 'none',
           }}
         />
 
-        {/* Subtle Top Vignette for Transparent Navbar Clarity */}
+        {/* Subtle Top Vignette for Transparent Header */}
         <div
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
-            height: '200px',
-            background:
-              'linear-gradient(180deg, rgba(5, 12, 42, 0.70) 0%, rgba(5, 12, 42, 0.30) 50%, transparent 100%)',
+            height: '140px',
+            background: 'linear-gradient(180deg, rgba(6, 14, 46, 0.35) 0%, transparent 100%)',
             zIndex: 2,
             pointerEvents: 'none',
           }}
@@ -140,7 +139,7 @@ export default function Hero({ onOpenAuth }) {
           }}
         >
           <div style={{ maxWidth: '680px' }}>
-            {/* Clean Editorial Kicker (Framo-Style Minimal Typography - No AI Badges / No Star Icons) */}
+            {/* Clean Editorial Kicker (Framo-Style Minimal Typography) */}
             <div
               style={{
                 display: 'flex',
@@ -166,7 +165,7 @@ export default function Hero({ onOpenAuth }) {
                 style={{
                   width: '32px',
                   height: '1.5px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.45)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
                   display: 'inline-block',
                 }}
               />
@@ -193,7 +192,7 @@ export default function Hero({ onOpenAuth }) {
                 lineHeight: '1.14',
                 letterSpacing: '-0.03em',
                 fontWeight: '800',
-                textShadow: '0 4px 24px rgba(8, 20, 68, 0.4)',
+                textShadow: '0 4px 24px rgba(0, 0, 0, 0.45)',
               }}
             >
               {isJa ? (
@@ -220,7 +219,7 @@ export default function Hero({ onOpenAuth }) {
                 marginBottom: '36px',
                 maxWidth: '600px',
                 fontWeight: '400',
-                textShadow: '0 2px 10px rgba(8, 20, 68, 0.3)',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.35)',
               }}
             >
               {isJa ? active.subJa : active.subEn}
@@ -233,11 +232,11 @@ export default function Hero({ onOpenAuth }) {
                 className="btn"
                 style={{
                   backgroundColor: '#FFFFFF',
-                  color: '#1C36D0',
+                  color: '#111827',
                   fontSize: '15px',
                   fontWeight: '700',
                   padding: '13px 30px',
-                  borderRadius: '999px',
+                  borderRadius: '6px',
                   border: 'none',
                   cursor: 'pointer',
                   boxShadow: '0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.1)',
@@ -265,12 +264,12 @@ export default function Hero({ onOpenAuth }) {
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.14)',
                   color: '#FFFFFF',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.35)',
                   backdropFilter: 'blur(10px)',
                   fontSize: '15px',
                   fontWeight: '600',
                   padding: '13px 26px',
-                  borderRadius: '999px',
+                  borderRadius: '6px',
                   textDecoration: 'none',
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -288,36 +287,10 @@ export default function Hero({ onOpenAuth }) {
                 <span>{isJa ? 'プログラムの特徴' : 'How it works'}</span>
               </a>
             </div>
-
-            {/* Quick Trust Metrics */}
-            <div
-              style={{
-                marginTop: '44px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '24px',
-                fontSize: '13.5px',
-                color: '#E0E7FF',
-                flexWrap: 'wrap',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                <CheckCircle2 size={16} color="#A7F3D0" />
-                <span>{isJa ? '現場実践ワークショップ' : 'Hands-on shop training'}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                <CheckCircle2 size={16} color="#A7F3D0" />
-                <span>{isJa ? '熟練マイスター直接添削' : 'Master craftsman inspection'}</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                <CheckCircle2 size={16} color="#A7F3D0" />
-                <span>{isJa ? '公認技術者資格認定' : 'Certified trade credentials'}</span>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* 3 Long Dot Carousel Indicators at Middle Down */}
+        {/* 3 Standard-Size Carousel Dots at Middle Down */}
         <div
           style={{
             position: 'absolute',
@@ -326,7 +299,7 @@ export default function Hero({ onOpenAuth }) {
             transform: 'translateX(-50%)',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '8px',
             zIndex: 20,
           }}
           role="tablist"
@@ -341,16 +314,16 @@ export default function Hero({ onOpenAuth }) {
                 aria-label={`Slide ${idx + 1}: ${isJa ? s.kickerJa : s.kickerEn}`}
                 style={{
                   position: 'relative',
-                  width: isActive ? '64px' : '44px',
-                  height: '5px',
+                  width: isActive ? '26px' : '8px',
+                  height: '4px',
                   borderRadius: '999px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.32)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.4)',
                   border: 'none',
                   padding: 0,
                   cursor: 'pointer',
                   overflow: 'hidden',
                   transition: 'all 0.35s cubic-bezier(0.2, 0, 0, 1)',
-                  boxShadow: isActive ? '0 0 10px rgba(255, 255, 255, 0.45)' : 'none',
+                  boxShadow: isActive ? '0 0 8px rgba(255, 255, 255, 0.5)' : 'none',
                 }}
               >
                 {isActive && (
