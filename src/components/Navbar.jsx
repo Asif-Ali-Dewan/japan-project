@@ -61,10 +61,12 @@ export default function Navbar({ onOpenAuth }) {
     <>
       {/* 
         Full-width navigation header:
-        - In Hero: 100% transparent edge-to-edge header with clean white text & white CTA button.
-        - Scrolled Out: Solid white edge-to-edge bar with active/click in Royal Blue & Royal Blue CTA button.
+        - Content spans edge-to-edge with clean standard padding (no excessive dead white margins on sides)
+        - In Hero: 100% transparent header with clean white text & white CTA button
+        - Scrolled Out: Solid white bar with active links & CTA button in Royal Blue
       */}
       <header
+        className="main-header"
         style={{
           position: 'fixed',
           top: 0,
@@ -75,19 +77,20 @@ export default function Navbar({ onOpenAuth }) {
           backgroundColor: scrolledPastHero ? '#FFFFFF' : 'transparent',
           borderBottom: scrolledPastHero ? '1px solid #E5E7EB' : 'none',
           boxShadow: scrolledPastHero ? '0 1px 4px rgba(0, 0, 0, 0.05)' : 'none',
-          padding: scrolledPastHero ? '14px 36px' : '24px 36px',
+          padding: scrolledPastHero ? '12px 36px' : '22px 36px',
           boxSizing: 'border-box',
           transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         <div
+          className="header-inner"
           style={{
-            maxWidth: '1280px',
-            margin: '0 auto',
+            width: '100%',
+            maxWidth: '100%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            width: '100%',
+            boxSizing: 'border-box',
           }}
         >
           {/* Brand Logo */}
@@ -105,6 +108,7 @@ export default function Navbar({ onOpenAuth }) {
               letterSpacing: '-0.02em',
               transition: 'color 0.25s ease',
               textShadow: scrolledPastHero ? 'none' : '0 2px 10px rgba(0, 0, 0, 0.4)',
+              flexShrink: 0,
             }}
           >
             <div
@@ -132,20 +136,20 @@ export default function Navbar({ onOpenAuth }) {
             <span>SAMURAI TALENT</span>
           </a>
 
-          {/* Desktop Navigation Links: Blue on click/active & hover */}
+          {/* Desktop Navigation Links: Balanced spacing without excessive dead gaps */}
           <nav
             className="desktop-nav"
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '32px',
+              gap: '28px',
             }}
           >
             {navLinks.map((item) => {
               const isSelected = activeOption === item.id;
               let linkColor = scrolledPastHero
                 ? isSelected
-                  ? '#304FE8' // Vibrant Blue on click/active
+                  ? '#304FE8' // Royal Blue on active/click
                   : '#4B5563'
                 : isSelected
                 ? '#FFFFFF'
@@ -179,13 +183,14 @@ export default function Navbar({ onOpenAuth }) {
             })}
           </nav>
 
-          {/* Action Buttons: Language Switch, Login, & Vibrant Blue Get Started Button */}
+          {/* Action Buttons: Language Switch, Login, & Get Started Button */}
           <div
             className="desktop-nav-actions"
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '16px',
+              flexShrink: 0,
             }}
           >
             <LanguageToggle variant={scrolledPastHero ? 'default' : 'transparent'} />
@@ -365,6 +370,9 @@ export default function Navbar({ onOpenAuth }) {
           }
           .mobile-menu-btn {
             display: flex !important;
+          }
+          .main-header {
+            padding: 14px 20px !important;
           }
         }
       `}</style>
