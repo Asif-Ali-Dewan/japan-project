@@ -61,8 +61,8 @@ export default function Navbar({ onOpenAuth }) {
     <>
       {/* 
         Full-width navigation header:
-        - In Hero: 100% transparent edge-to-edge header with clean white text & white CTA button (Screenshot 1).
-        - Scrolled Out: Solid white edge-to-edge bar with clean dark text & dark rectangular CTA button (Screenshot 2).
+        - In Hero: 100% transparent edge-to-edge header with clean white text & white CTA button.
+        - Scrolled Out: Solid white edge-to-edge bar with active/click in Royal Blue & Royal Blue CTA button.
       */}
       <header
         style={{
@@ -99,7 +99,7 @@ export default function Navbar({ onOpenAuth }) {
               alignItems: 'center',
               gap: '10px',
               textDecoration: 'none',
-              color: scrolledPastHero ? '#111827' : '#FFFFFF',
+              color: scrolledPastHero ? '#0F172A' : '#FFFFFF',
               fontWeight: '700',
               fontSize: '18px',
               letterSpacing: '-0.02em',
@@ -113,7 +113,7 @@ export default function Navbar({ onOpenAuth }) {
                 width: '34px',
                 height: '34px',
                 borderRadius: '8px',
-                border: scrolledPastHero ? '1px solid #E5E7EB' : '1px solid rgba(255, 255, 255, 0.4)',
+                border: scrolledPastHero ? '1px solid #E2E8F0' : '1px solid rgba(255, 255, 255, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -132,7 +132,7 @@ export default function Navbar({ onOpenAuth }) {
             <span>SAMURAI TALENT</span>
           </a>
 
-          {/* Desktop Navigation Links: Simple text links with NO glass background, NO pill container */}
+          {/* Desktop Navigation Links: Blue on click/active & hover */}
           <nav
             className="desktop-nav"
             style={{
@@ -145,7 +145,7 @@ export default function Navbar({ onOpenAuth }) {
               const isSelected = activeOption === item.id;
               let linkColor = scrolledPastHero
                 ? isSelected
-                  ? '#111827'
+                  ? '#304FE8' // Vibrant Blue on click/active
                   : '#4B5563'
                 : isSelected
                 ? '#FFFFFF'
@@ -167,7 +167,7 @@ export default function Navbar({ onOpenAuth }) {
                     paddingBottom: '2px',
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.color = scrolledPastHero ? '#111827' : '#FFFFFF';
+                    e.currentTarget.style.color = scrolledPastHero ? '#304FE8' : '#FFFFFF';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.color = linkColor;
@@ -179,7 +179,7 @@ export default function Navbar({ onOpenAuth }) {
             })}
           </nav>
 
-          {/* Action Buttons: Language Switch, Login, & Get Started Button */}
+          {/* Action Buttons: Language Switch, Login, & Vibrant Blue Get Started Button */}
           <div
             className="desktop-nav-actions"
             style={{
@@ -196,7 +196,7 @@ export default function Navbar({ onOpenAuth }) {
               style={{
                 background: 'transparent',
                 border: 'none',
-                color: scrolledPastHero ? '#111827' : '#FFFFFF',
+                color: scrolledPastHero ? '#0F172A' : '#FFFFFF',
                 fontSize: '14.5px',
                 fontWeight: '600',
                 cursor: 'pointer',
@@ -205,9 +205,11 @@ export default function Navbar({ onOpenAuth }) {
                 textShadow: scrolledPastHero ? 'none' : '0 1px 6px rgba(0, 0, 0, 0.3)',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.opacity = '0.8';
+                e.currentTarget.style.color = scrolledPastHero ? '#304FE8' : '#FFFFFF';
+                e.currentTarget.style.opacity = scrolledPastHero ? '1' : '0.85';
               }}
               onMouseLeave={(e) => {
+                e.currentTarget.style.color = scrolledPastHero ? '#0F172A' : '#FFFFFF';
                 e.currentTarget.style.opacity = '1';
               }}
             >
@@ -216,14 +218,14 @@ export default function Navbar({ onOpenAuth }) {
 
             {/* 
               CTA Button:
-              - In Hero: Clean white button with dark text (Framo Screenshot 1)
-              - Scrolled Out: Solid dark button with white text (Framo Screenshot 2)
+              - In Hero: Clean white button with navy text.
+              - Scrolled Out: Vibrant Blue (#304FE8) button with white text.
             */}
             <button
               onClick={() => onOpenAuth('get-started')}
               className="nav-action-signup"
               style={{
-                backgroundColor: scrolledPastHero ? '#18191E' : '#FFFFFF',
+                backgroundColor: scrolledPastHero ? '#304FE8' : '#FFFFFF',
                 color: scrolledPastHero ? '#FFFFFF' : '#111827',
                 border: 'none',
                 fontSize: '14px',
@@ -232,7 +234,7 @@ export default function Navbar({ onOpenAuth }) {
                 borderRadius: '6px',
                 cursor: 'pointer',
                 boxShadow: scrolledPastHero
-                  ? '0 2px 8px rgba(0, 0, 0, 0.15)'
+                  ? '0 4px 14px rgba(48, 79, 232, 0.3)'
                   : '0 4px 14px rgba(0, 0, 0, 0.2)',
                 transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
                 display: 'inline-flex',
@@ -241,12 +243,16 @@ export default function Navbar({ onOpenAuth }) {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-1px)';
-                e.currentTarget.style.boxShadow = '0 6px 18px rgba(0, 0, 0, 0.25)';
+                e.currentTarget.style.backgroundColor = scrolledPastHero ? '#203ECC' : '#FFFFFF';
+                e.currentTarget.style.boxShadow = scrolledPastHero
+                  ? '0 8px 20px rgba(48, 79, 232, 0.42)'
+                  : '0 6px 18px rgba(0, 0, 0, 0.25)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.backgroundColor = scrolledPastHero ? '#304FE8' : '#FFFFFF';
                 e.currentTarget.style.boxShadow = scrolledPastHero
-                  ? '0 2px 8px rgba(0, 0, 0, 0.15)'
+                  ? '0 4px 14px rgba(48, 79, 232, 0.3)'
                   : '0 4px 14px rgba(0, 0, 0, 0.2)';
               }}
             >
@@ -301,8 +307,8 @@ export default function Navbar({ onOpenAuth }) {
                   onClick={(e) => handleNavClick(e, item)}
                   style={{
                     textDecoration: 'none',
-                    color: isSelected ? 'var(--blue)' : '#111827',
-                    backgroundColor: isSelected ? '#F3F4F6' : 'transparent',
+                    color: isSelected ? '#304FE8' : '#111827',
+                    backgroundColor: isSelected ? '#EEF2FF' : 'transparent',
                     fontWeight: isSelected ? '700' : '600',
                     fontSize: '15px',
                     padding: '10px 14px',
@@ -342,7 +348,7 @@ export default function Navbar({ onOpenAuth }) {
                   onOpenAuth('get-started');
                 }}
                 className="btn btn-primary"
-                style={{ width: '100%', backgroundColor: '#18191E', color: '#FFFFFF', border: 'none' }}
+                style={{ width: '100%', backgroundColor: '#304FE8', color: '#FFFFFF', border: 'none' }}
               >
                 {t.nav.getStarted}
               </button>
