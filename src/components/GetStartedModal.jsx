@@ -356,74 +356,121 @@ export default function GetStartedModal({
               </p>
             </div>
 
-            {/* 3 Selectable Role Cards */}
+            {/* 3 Selectable Role Cards (Simple Black & White Radio Selection, No Icons) */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '16px' }}>
               {roleOptions.map((opt) => {
-                const Icon = opt.icon;
+                const isSelected = role === opt.id;
                 return (
                   <button
                     key={opt.id}
                     type="button"
-                    onClick={() => handleSelectRole(opt.id)}
+                    onClick={() => setRole(opt.id)}
                     style={{
                       width: '100%',
-                      padding: '14px 18px',
+                      padding: '16px 20px',
                       borderRadius: '16px',
                       backgroundColor: '#FFFFFF',
-                      border: '1.5px solid var(--line)',
+                      border: isSelected ? '2px solid #0B122F' : '1.5px solid #E2E8F0',
                       textAlign: 'left',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       cursor: 'pointer',
-                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      transition: 'all 0.18s ease',
                       boxSizing: 'border-box',
+                      boxShadow: isSelected ? '0 4px 14px rgba(11, 18, 47, 0.08)' : 'none',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = 'var(--surface)';
-                      e.currentTarget.style.borderColor = 'var(--blue)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 6px 18px rgba(48, 79, 232, 0.08)';
+                      if (!isSelected) {
+                        e.currentTarget.style.borderColor = '#94A3B8';
+                        e.currentTarget.style.backgroundColor = '#F8FAFC';
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = '#FFFFFF';
-                      e.currentTarget.style.borderColor = 'var(--line)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'none';
+                      if (!isSelected) {
+                        e.currentTarget.style.borderColor = '#E2E8F0';
+                        e.currentTarget.style.backgroundColor = '#FFFFFF';
+                      }
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                      <div
-                        style={{
-                          width: '40px',
-                          height: '40px',
-                          borderRadius: '11px',
-                          backgroundColor: 'var(--surface)',
-                          color: 'var(--blue)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          border: '1px solid rgba(48, 79, 232, 0.15)',
-                          flexShrink: 0,
-                        }}
-                      >
-                        <Icon size={20} />
+                    <div>
+                      <div style={{ fontSize: '15px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.015em' }}>
+                        {opt.title}
                       </div>
-                      <div>
-                        <div style={{ fontSize: '14.5px', fontWeight: '800', color: 'var(--navy)' }}>
-                          {opt.title}
-                        </div>
-                        <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px', lineHeight: '1.35' }}>
-                          {opt.description}
-                        </div>
+                      <div style={{ fontSize: '12.5px', color: '#687588', marginTop: '3px', lineHeight: '1.35' }}>
+                        {opt.description}
                       </div>
                     </div>
 
-                    <ArrowRight size={16} color="var(--muted)" style={{ flexShrink: 0, marginLeft: '8px' }} />
+                    {/* Simple Black & White Radio Button */}
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '50%',
+                        border: isSelected ? '2px solid #0B122F' : '1.5px solid #CBD5E1',
+                        backgroundColor: '#FFFFFF',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        marginLeft: '12px',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      {isSelected && (
+                        <div
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            backgroundColor: '#0B122F',
+                          }}
+                        />
+                      )}
+                    </div>
                   </button>
                 );
               })}
             </div>
+
+            {/* Continue Button */}
+            <button
+              type="button"
+              onClick={() => {
+                setFocus(null);
+                setStep(2);
+              }}
+              style={{
+                width: '100%',
+                height: '46px',
+                borderRadius: 'var(--r-pill)',
+                backgroundColor: '#0B122F',
+                color: '#FFFFFF',
+                fontSize: '14px',
+                fontWeight: '700',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                marginBottom: '14px',
+                transition: 'all 0.2s ease',
+                boxShadow: '0 4px 14px rgba(11, 18, 47, 0.18)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1E293B';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#0B122F';
+                e.currentTarget.style.transform = 'none';
+              }}
+            >
+              <span>Continue</span>
+              <ArrowRight size={15} />
+            </button>
 
             <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--muted)', margin: 0 }}>
               You can switch roles anytime.
@@ -437,7 +484,7 @@ export default function GetStartedModal({
         {step === 2 && (
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
             <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              {/* Realistic & Lively Track Pill */}
+              {/* Realistic & Lively Track Pill (No Icon) */}
               <div
                 style={{
                   display: 'inline-flex',
@@ -455,22 +502,6 @@ export default function GetStartedModal({
                   letterSpacing: '-0.01em',
                 }}
               >
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#304FE8',
-                  }}
-                >
-                  {role === 'instructor' ? (
-                    <Presentation size={13} strokeWidth={2.5} />
-                  ) : role === 'student' ? (
-                    <GraduationCap size={13} strokeWidth={2.5} />
-                  ) : (
-                    <Briefcase size={13} strokeWidth={2.5} />
-                  )}
-                </span>
                 <span>
                   {role === 'student'
                     ? 'Learner Pathway'
@@ -514,11 +545,10 @@ export default function GetStartedModal({
               </p>
             </div>
 
-            {/* Focus Options */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '14px' }}>
+            {/* Focus Options (Simple Black & White Radio Selection, No Icons) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '16px' }}>
               {focusOptions[role]?.map((item) => {
                 const isSelected = focus === item.id;
-                const IconComponent = item.icon;
                 return (
                   <button
                     key={item.id}
@@ -526,101 +556,84 @@ export default function GetStartedModal({
                     onClick={() => handleSelectFocus(item.id)}
                     style={{
                       width: '100%',
-                      padding: '12px 16px',
+                      padding: '16px 20px',
                       borderRadius: '16px',
-                      backgroundColor: isSelected ? 'rgba(48, 79, 232, 0.04)' : '#FFFFFF',
-                      border: isSelected ? '2px solid var(--blue)' : '1.5px solid #E2E8F0',
+                      backgroundColor: '#FFFFFF',
+                      border: isSelected ? '2px solid #0B122F' : '1.5px solid #E2E8F0',
                       textAlign: 'left',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       cursor: 'pointer',
-                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      transition: 'all 0.18s ease',
                       boxSizing: 'border-box',
                       boxShadow: isSelected
-                        ? '0 4px 16px rgba(48, 79, 232, 0.12)'
-                        : '0 1px 3px rgba(11, 18, 47, 0.03)',
-                      transform: isSelected ? 'translateY(-1px)' : 'none',
+                        ? '0 4px 14px rgba(11, 18, 47, 0.08)'
+                        : 'none',
                     }}
                     onMouseEnter={(e) => {
                       if (!isSelected) {
                         e.currentTarget.style.backgroundColor = '#FAFBFD';
-                        e.currentTarget.style.borderColor = 'rgba(48, 79, 232, 0.4)';
-                        e.currentTarget.style.transform = 'translateY(-1px)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(11, 18, 47, 0.05)';
+                        e.currentTarget.style.borderColor = '#94A3B8';
                       }
                     }}
                     onMouseLeave={(e) => {
                       if (!isSelected) {
                         e.currentTarget.style.backgroundColor = '#FFFFFF';
                         e.currentTarget.style.borderColor = '#E2E8F0';
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 1px 3px rgba(11, 18, 47, 0.03)';
                       }
                     }}
                   >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '13px' }}>
+                    <div>
                       <div
                         style={{
-                          width: '38px',
-                          height: '38px',
-                          borderRadius: '11px',
-                          backgroundColor: item.iconBg,
-                          color: item.iconColor,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                          border: `1px solid ${item.iconColor}22`,
-                          transition: 'transform 0.2s ease',
-                          transform: isSelected ? 'scale(1.05)' : 'none',
+                          fontSize: '15px',
+                          fontWeight: '800',
+                          color: '#0B122F',
+                          letterSpacing: '-0.015em',
+                          lineHeight: '1.25',
                         }}
                       >
-                        <IconComponent size={19} strokeWidth={2.2} />
+                        {item.title}
                       </div>
-                      <div>
-                        <div
-                          style={{
-                            fontSize: '14px',
-                            fontWeight: '700',
-                            color: 'var(--navy)',
-                            letterSpacing: '-0.015em',
-                            lineHeight: '1.25',
-                          }}
-                        >
-                          {item.title}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: '11.5px',
-                            color: 'var(--muted)',
-                            marginTop: '2px',
-                            lineHeight: '1.35',
-                          }}
-                        >
-                          {item.desc}
-                        </div>
+                      <div
+                        style={{
+                          fontSize: '12.5px',
+                          color: '#687588',
+                          marginTop: '3px',
+                          lineHeight: '1.35',
+                        }}
+                      >
+                        {item.desc}
                       </div>
                     </div>
 
+                    {/* Simple Black & White Radio Button */}
                     <div
                       style={{
-                        width: '22px',
-                        height: '22px',
+                        width: '20px',
+                        height: '20px',
                         borderRadius: '50%',
-                        border: isSelected ? 'none' : '1.5px solid #CBD5E1',
-                        backgroundColor: isSelected ? 'var(--blue)' : '#FFFFFF',
+                        border: isSelected ? '2px solid #0B122F' : '1.5px solid #CBD5E1',
+                        backgroundColor: '#FFFFFF',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
                         marginLeft: '12px',
-                        transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        boxShadow: isSelected ? '0 2px 6px rgba(48, 79, 232, 0.35)' : 'none',
-                        transform: isSelected ? 'scale(1.08)' : 'scale(1)',
+                        transition: 'all 0.15s ease',
                       }}
                     >
-                      {isSelected && <Check size={13} color="#FFFFFF" strokeWidth={3} />}
+                      {isSelected && (
+                        <div
+                          style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            backgroundColor: '#0B122F',
+                          }}
+                        />
+                      )}
                     </div>
                   </button>
                 );
@@ -636,9 +649,9 @@ export default function GetStartedModal({
               }}
               style={{
                 width: '100%',
-                height: '44px',
+                height: '46px',
                 borderRadius: 'var(--r-pill)',
-                backgroundColor: focus ? 'var(--blue)' : '#E2E4EE',
+                backgroundColor: focus ? '#0B122F' : '#E2E4EE',
                 color: focus ? '#FFFFFF' : '#8F9BB3',
                 fontSize: '14px',
                 fontWeight: '700',
@@ -648,25 +661,25 @@ export default function GetStartedModal({
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: '8px',
-                marginBottom: '12px',
+                marginBottom: '14px',
                 transition: 'all 0.2s ease',
-                boxShadow: focus ? '0 4px 14px rgba(48, 79, 232, 0.24)' : 'none',
+                boxShadow: focus ? '0 4px 14px rgba(11, 18, 47, 0.18)' : 'none',
               }}
               onMouseEnter={(e) => {
                 if (focus) {
-                  e.currentTarget.style.backgroundColor = 'var(--blue-hover)';
+                  e.currentTarget.style.backgroundColor = '#1E293B';
                   e.currentTarget.style.transform = 'translateY(-1px)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (focus) {
-                  e.currentTarget.style.backgroundColor = 'var(--blue)';
-                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.backgroundColor = '#0B122F';
+                  e.currentTarget.style.transform = 'none';
                 }
               }}
             >
               <span>Continue</span>
-              <ArrowRight size={16} />
+              <ArrowRight size={15} />
             </button>
 
             <p style={{ textAlign: 'center', fontSize: '12px', color: 'var(--muted)', margin: 0 }}>
@@ -698,25 +711,9 @@ export default function GetStartedModal({
                   letterSpacing: '-0.01em',
                 }}
               >
-                <span
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#304FE8',
-                  }}
-                >
-                  {role === 'instructor' ? (
-                    <Presentation size={12} strokeWidth={2.5} />
-                  ) : role === 'student' ? (
-                    <GraduationCap size={12} strokeWidth={2.5} />
-                  ) : (
-                    <Briefcase size={12} strokeWidth={2.5} />
-                  )}
-                </span>
                 <span>
                   {role === 'student'
-                    ? 'Student Account Setup'
+                    ? 'Learner Account Setup'
                     : role === 'instructor'
                     ? 'Educator Application'
                     : 'Employer Partner Registration'}
