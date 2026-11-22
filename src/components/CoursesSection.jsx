@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { coursesData } from '../data/courses';
-import { ArrowRight, Search, Play, Clock, BarChart, User, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Search, Play, Clock, BarChart, User } from 'lucide-react';
 
 export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -48,14 +48,27 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
                   style={{
                     padding: '8px 20px',
                     borderRadius: 'var(--r-pill)',
-                    fontSize: '14px',
+                    fontSize: '13.5px',
                     fontWeight: '600',
                     border: '1px solid',
-                    borderColor: isSelected ? 'var(--blue)' : 'var(--line)',
-                    backgroundColor: isSelected ? 'var(--blue)' : '#FFFFFF',
-                    color: isSelected ? '#FFFFFF' : 'var(--muted)',
+                    borderColor: isSelected ? '#111827' : '#E5E7EB',
+                    backgroundColor: isSelected ? '#111827' : '#FFFFFF',
+                    color: isSelected ? '#FFFFFF' : '#4B5563',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease',
+                    boxShadow: isSelected ? '0 2px 6px rgba(0, 0, 0, 0.12)' : 'none',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = '#111827';
+                      e.currentTarget.style.color = '#111827';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = '#E5E7EB';
+                      e.currentTarget.style.color = '#4B5563';
+                    }
                   }}
                 >
                   {cat}
@@ -73,7 +86,7 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
                 left: '14px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                color: 'var(--muted)',
+                color: '#6B7280',
               }}
             />
             <input
@@ -84,15 +97,19 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
               className="input-field"
               style={{
                 paddingLeft: '40px',
-                paddingTop: '8px',
-                paddingBottom: '8px',
+                paddingTop: '9px',
+                paddingBottom: '9px',
                 borderRadius: 'var(--r-pill)',
+                border: '1px solid #E5E7EB',
+                backgroundColor: '#FFFFFF',
+                color: '#111827',
+                fontSize: '13.5px',
               }}
             />
           </div>
         </div>
 
-        {/* Grid of Pastel Course Cards (matching design spec: one pastel tint each, tag top-left, title and meta bottom-left) */}
+        {/* Grid of Clean Minimalist Black & White Course Cards */}
         <div
           style={{
             display: 'grid',
@@ -106,134 +123,148 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
             <div
               key={course.id}
               className="course-card"
-              style={{ backgroundColor: course.bgColor }}
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid #E5E7EB',
+                borderRadius: '20px',
+                padding: '28px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
+              }}
               onClick={() => onSelectCourse(course)}
             >
-              {/* Top Row: Tag Top-Left */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
-                <span
-                  style={{
-                    backgroundColor: course.tagBg,
-                    color: course.tagColor,
-                    padding: '6px 14px',
-                    borderRadius: 'var(--r-pill)',
-                    fontSize: '12px',
-                    fontWeight: '700',
-                  }}
-                >
-                  {course.category}
-                </span>
-
-                <div
-                  style={{
-                    width: '36px',
-                    height: '36px',
-                    borderRadius: '50%',
-                    backgroundColor: '#FFFFFF',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: course.accentColor,
-                    boxShadow: '0 4px 10px rgba(11, 18, 47, 0.04)',
-                  }}
-                >
-                  <ArrowRight size={18} />
-                </div>
-              </div>
-
-              {/* Bottom Row: Title and Meta Bottom-Left (Per PDF spec) */}
               <div>
+                {/* Top Row: Clean Minimal Tag Left & Monochrome Arrow Right */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px' }}>
+                  <span
+                    style={{
+                      backgroundColor: '#F3F4F6',
+                      color: '#111827',
+                      border: '1px solid #E5E7EB',
+                      padding: '5px 14px',
+                      borderRadius: 'var(--r-pill)',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    {course.category}
+                  </span>
+
+                  <div
+                    className="course-arrow-btn"
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '50%',
+                      backgroundColor: '#F9FAFB',
+                      border: '1px solid #E5E7EB',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#111827',
+                      transition: 'all 0.2s cubic-bezier(0.2, 0, 0, 1)',
+                    }}
+                  >
+                    <ArrowRight size={17} />
+                  </div>
+                </div>
+
+                {/* Title & Description in High-Contrast Monochrome */}
                 <h3
                   className="heading-3"
                   style={{
-                    fontSize: '24px',
+                    fontSize: '22px',
                     fontWeight: '700',
-                    color: 'var(--navy)',
+                    color: '#111827',
                     marginBottom: '10px',
+                    lineHeight: '1.3',
+                    letterSpacing: '-0.02em',
                   }}
                 >
                   {course.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', color: 'var(--muted)', marginBottom: '16px', lineHeight: '1.5' }}>
+                <p style={{ fontSize: '14px', color: '#4B5563', marginBottom: '20px', lineHeight: '1.55' }}>
                   {course.description}
                 </p>
+              </div>
 
-                {/* Modern Pill Chips Meta Bar */}
+              {/* Minimal Monochrome Pill Chips Meta Bar */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  flexWrap: 'wrap',
+                  paddingTop: '16px',
+                  borderTop: '1px solid #F3F4F6',
+                  marginTop: '16px',
+                }}
+              >
                 <div
                   style={{
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    flexWrap: 'wrap',
-                    paddingTop: '16px',
-                    borderTop: '1px solid rgba(11, 18, 47, 0.08)',
-                    marginTop: '18px',
+                    gap: '6px',
+                    backgroundColor: '#F9FAFB',
+                    padding: '5px 13px',
+                    borderRadius: 'var(--r-pill)',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#374151',
+                    border: '1px solid #E5E7EB',
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      backgroundColor: '#FFFFFF',
-                      padding: '5px 12px',
-                      borderRadius: 'var(--r-pill)',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      color: 'var(--navy)',
-                      border: '1px solid rgba(11, 18, 47, 0.06)',
-                      boxShadow: '0 2px 4px rgba(11, 18, 47, 0.03)',
-                    }}
-                  >
-                    <Clock size={13} color="var(--blue)" strokeWidth={2.2} />
-                    <span>{course.duration}</span>
-                  </div>
+                  <Clock size={13} color="#4B5563" strokeWidth={2} />
+                  <span>{course.duration}</span>
+                </div>
 
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      backgroundColor: '#FFFFFF',
-                      padding: '5px 12px',
-                      borderRadius: 'var(--r-pill)',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      color: 'var(--navy)',
-                      border: '1px solid rgba(11, 18, 47, 0.06)',
-                      boxShadow: '0 2px 4px rgba(11, 18, 47, 0.03)',
-                    }}
-                  >
-                    <BarChart size={13} color="#059669" strokeWidth={2.2} />
-                    <span>{course.level}</span>
-                  </div>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    backgroundColor: '#F9FAFB',
+                    padding: '5px 13px',
+                    borderRadius: 'var(--r-pill)',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#374151',
+                    border: '1px solid #E5E7EB',
+                  }}
+                >
+                  <BarChart size={13} color="#4B5563" strokeWidth={2} />
+                  <span>{course.level}</span>
+                </div>
 
-                  <div
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      backgroundColor: '#FFFFFF',
-                      padding: '5px 12px',
-                      borderRadius: 'var(--r-pill)',
-                      fontSize: '12px',
-                      fontWeight: '600',
-                      color: 'var(--navy)',
-                      border: '1px solid rgba(11, 18, 47, 0.06)',
-                      boxShadow: '0 2px 4px rgba(11, 18, 47, 0.03)',
-                    }}
-                  >
-                    <User size={13} color="#D97706" strokeWidth={2.2} />
-                    <span>{course.students}</span>
-                  </div>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    backgroundColor: '#F9FAFB',
+                    padding: '5px 13px',
+                    borderRadius: 'var(--r-pill)',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#374151',
+                    border: '1px solid #E5E7EB',
+                  }}
+                >
+                  <User size={13} color="#4B5563" strokeWidth={2} />
+                  <span>{course.students}</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Featured Showcase / Student Transition Video Banner (As shown in Image 2) */}
+        {/* Featured Showcase / Student Transition Video Banner */}
         <div
           style={{
             backgroundColor: 'var(--blue)',
@@ -339,6 +370,17 @@ export default function CoursesSection({ onSelectCourse, onOpenAuth }) {
       </div>
 
       <style>{`
+        .course-card:hover {
+          border-color: #111827 !important;
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08) !important;
+          transform: translateY(-2px);
+        }
+        .course-card:hover .course-arrow-btn {
+          background-color: #111827 !important;
+          color: #FFFFFF !important;
+          border-color: #111827 !important;
+          transform: scale(1.05);
+        }
         @media (max-width: 860px) {
           .courses-grid {
             grid-template-columns: 1fr !important;

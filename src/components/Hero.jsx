@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero({ onOpenAuth }) {
@@ -9,39 +9,39 @@ export default function Hero({ onOpenAuth }) {
   const slides = [
     {
       id: 0,
-      tagEn: 'Technical Trade Cohorts • Now Enrolling',
-      tagJa: '実践技術コホート • 募集開始',
+      kickerEn: 'Robotics & Precision Manufacturing',
+      kickerJa: '先端ロボティクス・精密製造',
+      eyebrowEn: 'Accredited Japanese Trade Track',
+      eyebrowJa: '日本国公認・実践型カリキュラム',
       titleEn: ['From Skills to', 'Career Success'],
       titleJa: ['本物の技術を、', '確かな未来へ。'],
       subEn: 'The modern technical & vocational career launchpad. Learn from master technicians, build real workshop installations, and land high-demand trade roles in Japan and worldwide.',
       subJa: '現代の技術・職業キャリアの起点。熟練の指導者から直接学び、実現場に即した設備で腕を磨き、日本の一流企業へ。',
       image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=85',
-      trackEn: 'Robotics & Precision Manufacturing',
-      trackJa: 'ロボティクス・精密製造',
     },
     {
       id: 1,
-      tagEn: 'Certified Trade Tracks • Automotive Engineering',
-      tagJa: '認定技術トラック • 自動車工学',
+      kickerEn: 'Automotive & Engine Systems',
+      kickerJa: '自動車工学・エンジン整備',
+      eyebrowEn: 'Accredited Japanese Trade Track',
+      eyebrowJa: '日本国公認・実践型カリキュラム',
       titleEn: ['Craftsmanship Meets', 'Modern Engineering'],
       titleJa: ['匠の技と、', '先端テクノロジー。'],
       subEn: 'Develop certified hands-on skills in engine diagnostics, hybrid powertrains, and Japanese precision mechanical standards with 1-on-1 master inspection.',
       subJa: 'エンジン診断、ハイブリッド機関、日本の精密機械基準をマスター。第一線のプロによる直接指導で本物の技術者に。',
       image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=2000&q=85',
-      trackEn: 'Automotive & Engine Systems',
-      trackJa: '自動車・エンジン整備',
     },
     {
       id: 2,
-      tagEn: 'Licensed Master Mentors • Architecture & Tech Build',
-      tagJa: '熟練マイスター指導 • 建築・技術施工',
+      kickerEn: 'Architecture & Technical Construction',
+      kickerJa: '先進建築・施工マイスター',
+      eyebrowEn: 'Accredited Japanese Trade Track',
+      eyebrowJa: '日本国公認・実践型カリキュラム',
       titleEn: ['From Practical Skills to', 'Certified Mastery'],
       titleJa: ['現場での実践から、', '認定マイスターへ。'],
       subEn: 'Build real structural installations, earn accredited trade credentials, and fast-track to verified technician employment across Japan.',
       subJa: '本物の現場設計・施工課題に取り組み、公式認定資格を取得。日本全国の即戦力エンジニア採用へ直結。',
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2000&q=85',
-      trackEn: 'Advanced Architecture & Construction',
-      trackJa: '先進建築・施工技術',
     },
   ];
 
@@ -85,7 +85,7 @@ export default function Hero({ onOpenAuth }) {
             >
               <img
                 src={slide.image}
-                alt={slide.trackEn}
+                alt={slide.kickerEn}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -140,27 +140,47 @@ export default function Hero({ onOpenAuth }) {
           }}
         >
           <div style={{ maxWidth: '680px' }}>
-            {/* Lively Category Tag Pill */}
+            {/* Clean Editorial Kicker (Framo-Style Minimal Typography - No AI Badges / No Star Icons) */}
             <div
               style={{
-                display: 'inline-flex',
+                display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                padding: '7px 16px',
-                borderRadius: '999px',
-                backgroundColor: 'rgba(255, 255, 255, 0.16)',
-                border: '1px solid rgba(255, 255, 255, 0.28)',
-                color: '#FFFFFF',
-                fontSize: '13px',
-                fontWeight: '600',
+                gap: '14px',
                 marginBottom: '26px',
-                backdropFilter: 'blur(12px)',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
-                transition: 'all 0.3s ease',
+                flexWrap: 'wrap',
               }}
             >
-              <Sparkles size={14} color="#FFF1D2" />
-              <span>{isJa ? active.tagJa : active.tagEn}</span>
+              <span
+                style={{
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: '#FFFFFF',
+                }}
+              >
+                {isJa ? active.kickerJa : active.kickerEn}
+              </span>
+
+              <span
+                style={{
+                  width: '32px',
+                  height: '1.5px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.45)',
+                  display: 'inline-block',
+                }}
+              />
+
+              <span
+                style={{
+                  fontSize: '13px',
+                  fontWeight: '500',
+                  color: '#DCE3FF',
+                  letterSpacing: '0.01em',
+                }}
+              >
+                {isJa ? active.eyebrowJa : active.eyebrowEn}
+              </span>
             </div>
 
             {/* Display Hero Title with smooth fade transition */}
@@ -318,7 +338,7 @@ export default function Hero({ onOpenAuth }) {
               <button
                 key={s.id}
                 onClick={() => handleSelectSlide(idx)}
-                aria-label={`Slide ${idx + 1}: ${isJa ? s.trackJa : s.trackEn}`}
+                aria-label={`Slide ${idx + 1}: ${isJa ? s.kickerJa : s.kickerEn}`}
                 style={{
                   position: 'relative',
                   width: isActive ? '64px' : '44px',
