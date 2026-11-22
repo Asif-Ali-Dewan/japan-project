@@ -47,36 +47,56 @@
 */
 
 .hero-wrapper {
-  padding: 16px;
-  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+  background-color: #0A184C;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-panel {
-  background: linear-gradient(135deg, #1C36D0 0%, #304FE8 60%, #4465F5 100%);
-  border-radius: var(--r-xl);
+  background: transparent;
+  border-radius: 0;
   color: #FFFFFF;
-  padding: 24px 32px 48px 32px;
+  padding: 0;
   position: relative;
   overflow: hidden;
   flex: 1;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {
   .hero-panel {
-    padding: 16px 20px 48px 20px;
-    border-radius: var(--r-lg);
-    min-height: auto;
+    padding: 0;
+    border-radius: 0;
+    min-height: 100vh;
   }
   .hero-wrapper {
-    padding: 8px;
-    min-height: auto;
+    padding: 0;
+    min-height: 100vh;
   }
+}
+
+/* Hero Carousel Indicator Progress Animation */
+@keyframes heroProgressAnim {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.hero-progress-active {
+  animation: heroProgressAnim 5.5s linear forwards;
 }
 
 /* Accordion Slow & Smooth Animation Classes */

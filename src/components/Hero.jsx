@@ -1,388 +1,354 @@
-import React from 'react';
-import { ArrowRight, Star, Sparkles, Wrench, GraduationCap, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Hero({ onOpenAuth }) {
+  const { language } = useLanguage();
+  const isJa = language === 'ja';
+
+  const slides = [
+    {
+      id: 0,
+      tagEn: 'Technical Trade Cohorts • Now Enrolling',
+      tagJa: '実践技術コホート • 募集開始',
+      titleEn: ['From Skills to', 'Career Success'],
+      titleJa: ['本物の技術を、', '確かな未来へ。'],
+      subEn: 'The modern technical & vocational career launchpad. Learn from master technicians, build real workshop installations, and land high-demand trade roles in Japan and worldwide.',
+      subJa: '現代の技術・職業キャリアの起点。熟練の指導者から直接学び、実現場に即した設備で腕を磨き、日本の一流企業へ。',
+      image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=2000&q=85',
+      trackEn: 'Robotics & Precision Manufacturing',
+      trackJa: 'ロボティクス・精密製造',
+    },
+    {
+      id: 1,
+      tagEn: 'Certified Trade Tracks • Automotive Engineering',
+      tagJa: '認定技術トラック • 自動車工学',
+      titleEn: ['Craftsmanship Meets', 'Modern Engineering'],
+      titleJa: ['匠の技と、', '先端テクノロジー。'],
+      subEn: 'Develop certified hands-on skills in engine diagnostics, hybrid powertrains, and Japanese precision mechanical standards with 1-on-1 master inspection.',
+      subJa: 'エンジン診断、ハイブリッド機関、日本の精密機械基準をマスター。第一線のプロによる直接指導で本物の技術者に。',
+      image: 'https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=2000&q=85',
+      trackEn: 'Automotive & Engine Systems',
+      trackJa: '自動車・エンジン整備',
+    },
+    {
+      id: 2,
+      tagEn: 'Licensed Master Mentors • Architecture & Tech Build',
+      tagJa: '熟練マイスター指導 • 建築・技術施工',
+      titleEn: ['From Practical Skills to', 'Certified Mastery'],
+      titleJa: ['現場での実践から、', '認定マイスターへ。'],
+      subEn: 'Build real structural installations, earn accredited trade credentials, and fast-track to verified technician employment across Japan.',
+      subJa: '本物の現場設計・施工課題に取り組み、公式認定資格を取得。日本全国の即戦力エンジニア採用へ直結。',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=2000&q=85',
+      trackEn: 'Advanced Architecture & Construction',
+      trackJa: '先進建築・施工技術',
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [progressKey, setProgressKey] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setProgressKey((prev) => prev + 1);
+    }, 5500);
+
+    return () => clearInterval(timer);
+  }, [currentSlide, slides.length]);
+
+  const handleSelectSlide = (index) => {
+    setCurrentSlide(index);
+    setProgressKey((prev) => prev + 1);
+  };
+
+  const active = slides[currentSlide];
+
   return (
     <div className="hero-wrapper" id="top">
       <div className="hero-panel">
-        {/* Hero Main Content Grid - Expands to fill full hero screen */}
+        {/* Full-bleed Background Images with Smooth Crossfade & Cinematic Scale */}
+        {slides.map((slide, index) => {
+          const isActive = index === currentSlide;
+          return (
+            <div
+              key={slide.id}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: isActive ? 1 : 0,
+                transform: isActive ? 'scale(1.04)' : 'scale(1)',
+                transition: 'opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 6s cubic-bezier(0.1, 0, 0.2, 1)',
+                pointerEvents: 'none',
+                zIndex: 0,
+              }}
+            >
+              <img
+                src={slide.image}
+                alt={slide.trackEn}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+            </div>
+          );
+        })}
+
+        {/* Sophisticated Blue Gradient Overlay: Dense on the left, translucent on the right */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg, rgba(8, 20, 68, 0.96) 0%, rgba(18, 48, 168, 0.90) 36%, rgba(28, 68, 215, 0.65) 60%, rgba(15, 30, 95, 0.32) 84%, rgba(8, 16, 48, 0.18) 100%)',
+            zIndex: 1,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Subtle Top Vignette for Transparent Navbar Clarity */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '200px',
+            background:
+              'linear-gradient(180deg, rgba(5, 12, 42, 0.70) 0%, rgba(5, 12, 42, 0.30) 50%, transparent 100%)',
+            zIndex: 2,
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Hero Content Area */}
         <div
           className="container"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1.05fr 0.95fr',
-            alignItems: 'center',
-            gap: '56px',
             position: 'relative',
             zIndex: 10,
-            flex: 1,
-            paddingTop: '96px',
-            paddingBottom: '32px',
+            paddingTop: '130px',
+            paddingBottom: '80px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            minHeight: '100vh',
           }}
         >
-          {/* Left Column: Headline and Call to Actions */}
-          <div>
+          <div style={{ maxWidth: '680px' }}>
+            {/* Lively Category Tag Pill */}
             <div
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '6px 14px',
-                borderRadius: 'var(--r-pill)',
-                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                padding: '7px 16px',
+                borderRadius: '999px',
+                backgroundColor: 'rgba(255, 255, 255, 0.16)',
+                border: '1px solid rgba(255, 255, 255, 0.28)',
                 color: '#FFFFFF',
                 fontSize: '13px',
                 fontWeight: '600',
-                marginBottom: '28px',
-                backdropFilter: 'blur(8px)',
+                marginBottom: '26px',
+                backdropFilter: 'blur(12px)',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                transition: 'all 0.3s ease',
               }}
             >
               <Sparkles size={14} color="#FFF1D2" />
-              <span>Technical Trade Cohorts Now Enrolling</span>
+              <span>{isJa ? active.tagJa : active.tagEn}</span>
             </div>
 
-            <h1 className="display-hero" style={{ color: '#FFFFFF', marginBottom: '24px' }}>
-              From Skills to <br />
-              Career Success
+            {/* Display Hero Title with smooth fade transition */}
+            <h1
+              className="display-hero"
+              style={{
+                color: '#FFFFFF',
+                marginBottom: '22px',
+                fontSize: 'clamp(40px, 5.2vw, 64px)',
+                lineHeight: '1.14',
+                letterSpacing: '-0.03em',
+                fontWeight: '800',
+                textShadow: '0 4px 24px rgba(8, 20, 68, 0.4)',
+              }}
+            >
+              {isJa ? (
+                <>
+                  {active.titleJa[0]}
+                  <br />
+                  {active.titleJa[1]}
+                </>
+              ) : (
+                <>
+                  {active.titleEn[0]}
+                  <br />
+                  {active.titleEn[1]}
+                </>
+              )}
             </h1>
 
+            {/* Subtitle */}
             <p
               style={{
                 fontSize: '18px',
-                lineHeight: '1.6',
-                color: '#DCE3FF',
+                lineHeight: '1.65',
+                color: '#E0E7FF',
                 marginBottom: '36px',
                 maxWidth: '600px',
                 fontWeight: '400',
+                textShadow: '0 2px 10px rgba(8, 20, 68, 0.3)',
               }}
             >
-              The modern technical & vocational career launchpad. Learn from master technicians, build real workshop installations, and land high-demand trade roles in Japan and worldwide.
+              {isJa ? active.subJa : active.subEn}
             </p>
 
             {/* CTA Buttons */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
               <button
                 onClick={() => onOpenAuth('signup')}
-                className="btn btn-dark"
+                className="btn"
                 style={{
+                  backgroundColor: '#FFFFFF',
+                  color: '#1C36D0',
                   fontSize: '15px',
-                  fontWeight: '600',
-                  padding: '12px 28px',
-                  boxShadow: '0 8px 24px rgba(11, 18, 47, 0.2)',
+                  fontWeight: '700',
+                  padding: '13px 30px',
+                  borderRadius: '999px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.1)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.28)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.1)';
                 }}
               >
-                <span>Start learning</span>
+                <span>{isJa ? '学習を始める' : 'Start learning'}</span>
                 <ArrowRight size={16} />
               </button>
 
               <a
                 href="#steps"
-                className="btn btn-ghost-dark"
+                className="btn"
                 style={{
+                  backgroundColor: 'rgba(255, 255, 255, 0.14)',
+                  color: '#FFFFFF',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  backdropFilter: 'blur(10px)',
                   fontSize: '15px',
-                  fontWeight: '500',
-                  padding: '12px 26px',
+                  fontWeight: '600',
+                  padding: '13px 26px',
+                  borderRadius: '999px',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.24)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.14)';
+                  e.currentTarget.style.transform = 'translateY(0)';
                 }}
               >
-                <span>How it works</span>
+                <span>{isJa ? 'プログラムの特徴' : 'How it works'}</span>
               </a>
             </div>
 
-            {/* Quick trust metrics */}
+            {/* Quick Trust Metrics */}
             <div
               style={{
                 marginTop: '44px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '24px',
-                fontSize: '13px',
-                color: '#DCE3FF',
+                fontSize: '13.5px',
+                color: '#E0E7FF',
                 flexWrap: 'wrap',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Hands-on shop training</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                <CheckCircle2 size={16} color="#A7F3D0" />
+                <span>{isJa ? '現場実践ワークショップ' : 'Hands-on shop training'}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Master craftsman inspection</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                <CheckCircle2 size={16} color="#A7F3D0" />
+                <span>{isJa ? '熟練マイスター直接添削' : 'Master craftsman inspection'}</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <CheckCircle2 size={16} color="#E6F7ED" />
-                <span>Certified trade credentials</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                <CheckCircle2 size={16} color="#A7F3D0" />
+                <span>{isJa ? '公認技術者資格認定' : 'Certified trade credentials'}</span>
               </div>
-            </div>
-          </div>
-
-          {/* Right Column: Sleek Abstract Visual Canvas (Minimal / Zero Text Clutter) */}
-          <div
-            className="hero-visual"
-            style={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: '480px',
-            }}
-          >
-            {/* Background concentric glowing circles */}
-            <div
-              style={{
-                position: 'absolute',
-                width: '520px',
-                height: '520px',
-                borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 70%, transparent 100%)',
-                pointerEvents: 'none',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                width: '380px',
-                height: '380px',
-                borderRadius: '50%',
-                border: '1px dashed rgba(255, 255, 255, 0.28)',
-                pointerEvents: 'none',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                width: '240px',
-                height: '240px',
-                borderRadius: '50%',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                pointerEvents: 'none',
-              }}
-            />
-
-            {/* Center Floating Card: Pure Visual Canvas with minimal text */}
-            <div
-              className="floating-card animate-float"
-              style={{
-                width: '100%',
-                maxWidth: '480px',
-                backgroundColor: '#FFFFFF',
-                borderRadius: 'var(--r-xl)',
-                border: '1px solid rgba(255, 255, 255, 0.6)',
-                boxShadow: '0 28px 56px rgba(11, 18, 47, 0.25)',
-                overflow: 'hidden',
-                position: 'relative',
-                zIndex: 2,
-              }}
-            >
-              {/* Window Header with subtle window dots */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '16px 20px',
-                  backgroundColor: '#F8FAFC',
-                  borderBottom: '1px solid var(--line)',
-                }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#FF5F56' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#FFBD2E' }} />
-                  <span style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: '#27C93F' }} />
-                </div>
-                <div
-                  style={{
-                    height: '8px',
-                    width: '90px',
-                    backgroundColor: 'var(--line)',
-                    borderRadius: 'var(--r-pill)',
-                  }}
-                />
-                <div style={{ width: '20px' }} />
-              </div>
-
-              {/* Minimalist Graphic Illustration Canvas */}
-              <div
-                style={{
-                  padding: '24px 20px',
-                  background: 'linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '16px',
-                }}
-              >
-                {/* SVG Visual Graphic Composition */}
-                <svg viewBox="0 0 380 210" style={{ width: '100%', height: 'auto', display: 'block' }}>
-                  <defs>
-                    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#304FE8" />
-                      <stop offset="100%" stopColor="#5B77F6" />
-                    </linearGradient>
-                    <linearGradient id="mintGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#E6F7ED" />
-                      <stop offset="100%" stopColor="#C4F0D6" />
-                    </linearGradient>
-                    <linearGradient id="lavGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#D9E2FF" />
-                      <stop offset="100%" stopColor="#BFD0FF" />
-                    </linearGradient>
-                    <linearGradient id="warmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#FFE6D7" />
-                      <stop offset="100%" stopColor="#FFD0BA" />
-                    </linearGradient>
-                  </defs>
-
-                  {/* Top Abstract Layout Blocks */}
-                  <rect x="15" y="15" width="220" height="42" rx="10" fill="url(#lavGrad)" opacity="0.8" />
-                  <rect x="245" y="15" width="120" height="42" rx="10" fill="url(#mintGrad)" opacity="0.9" />
-
-                  {/* Abstract UI Elements inside top blocks */}
-                  <circle cx="40" cy="36" r="10" fill="#304FE8" opacity="0.3" />
-                  <rect x="60" y="32" width="70" height="8" rx="4" fill="#304FE8" opacity="0.5" />
-                  <rect x="140" y="32" width="40" height="8" rx="4" fill="#304FE8" opacity="0.25" />
-
-                  <circle cx="270" cy="36" r="10" fill="#17A34A" opacity="0.3" />
-                  <rect x="290" y="32" width="55" height="8" rx="4" fill="#17A34A" opacity="0.5" />
-
-                  {/* Main Central Visual Composition */}
-                  <rect x="15" y="68" width="350" height="126" rx="12" fill="#F4F7FE" stroke="#E2E4EE" strokeWidth="1" />
-
-                  {/* Left Column Graphic: Code / Data Bars */}
-                  <rect x="32" y="86" width="36" height="36" rx="8" fill="url(#blueGrad)" />
-                  <path d="M 44 104 L 50 110 L 56 98" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-
-                  <rect x="80" y="90" width="90" height="9" rx="4.5" fill="#0B122F" opacity="0.75" />
-                  <rect x="80" y="106" width="130" height="7" rx="3.5" fill="#5A6180" opacity="0.35" />
-
-                  {/* Modern Wave Arc Visual */}
-                  <path d="M 32 165 C 80 135, 120 175, 160 145 S 230 130, 270 155 S 330 130, 348 140" fill="none" stroke="#304FE8" strokeWidth="3" strokeLinecap="round" />
-                  <path d="M 32 170 C 80 142, 120 180, 160 152 S 230 138, 270 162 S 330 138, 348 148" fill="none" stroke="#304FE8" strokeWidth="1.5" strokeDasharray="3 4" opacity="0.4" />
-
-                  {/* Right Column Graphic: Interactive Pillars / Nodes */}
-                  <rect x="250" y="86" width="98" height="36" rx="8" fill="url(#warmGrad)" opacity="0.9" />
-                  <circle cx="272" cy="104" r="8" fill="#FA7317" opacity="0.4" />
-                  <rect x="288" y="100" width="46" height="8" rx="4" fill="#FA7317" opacity="0.7" />
-
-                  {/* Floating geometric dots */}
-                  <circle cx="330" cy="140" r="4" fill="#304FE8" />
-                  <circle cx="330" cy="140" r="8" fill="#304FE8" opacity="0.2" />
-                  <circle cx="160" cy="145" r="4" fill="#17A34A" />
-                </svg>
-
-                {/* Minimalist Bottom Status Bar */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '8px 12px',
-                    backgroundColor: '#FFFFFF',
-                    borderRadius: 'var(--r-md)',
-                    border: '1px solid var(--line)',
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--green)' }} />
-                    <span style={{ fontSize: '11px', fontWeight: '600', color: 'var(--muted)' }}>Interactive Learning Canvas</span>
-                  </div>
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <span style={{ width: '16px', height: '6px', borderRadius: '3px', backgroundColor: 'var(--lav)' }} />
-                    <span style={{ width: '28px', height: '6px', borderRadius: '3px', backgroundColor: 'var(--blue)' }} />
-                    <span style={{ width: '16px', height: '6px', borderRadius: '3px', backgroundColor: 'var(--mint)' }} />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating Status Badges (as in original design) */}
-            <div
-              className="animate-float-delayed"
-              style={{
-                position: 'absolute',
-                top: '20px',
-                right: '-15px',
-                backgroundColor: 'var(--mint)',
-                color: 'var(--green)',
-                padding: '8px 16px',
-                borderRadius: 'var(--r-pill)',
-                fontSize: '13px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                boxShadow: '0 10px 24px rgba(11, 18, 47, 0.12)',
-                zIndex: 3,
-                border: '1px solid rgba(23, 163, 74, 0.2)',
-              }}
-            >
-              <Star size={14} fill="currentColor" />
-              <span>Top 5% Talent Ready</span>
-            </div>
-
-            <div
-              className="animate-float"
-              style={{
-                position: 'absolute',
-                bottom: '24px',
-                left: '-18px',
-                backgroundColor: 'var(--cream)',
-                color: '#8A5300',
-                padding: '8px 16px',
-                borderRadius: 'var(--r-pill)',
-                fontSize: '13px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                boxShadow: '0 10px 24px rgba(11, 18, 47, 0.12)',
-                zIndex: 3,
-                border: '1px solid rgba(246, 157, 11, 0.25)',
-              }}
-            >
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--amber)' }} />
-              <span>Applied Learning</span>
-            </div>
-
-            <div
-              className="animate-float-delayed"
-              style={{
-                position: 'absolute',
-                bottom: '-12px',
-                right: '18px',
-                backgroundColor: 'var(--peach)',
-                color: '#B83800',
-                padding: '8px 16px',
-                borderRadius: 'var(--r-pill)',
-                fontSize: '13px',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                boxShadow: '0 10px 24px rgba(11, 18, 47, 0.12)',
-                zIndex: 3,
-                border: '1px solid rgba(250, 115, 23, 0.25)',
-              }}
-            >
-              <Wrench size={14} />
-              <span>Master Craft Portfolio</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom subtle indicator line */}
-        <div style={{ width: '100%', height: '1px', backgroundColor: 'rgba(255, 255, 255, 0.12)', marginTop: 'auto' }} />
+        {/* 3 Long Dot Carousel Indicators at Middle Down */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '36px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            zIndex: 20,
+          }}
+          role="tablist"
+          aria-label="Hero background slides"
+        >
+          {slides.map((s, idx) => {
+            const isActive = idx === currentSlide;
+            return (
+              <button
+                key={s.id}
+                onClick={() => handleSelectSlide(idx)}
+                aria-label={`Slide ${idx + 1}: ${isJa ? s.trackJa : s.trackEn}`}
+                style={{
+                  position: 'relative',
+                  width: isActive ? '64px' : '44px',
+                  height: '5px',
+                  borderRadius: '999px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.32)',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  overflow: 'hidden',
+                  transition: 'all 0.35s cubic-bezier(0.2, 0, 0, 1)',
+                  boxShadow: isActive ? '0 0 10px rgba(255, 255, 255, 0.45)' : 'none',
+                }}
+              >
+                {isActive && (
+                  <div
+                    key={progressKey}
+                    className="hero-progress-active"
+                    style={{
+                      height: '100%',
+                      backgroundColor: '#FFFFFF',
+                      borderRadius: '999px',
+                    }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .hero-panel .container {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-          }
-          .hero-visual {
-            display: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }
