@@ -483,50 +483,14 @@ export default function GetStartedModal({
         {/* ================================================================= */}
         {step === 2 && (
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              {/* Realistic & Lively Track Pill (No Icon) */}
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '7px',
-                  fontSize: '12px',
-                  fontWeight: '700',
-                  color: '#1E3A8A',
-                  background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
-                  border: '1px solid #C7D2FE',
-                  padding: '4px 13px',
-                  borderRadius: '999px',
-                  marginBottom: '8px',
-                  boxShadow: '0 1px 3px rgba(48, 79, 232, 0.08)',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                <span>
-                  {role === 'student'
-                    ? 'Learner Pathway'
-                    : role === 'instructor'
-                    ? 'Educator & Mentor Path'
-                    : 'Employer Partner Track'}
-                </span>
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    backgroundColor: '#10B981',
-                    boxShadow: '0 0 6px rgba(16, 185, 129, 0.6)',
-                  }}
-                />
-              </div>
-
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
               <h2
                 style={{
                   fontSize: '22px',
                   fontWeight: '800',
                   color: 'var(--navy)',
                   letterSpacing: '-0.025em',
-                  marginBottom: '4px',
+                  marginBottom: '6px',
                   lineHeight: '1.25',
                 }}
               >
@@ -536,7 +500,7 @@ export default function GetStartedModal({
                   ? 'What will you teach?'
                   : 'What are your hiring needs?'}
               </h2>
-              <p style={{ fontSize: '12.5px', color: 'var(--muted)', margin: 0 }}>
+              <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0 }}>
                 {role === 'instructor'
                   ? 'Select your teaching format.'
                   : role === 'student'
@@ -693,49 +657,14 @@ export default function GetStartedModal({
         {/* ================================================================= */}
         {step === 3 && (
           <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
-            <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '7px',
-                  fontSize: '11.5px',
-                  fontWeight: '700',
-                  color: '#1E3A8A',
-                  background: 'linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%)',
-                  border: '1px solid #C7D2FE',
-                  padding: '3px 12px',
-                  borderRadius: '999px',
-                  marginBottom: '8px',
-                  boxShadow: '0 1px 3px rgba(48, 79, 232, 0.08)',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                <span>
-                  {role === 'student'
-                    ? 'Learner Account Setup'
-                    : role === 'instructor'
-                    ? 'Educator Application'
-                    : 'Employer Partner Registration'}
-                </span>
-                <span
-                  style={{
-                    width: '5px',
-                    height: '5px',
-                    borderRadius: '50%',
-                    backgroundColor: '#10B981',
-                    boxShadow: '0 0 5px rgba(16, 185, 129, 0.6)',
-                  }}
-                />
-              </div>
-
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
               <h2
                 style={{
-                  fontSize: '21px',
+                  fontSize: '22px',
                   fontWeight: '800',
                   color: 'var(--navy)',
                   letterSpacing: '-0.025em',
-                  marginBottom: '4px',
+                  marginBottom: '6px',
                   lineHeight: '1.25',
                 }}
               >
@@ -745,7 +674,7 @@ export default function GetStartedModal({
                   ? 'Apply as Educator'
                   : 'Register as Employer'}
               </h2>
-              <p style={{ fontSize: '12.5px', color: 'var(--muted)', margin: 0 }}>
+              <p style={{ fontSize: '13px', color: 'var(--muted)', margin: 0 }}>
                 {role === 'student'
                   ? 'Start your practical trade training today.'
                   : role === 'instructor'
