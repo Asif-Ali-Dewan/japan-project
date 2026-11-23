@@ -14,7 +14,7 @@ export default function StepsSection({ onOpenAuth }) {
           </h2>
         </div>
 
-        {/* 4 Steps Grid (Ash Neutral Grey Cards with Blue 1, 2, 3, 4 Circles) */}
+        {/* 4 Steps Grid (Deep Charcoal Cards with Blue 1, 2, 3, 4 Circles) */}
         <div
           style={{
             display: 'grid',
@@ -28,28 +28,28 @@ export default function StepsSection({ onOpenAuth }) {
             <div
               key={step.number}
               style={{
-                backgroundColor: '#F1F4F8',
+                backgroundColor: '#0E1118',
                 borderRadius: '20px',
                 padding: '32px 24px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 minHeight: '290px',
-                border: '1.5px solid #E2E8F0',
-                boxShadow: '0 4px 16px rgba(11, 18, 47, 0.04)',
+                border: '1px solid #1E2333',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
                 transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
                 boxSizing: 'border-box',
                 position: 'relative',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.borderColor = '#CBD5E1';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(11, 18, 47, 0.08)';
+                e.currentTarget.style.borderColor = '#334155';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 0, 0, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = '#E2E8F0';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(11, 18, 47, 0.04)';
+                e.currentTarget.style.borderColor = '#1E2333';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
               }}
             >
               <div>
@@ -77,7 +77,7 @@ export default function StepsSection({ onOpenAuth }) {
                   style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#0E1118',
+                    color: '#FFFFFF',
                     marginBottom: '12px',
                     letterSpacing: '-0.015em',
                   }}
@@ -85,7 +85,7 @@ export default function StepsSection({ onOpenAuth }) {
                   {step.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#556477' }}>
+                <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#94A3B8' }}>
                   {step.description}
                 </p>
               </div>
@@ -95,15 +95,14 @@ export default function StepsSection({ onOpenAuth }) {
                   style={{
                     fontSize: '12px',
                     fontWeight: '600',
-                    color: '#0E1118',
-                    backgroundColor: '#FFFFFF',
-                    border: '1px solid #CBD5E1',
+                    color: '#CBD5E1',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                     padding: '5px 12px',
                     borderRadius: 'var(--r-pill)',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '6px',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
                   }}
                 >
                   <Check size={13} color="var(--blue)" strokeWidth={2.5} />

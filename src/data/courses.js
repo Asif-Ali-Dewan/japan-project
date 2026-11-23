@@ -271,7 +271,7 @@ export const stepsData = [
     number: "1",
     title: "Select Trade",
     description: "Choose your technical discipline and take a diagnostic skills check to map your personalized workshop roadmap.",
-    bg: "#F1F4F8",
+    bg: "#0E1118",
     pillColor: "var(--blue)",
     pillText: "#FFFFFF",
     highlight: "Skills assessment"
@@ -280,7 +280,7 @@ export const stepsData = [
     number: "2",
     title: "Hands-On Practice",
     description: "Master essential tools, blueprints, and safety standards through guided practical workshop exercises and instructor labs.",
-    bg: "#F1F4F8",
+    bg: "#0E1118",
     pillColor: "var(--blue)",
     pillText: "#FFFFFF",
     highlight: "Workshop labs"
@@ -289,7 +289,7 @@ export const stepsData = [
     number: "3",
     title: "Build & Certify",
     description: "Complete real-world installation and repair capstones inspected and verified by licensed master tradesmen.",
-    bg: "#F1F4F8",
+    bg: "#0E1118",
     pillColor: "var(--blue)",
     pillText: "#FFFFFF",
     highlight: "Master inspections"
@@ -298,7 +298,7 @@ export const stepsData = [
     number: "4",
     title: "Get Hired",
     description: "Connect directly to vetted construction firms, automotive dealerships, industrial plants, and facility managers.",
-    bg: "#F1F4F8",
+    bg: "#0E1118",
     pillColor: "var(--blue)",
     pillText: "#FFFFFF",
     highlight: "Direct referrals"
