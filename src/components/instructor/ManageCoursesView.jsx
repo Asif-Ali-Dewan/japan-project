@@ -434,7 +434,7 @@ export default function ManageCoursesView() {
       </div>
 
       {/* Courses Cards Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '22px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: '22px' }}>
         {courses.map((course) => (
           <div
             key={course.id}

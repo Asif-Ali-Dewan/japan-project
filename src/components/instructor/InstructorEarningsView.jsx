@@ -111,7 +111,7 @@ export default function InstructorEarningsView() {
       </div>
 
       {/* KPI Cards Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '20px', marginBottom: '32px' }}>
         {/* Card 1: Accrued this month */}
         <div style={{ backgroundColor: '#FFFFFF', padding: '24px', borderRadius: '16px', border: '1px solid rgba(226, 228, 238, 0.85)', boxShadow: '0 2px 8px rgba(11, 18, 47, 0.03)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
@@ -207,68 +207,72 @@ export default function InstructorEarningsView() {
           </div>
         </div>
 
-        <div style={{ divideY: '1px solid rgba(226, 228, 238, 0.6)' }}>
-          {PAYOUT_HISTORY.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                padding: '18px 24px',
-                display: 'grid',
-                gridTemplateColumns: '2fr 3fr 1.5fr 1.5fr 1fr',
-                alignItems: 'center',
-                borderBottom: '1px solid rgba(226, 228, 238, 0.6)',
-                gap: '16px'
-              }}
-            >
-              {/* Date & Period */}
-              <div>
-                <div style={{ fontSize: '14px', fontWeight: '700', color: '#0B122F' }}>{item.date}</div>
-                <div style={{ fontSize: '12px', color: '#687588', marginTop: '2px' }}>{item.period}</div>
-              </div>
-
-              {/* Description & Breakdown */}
-              <div>
-                <div style={{ fontSize: '13.5px', fontWeight: '600', color: '#0B122F' }}>{item.category}</div>
-                <div style={{ fontSize: '11.5px', color: '#687588', marginTop: '2px' }}>{item.breakdown}</div>
-              </div>
-
-              {/* Amount */}
-              <div>
-                <div style={{ fontSize: '16px', fontWeight: '800', color: '#0B122F' }}>{item.amount}</div>
-                <div style={{ fontSize: '11px', color: '#687588', marginTop: '2px' }}>{item.method}</div>
-              </div>
-
-              {/* Status */}
-              <div>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 10px', borderRadius: '100px', backgroundColor: '#ECFDF5', color: '#059669', fontSize: '11.5px', fontWeight: '700' }}>
-                  <CheckCircle2 size={12} /> {item.status}
-                </span>
-                <div style={{ fontSize: '11px', color: '#9CA3AF', marginTop: '3px' }}>{item.invoiceNumber}</div>
-              </div>
-
-              {/* Action */}
-              <div style={{ textAlign: 'right' }}>
-                <button
-                  onClick={() => handleDownloadInvoice(item.invoiceNumber)}
+        <div style={{ overflowX: 'auto', width: '100%', WebkitOverflowScrolling: 'touch' }}>
+          <div style={{ minWidth: '700px' }}>
+            <div style={{ divideY: '1px solid rgba(226, 228, 238, 0.6)' }}>
+              {PAYOUT_HISTORY.map((item) => (
+                <div
+                  key={item.id}
                   style={{
-                    padding: '7px 12px',
-                    borderRadius: '8px',
-                    border: '1px solid rgba(226, 228, 238, 0.85)',
-                    backgroundColor: '#FFFFFF',
-                    color: '#304FE8',
-                    fontSize: '12px',
-                    fontWeight: '700',
-                    cursor: 'pointer',
-                    display: 'inline-flex',
+                    padding: '18px 24px',
+                    display: 'grid',
+                    gridTemplateColumns: '2fr 3fr 1.5fr 1.5fr 1fr',
                     alignItems: 'center',
-                    gap: '4px'
+                    borderBottom: '1px solid rgba(226, 228, 238, 0.6)',
+                    gap: '16px'
                   }}
                 >
-                  <Download size={13} /> PDF
-                </button>
-              </div>
+                  {/* Date & Period */}
+                  <div>
+                    <div style={{ fontSize: '14px', fontWeight: '700', color: '#0B122F' }}>{item.date}</div>
+                    <div style={{ fontSize: '12px', color: '#687588', marginTop: '2px' }}>{item.period}</div>
+                  </div>
+
+                  {/* Description & Breakdown */}
+                  <div>
+                    <div style={{ fontSize: '13.5px', fontWeight: '600', color: '#0B122F' }}>{item.category}</div>
+                    <div style={{ fontSize: '11.5px', color: '#687588', marginTop: '2px' }}>{item.breakdown}</div>
+                  </div>
+
+                  {/* Amount */}
+                  <div>
+                    <div style={{ fontSize: '16px', fontWeight: '800', color: '#0B122F' }}>{item.amount}</div>
+                    <div style={{ fontSize: '11px', color: '#687588', marginTop: '2px' }}>{item.method}</div>
+                  </div>
+
+                  {/* Status */}
+                  <div>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '3px 10px', borderRadius: '100px', backgroundColor: '#ECFDF5', color: '#059669', fontSize: '11.5px', fontWeight: '700' }}>
+                      <CheckCircle2 size={12} /> {item.status}
+                    </span>
+                    <div style={{ fontSize: '11px', color: '#9CA3AF', marginTop: '3px' }}>{item.invoiceNumber}</div>
+                  </div>
+
+                  {/* Action */}
+                  <div style={{ textAlign: 'right' }}>
+                    <button
+                      onClick={() => handleDownloadInvoice(item.invoiceNumber)}
+                      style={{
+                        padding: '7px 12px',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(226, 228, 238, 0.85)',
+                        backgroundColor: '#FFFFFF',
+                        color: '#304FE8',
+                        fontSize: '12px',
+                        fontWeight: '700',
+                        cursor: 'pointer',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}
+                    >
+                      <Download size={13} /> PDF
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

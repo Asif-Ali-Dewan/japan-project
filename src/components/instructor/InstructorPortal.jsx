@@ -77,6 +77,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
       {/* Mobile Drawer Sidebar */}
       {mobileSidebarOpen && (
         <div
+          className="portal-mobile-drawer-overlay"
           style={{
             position: 'fixed',
             inset: 0,
@@ -87,7 +88,14 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
           }}
           onClick={() => setMobileSidebarOpen(false)}
         >
-          <div onClick={(e) => e.stopPropagation()}>
+          <div
+            className="portal-mobile-drawer-inner"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxHeight: '100dvh',
+              display: 'flex',
+            }}
+          >
             <InstructorSidebar
               activeTab={activeTab}
               setActiveTab={setActiveTab}
@@ -110,6 +118,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
       >
         {/* Top Header Floating Pill */}
         <header
+          className="portal-header"
           style={{
             position: 'sticky',
             top: '16px',
@@ -121,6 +130,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
           }}
         >
           <div
+            className="portal-header-pill"
             style={{
               backgroundColor: '#FFFFFF',
               backdropFilter: 'blur(16px)',
@@ -152,7 +162,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
               </button>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ fontSize: '15px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.01em' }}>
+                <div style={{ fontSize: 'clamp(14px, 3.5vw, 15px)', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {tabTitles[activeTab] || 'Instructor Dashboard'}
                 </div>
               </div>
@@ -275,7 +285,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                     />
                   </div>
 
-                  <div style={{ textAlign: 'left', lineHeight: '1.2' }}>
+                  <div className="portal-user-name" style={{ textAlign: 'left', lineHeight: '1.2' }}>
                     <div style={{ fontSize: '13px', fontWeight: '800', color: '#0B122F' }}>
                       Kenji Takahashi
                     </div>
@@ -406,7 +416,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
         </header>
 
         {/* Tab Content Renderer */}
-        <div style={{ flex: 1, padding: '0 32px 64px' }}>
+        <div className="portal-content-container" style={{ flex: 1, padding: '0 32px 64px' }}>
           {activeTab === 'dashboard' && (
             <InstructorHome onNavigate={(tab) => setActiveTab(tab)} />
           )}
@@ -440,14 +450,14 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
           {activeTab === 'profile' && (
             <div style={{ maxWidth: '1000px', margin: '0 auto', paddingBottom: '64px' }}>
               <div style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', padding: '32px', border: '1px solid rgba(226, 228, 238, 0.85)', boxShadow: '0 2px 8px rgba(11, 18, 47, 0.03)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '28px', flexWrap: 'wrap' }}>
                   <img
                     src={instructorAvatar}
                     alt="Master Kenji Takahashi"
                     style={{ width: '84px', height: '84px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #EEF2FF', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                   />
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
                       <h2 style={{ fontSize: '22px', fontWeight: '800', color: '#0B122F', margin: 0 }}>
                         Master Kenji Takahashi
                       </h2>
@@ -458,7 +468,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                     <p style={{ fontSize: '13.5px', color: '#687588', margin: '6px 0 0' }}>
                       Former Lead Diagnostics Director, Toyota & Denso Corp (Yokohama Plant) • 28 Years Apprenticeship Mentorship
                     </p>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '10px', fontSize: '12px', color: '#4B5563' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '10px', fontSize: '12px', color: '#4B5563', flexWrap: 'wrap' }}>
                       <span><strong>Credential:</strong> #JIS-M-90241-TY</span>
                       <span>•</span>
                       <span><strong>Accredited Authority:</strong> Ministry of Health, Labour & Welfare (MHLW Japan)</span>
@@ -473,7 +483,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
                   <p style={{ fontSize: '13px', color: '#687588', lineHeight: '1.6', marginBottom: '18px' }}>
                     Your cryptographic Hanko seal is automatically embedded onto JIS inspection certificates and apprentice capstone sign-offs.
                   </p>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '14px', padding: '14px 20px', backgroundColor: '#FEF2F2', border: '1px solid #FECACA', borderRadius: '12px' }}>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '14px', padding: '14px 20px', backgroundColor: '#FEF2F2', border: '1px solid #FECACA', borderRadius: '12px', flexWrap: 'wrap' }}>
                     <div style={{ width: '48px', height: '48px', borderRadius: '50%', border: '2px solid #DC2626', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626', fontWeight: '900', fontSize: '14px' }}>
                       高橋印
                     </div>
@@ -519,6 +529,61 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
           )}
         </div>
       </main>
+
+      <style>{`
+        @keyframes drawerOverlayFadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes drawerSlideIn {
+          from { transform: translateX(-100%); }
+          to { transform: translateX(0); }
+        }
+        .portal-mobile-drawer-overlay {
+          animation: drawerOverlayFadeIn 0.2s ease;
+        }
+        .portal-mobile-drawer-inner {
+          animation: drawerSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @media (max-width: 900px) {
+          .portal-desktop-sidebar {
+            display: none !important;
+          }
+          .portal-mobile-toggle {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: #F8FAFC !important;
+            color: #0B122F !important;
+          }
+          .portal-search-wrapper {
+            display: none !important;
+          }
+          .portal-header {
+            padding: 0 16px !important;
+            margin-bottom: 20px !important;
+            top: 10px !important;
+          }
+          .portal-header-pill {
+            padding: 6px 12px 6px 12px !important;
+            border-radius: 16px !important;
+          }
+          .portal-content-container {
+            padding: 0 16px 48px !important;
+          }
+        }
+        @media (max-width: 600px) {
+          .portal-user-name {
+            display: none !important;
+          }
+          .portal-header-pill {
+            padding: 6px 10px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

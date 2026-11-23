@@ -322,7 +322,9 @@ export default function ApprenticesView() {
 
       {/* Apprentices Table / Cards */}
       <div style={{ backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid rgba(226, 228, 238, 0.85)', boxShadow: '0 4px 16px rgba(11, 18, 47, 0.03)', overflow: 'hidden' }}>
-        <div style={{ padding: '16px 24px', borderBottom: '1px solid rgba(226, 228, 238, 0.7)', display: 'grid', gridTemplateColumns: '2.5fr 2fr 1.5fr 1.5fr 1.5fr', fontSize: '12px', fontWeight: '700', color: '#687588', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+        <div style={{ overflowX: 'auto', width: '100%', WebkitOverflowScrolling: 'touch' }}>
+          <div style={{ minWidth: '820px' }}>
+            <div style={{ padding: '16px 24px', borderBottom: '1px solid rgba(226, 228, 238, 0.7)', display: 'grid', gridTemplateColumns: '2.5fr 2fr 1.5fr 1.5fr 1.5fr', fontSize: '12px', fontWeight: '700', color: '#687588', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
           <div>Apprentice & Track</div>
           <div>JIS Milestone & Labs</div>
           <div>Quality & Pass Rate</div>
@@ -449,6 +451,8 @@ export default function ApprenticesView() {
             </div>
           ))}
         </div>
+          </div>
+        </div>
       </div>
 
       {/* Logbook & Endorsement Detail Modal */}
@@ -504,7 +508,7 @@ export default function ApprenticesView() {
             </div>
 
             {/* Key Metrics Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '12px', marginBottom: '20px' }}>
               <div style={{ backgroundColor: '#F8FAFC', padding: '14px', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
                 <div style={{ fontSize: '11px', color: '#687588', fontWeight: '600', textTransform: 'uppercase' }}>Labs Completed</div>
                 <div style={{ fontSize: '18px', fontWeight: '800', color: '#0B122F', marginTop: '4px' }}>

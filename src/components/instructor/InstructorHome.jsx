@@ -117,6 +117,7 @@ export default function InstructorHome({ onNavigate }) {
     <div style={{ maxWidth: '1240px', margin: '0 auto', paddingBottom: '60px' }}>
       {/* 1. Master Identity Welcome Banner */}
       <div
+        className="instructor-welcome-banner"
         style={{
           backgroundColor: '#FFFFFF',
           borderRadius: '16px',
@@ -179,7 +180,7 @@ export default function InstructorHome({ onNavigate }) {
         </div>
 
         {/* Header Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="instructor-banner-actions" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <button
             onClick={() => onNavigate('inspections')}
             style={{
@@ -227,7 +228,7 @@ export default function InstructorHome({ onNavigate }) {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
           gap: '16px',
           marginBottom: '28px'
         }}
@@ -283,6 +284,7 @@ export default function InstructorHome({ onNavigate }) {
 
       {/* 3. Main Content Split: Inspection Queue (Left) & Upcoming Live Workshops (Right) */}
       <div
+        className="instructor-main-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1.4fr 1fr',
@@ -340,6 +342,7 @@ export default function InstructorHome({ onNavigate }) {
             {pendingSubmissions.map((sub) => (
               <div
                 key={sub.id}
+                className="instructor-sub-card"
                 style={{
                   padding: '14px 16px',
                   backgroundColor: '#F8FAFC',
@@ -498,6 +501,36 @@ export default function InstructorHome({ onNavigate }) {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .instructor-main-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .instructor-welcome-banner {
+            padding: 18px 16px !important;
+          }
+          .instructor-banner-actions {
+            width: 100% !important;
+          }
+          .instructor-banner-actions button {
+            flex: 1 !important;
+            justify-content: center !important;
+          }
+          .instructor-sub-card {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 12px !important;
+          }
+          .instructor-sub-card button {
+            width: 100% !important;
+            padding: 9px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

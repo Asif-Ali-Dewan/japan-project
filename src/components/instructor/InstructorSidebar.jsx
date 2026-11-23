@@ -53,12 +53,13 @@ export default function InstructorSidebar({
   return (
     <aside
       style={{
-        width: '280px',
+        width: 'min(280px, 85vw)',
         backgroundColor: '#FFFFFF',
         borderRight: '1px solid rgba(226, 228, 238, 0.85)',
         display: 'flex',
         flexDirection: 'column',
         height: '100vh',
+        maxHeight: '100dvh',
         position: 'sticky',
         top: 0,
         zIndex: 50,
