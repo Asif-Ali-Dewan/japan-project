@@ -14,7 +14,7 @@ export default function StepsSection({ onOpenAuth }) {
           </h2>
         </div>
 
-        {/* 4 Steps Grid (Each with pastel tint & blue numbered circle per PDF rule) */}
+        {/* 4 Steps Grid (Deep Charcoal & Ash with Blue 1, 2, 3, 4 Circles) */}
         <div
           style={{
             display: 'grid',
@@ -28,19 +28,32 @@ export default function StepsSection({ onOpenAuth }) {
             <div
               key={step.number}
               style={{
-                backgroundColor: step.bg,
-                borderRadius: 'var(--r-lg)',
+                backgroundColor: '#0E1118',
+                borderRadius: '20px',
                 padding: '32px 24px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                minHeight: '280px',
-                border: '1px solid rgba(11, 18, 47, 0.05)',
+                minHeight: '290px',
+                border: '1px solid #1E2333',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+                transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
+                boxSizing: 'border-box',
                 position: 'relative',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.borderColor = '#334155';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 0, 0, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = '#1E2333';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
               }}
             >
               <div>
-                {/* Blue numbered circle matching the PDF requirement */}
+                {/* 1 2 3 4 in Royal Blue circle */}
                 <div
                   style={{
                     width: '40px',
@@ -54,7 +67,7 @@ export default function StepsSection({ onOpenAuth }) {
                     fontSize: '16px',
                     fontWeight: '700',
                     marginBottom: '28px',
-                    boxShadow: '0 4px 12px rgba(48, 79, 232, 0.25)',
+                    boxShadow: '0 4px 14px rgba(48, 79, 232, 0.35)',
                   }}
                 >
                   {step.number}
@@ -64,33 +77,35 @@ export default function StepsSection({ onOpenAuth }) {
                   style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: 'var(--navy)',
+                    color: '#FFFFFF',
                     marginBottom: '12px',
+                    letterSpacing: '-0.015em',
                   }}
                 >
                   {step.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--muted)' }}>
+                <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#94A3B8' }}>
                   {step.description}
                 </p>
               </div>
 
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: '24px' }}>
                 <span
                   style={{
                     fontSize: '12px',
                     fontWeight: '600',
-                    color: 'var(--navy)',
-                    backgroundColor: '#FFFFFF',
-                    padding: '4px 10px',
+                    color: '#CBD5E1',
+                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    padding: '5px 12px',
                     borderRadius: 'var(--r-pill)',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '4px',
+                    gap: '6px',
                   }}
                 >
-                  <Check size={12} color="var(--blue)" />
+                  <Check size={13} color="var(--blue)" strokeWidth={2.5} />
                   {step.highlight}
                 </span>
               </div>
