@@ -14,7 +14,7 @@ export default function StepsSection({ onOpenAuth }) {
           </h2>
         </div>
 
-        {/* 4 Steps Grid (Deep Charcoal Cards with Blue 1, 2, 3, 4 Circles) */}
+        {/* 4 Steps Grid (Crisp White Cards, Charcoal & Ash Content, Blue 1, 2, 3, 4 Badges) */}
         <div
           style={{
             display: 'grid',
@@ -28,32 +28,32 @@ export default function StepsSection({ onOpenAuth }) {
             <div
               key={step.number}
               style={{
-                backgroundColor: '#0E1118',
+                backgroundColor: '#FFFFFF',
                 borderRadius: '20px',
                 padding: '32px 24px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 minHeight: '290px',
-                border: '1px solid #1E2333',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.15)',
+                border: '1.5px solid #E2E8F0',
+                boxShadow: '0 4px 16px rgba(11, 18, 47, 0.04)',
                 transition: 'all 0.25s cubic-bezier(0.2, 0, 0, 1)',
                 boxSizing: 'border-box',
                 position: 'relative',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.borderColor = '#334155';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.borderColor = '#CBD5E1';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(11, 18, 47, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = '#1E2333';
-                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.borderColor = '#E2E8F0';
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(11, 18, 47, 0.04)';
               }}
             >
               <div>
-                {/* 1 2 3 4 in Royal Blue circle */}
+                {/* 1 2 3 4 in Royal Blue circle as it is */}
                 <div
                   style={{
                     width: '40px',
@@ -77,7 +77,7 @@ export default function StepsSection({ onOpenAuth }) {
                   style={{
                     fontSize: '20px',
                     fontWeight: '700',
-                    color: '#FFFFFF',
+                    color: '#0E1118',
                     marginBottom: '12px',
                     letterSpacing: '-0.015em',
                   }}
@@ -85,7 +85,7 @@ export default function StepsSection({ onOpenAuth }) {
                   {step.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#94A3B8' }}>
+                <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#64748B' }}>
                   {step.description}
                 </p>
               </div>
@@ -95,9 +95,9 @@ export default function StepsSection({ onOpenAuth }) {
                   style={{
                     fontSize: '12px',
                     fontWeight: '600',
-                    color: '#CBD5E1',
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    color: '#0E1118',
+                    backgroundColor: '#F1F4F8',
+                    border: '1px solid #E2E8F0',
                     padding: '5px 12px',
                     borderRadius: 'var(--r-pill)',
                     display: 'inline-flex',
