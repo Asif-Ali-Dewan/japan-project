@@ -366,7 +366,7 @@ export const learnerNotes = [
     to: "Certified Electrician",
     company: "Industrial Power Corp",
     quote: "I doubled my income and gained a life-long technical trade in under 4 months.",
-    color: "#0E1118"
+    color: "#FFFFFF"
   },
   {
     name: "Ren Kobayashi",
@@ -382,6 +382,6 @@ export const learnerNotes = [
     to: "Motorcycle Mechanic",
     company: "Powersports Workshop",
     quote: "Hands down the most practical, zero-fluff technical training program available.",
-    color: "#F1F4F8"
+    color: "#FFFFFF"
   }
 ];
