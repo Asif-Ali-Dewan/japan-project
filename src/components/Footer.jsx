@@ -9,27 +9,15 @@ export default function Footer({ onOpenAuth }) {
   return (
     <footer
       style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#08090C',
         width: '100%',
-        padding: '0 16px 24px 16px',
+        padding: '72px 32px 40px 32px',
         boxSizing: 'border-box',
+        borderTop: '1px solid #1A1D26',
+        color: '#FFFFFF',
       }}
-      className="bottom-card-wrapper"
     >
-      {/* Dark Charcoal Footer Card with 28px Rounded Corners */}
-      <div
-        style={{
-          width: '100%',
-          backgroundColor: '#08090C',
-          borderRadius: '28px',
-          padding: '64px 44px 36px 44px',
-          boxSizing: 'border-box',
-          border: '1px solid #1A1D26',
-          color: '#FFFFFF',
-          boxShadow: '0 12px 36px rgba(0, 0, 0, 0.12)',
-        }}
-      >
-        <div style={{ maxWidth: 'var(--container)', margin: '0 auto', width: '100%' }}>
+      <div style={{ maxWidth: 'var(--container)', margin: '0 auto', width: '100%' }}>
           {/* Main Footer Columns */}
           <div
             style={{
@@ -326,7 +314,6 @@ export default function Footer({ onOpenAuth }) {
             </div>
           </div>
         </div>
-      </div>
 
       <style>{`
         .footer-link {

@@ -10,7 +10,6 @@ import FreeCourseBanner from './components/FreeCourseBanner';
 import TestimonialsSection from './components/TestimonialsSection';
 import InstructorSection from './components/InstructorSection';
 import LearnerNotesSection from './components/LearnerNotesSection';
-import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
 import AuthModal from './components/AuthModal';
 import GetStartedModal from './components/GetStartedModal';
@@ -185,10 +184,7 @@ export default function App() {
       {/* 10. Notes from our learners (Learner Story Spotlights) */}
       <LearnerNotesSection />
 
-      {/* 11. Let's build your future (Dark Navy CTA Band with 16px padding frame) */}
-      <CtaSection onOpenAuth={handleOpenAuth} />
-
-      {/* 12. Dark Navy Footer with 16px padding frame */}
+      {/* 11. Full-Width Dark Charcoal Footer */}
       <Footer onOpenAuth={handleOpenAuth} />
 
       {/* Interactive Direct Login Modal */}
