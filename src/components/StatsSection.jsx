@@ -1,116 +1,35 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, Award, Zap, Check } from 'lucide-react';
 
 export default function StatsSection({ onOpenAuth }) {
-  const [hoveredStat, setHoveredStat] = useState(null);
-  const [hoveredCompany, setHoveredCompany] = useState(null);
-
-  const interactiveZoneRef = useRef(null);
-  const cursorCircleRef = useRef(null);
-  const mouseTarget = useRef({ x: -150, y: -150 });
-  const circleCurrent = useRef({ x: -150, y: -150 });
-  const animFrameId = useRef(null);
-  const targetScale = useRef(1);
-
   const stats = [
     {
       value: '10 Core',
       label: 'Technical trades',
-      color: '#304FE8', // Electric Blue
-      hoverBg: 'rgba(48, 79, 232, 0.05)',
     },
     {
       value: '60,000+',
       label: 'Active learners',
-      color: '#10B981', // Emerald Green
-      hoverBg: 'rgba(16, 185, 129, 0.05)',
     },
     {
       value: '4.9/5',
       label: 'Average rating',
-      color: '#FA7317', // Vivid Orange
-      hoverBg: 'rgba(250, 115, 23, 0.05)',
     },
     {
       value: '94%',
       label: 'Trade placement',
-      color: '#EF4444', // Red
-      hoverBg: 'rgba(239, 68, 68, 0.05)',
     },
   ];
 
   const hiringCompanies = [
-    { name: 'Toyota', color: '#DC2626' },
-    { name: 'Daikin', color: '#0284C7' },
-    { name: 'Komatsu', color: '#D97706' },
-    { name: 'Mitsubishi', color: '#E11D48' },
-    { name: 'Panasonic', color: '#2563EB' },
-    { name: 'Kubota', color: '#EA580C' },
-    { name: 'Honda', color: '#DC2626' },
+    { name: 'Toyota' },
+    { name: 'Daikin' },
+    { name: 'Komatsu' },
+    { name: 'Mitsubishi' },
+    { name: 'Panasonic' },
+    { name: 'Kubota' },
+    { name: 'Honda' },
   ];
-
-  // Fluid physics loop matching reference video with lerp easing
-  useEffect(() => {
-    const updatePhysics = () => {
-      const speed = 0.16; // trailing organic spring
-      circleCurrent.current.x += (mouseTarget.current.x - circleCurrent.current.x) * speed;
-      circleCurrent.current.y += (mouseTarget.current.y - circleCurrent.current.y) * speed;
-
-      if (cursorCircleRef.current) {
-        cursorCircleRef.current.style.transform = `translate3d(${circleCurrent.current.x}px, ${circleCurrent.current.y}px, 0) translate(-50%, -50%) scale(${targetScale.current})`;
-      }
-
-      animFrameId.current = requestAnimationFrame(updatePhysics);
-    };
-
-    animFrameId.current = requestAnimationFrame(updatePhysics);
-    return () => {
-      if (animFrameId.current) cancelAnimationFrame(animFrameId.current);
-    };
-  }, []);
-
-  const handleMouseMove = (e) => {
-    if (!interactiveZoneRef.current) return;
-    const rect = interactiveZoneRef.current.getBoundingClientRect();
-    mouseTarget.current.x = e.clientX - rect.left;
-    mouseTarget.current.y = e.clientY - rect.top;
-  };
-
-  const handleMouseEnter = (e) => {
-    if (!interactiveZoneRef.current) return;
-    const rect = interactiveZoneRef.current.getBoundingClientRect();
-    mouseTarget.current.x = e.clientX - rect.left;
-    mouseTarget.current.y = e.clientY - rect.top;
-    circleCurrent.current.x = mouseTarget.current.x;
-    circleCurrent.current.y = mouseTarget.current.y;
-    targetScale.current = 1;
-    if (cursorCircleRef.current) {
-      cursorCircleRef.current.style.opacity = '1';
-    }
-  };
-
-  const handleMouseLeave = () => {
-    targetScale.current = 0.4;
-    setHoveredStat(null);
-    setHoveredCompany(null);
-    if (cursorCircleRef.current) {
-      cursorCircleRef.current.style.opacity = '0';
-    }
-  };
-
-  const setCircleColor = (color, scale = 1.25) => {
-    targetScale.current = scale;
-    if (cursorCircleRef.current) {
-      cursorCircleRef.current.style.backgroundColor = color;
-    }
-  };
-
-  const resetCircleColor = () => {
-    targetScale.current = 1;
-    if (cursorCircleRef.current) {
-      cursorCircleRef.current.style.backgroundColor = '#FA7317';
-    }
-  };
 
   return (
     <section className="section section-white" id="career-acceleration">
@@ -317,41 +236,13 @@ export default function StatsSection({ onOpenAuth }) {
           </div>
         </div>
 
-        {/* Interactive Stats & Hiring Partners Zone with Circular Physics Follower (Reference Video Style) */}
+        {/* Clean Stats & Hiring Partners Zone (No Trailing Mouse Follower) */}
         <div
-          ref={interactiveZoneRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
           style={{
-            position: 'relative',
-            isolation: 'isolate',
             padding: '16px 0 28px 0',
-            overflow: 'hidden',
             borderRadius: '24px',
           }}
         >
-          {/* Smooth Trailing Filled Circle with Difference Blend (Exact Reference Video Interaction) */}
-          <div
-            ref={cursorCircleRef}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '74px',
-              height: '74px',
-              borderRadius: '50%',
-              backgroundColor: '#FA7317',
-              mixBlendMode: 'difference',
-              pointerEvents: 'none',
-              zIndex: 30,
-              opacity: 0,
-              transform: 'translate3d(-150px, -150px, 0) translate(-50%, -50%) scale(1)',
-              transition: 'opacity 0.25s ease, background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
-              willChange: 'transform',
-            }}
-          />
-
           {/* 4-Column Stats Strip */}
           <div
             style={{
@@ -365,53 +256,39 @@ export default function StatsSection({ onOpenAuth }) {
             }}
             className="stats-strip"
           >
-            {stats.map((s, idx) => {
-              const isStatActive = hoveredStat === idx;
-              return (
+            {stats.map((s, idx) => (
+              <div
+                key={idx}
+                style={{
+                  padding: '16px 8px',
+                  textAlign: 'center',
+                  userSelect: 'none',
+                }}
+              >
                 <div
-                  key={idx}
-                  onMouseEnter={() => {
-                    setHoveredStat(idx);
-                    setCircleColor(s.color, 1.3);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredStat(null);
-                    resetCircleColor();
-                  }}
                   style={{
-                    padding: '16px 8px',
-                    textAlign: 'center',
-                    cursor: 'pointer',
-                    userSelect: 'none',
+                    fontSize: '44px',
+                    fontWeight: '800',
+                    lineHeight: '1.1',
+                    color: 'var(--navy)',
+                    marginBottom: '8px',
+                    letterSpacing: '-0.02em',
                   }}
                 >
-                  <div
-                    style={{
-                      fontSize: '44px',
-                      fontWeight: '800',
-                      lineHeight: '1.1',
-                      color: isStatActive ? s.color : 'var(--navy)',
-                      marginBottom: '8px',
-                      letterSpacing: '-0.02em',
-                      transition: 'color 0.25s ease',
-                    }}
-                  >
-                    {s.value}
-                  </div>
-                  <div
-                    style={{
-                      fontSize: '15px',
-                      fontWeight: '600',
-                      color: isStatActive ? s.color : 'var(--muted)',
-                      transition: 'color 0.25s ease',
-                      letterSpacing: '-0.01em',
-                    }}
-                  >
-                    {s.label}
-                  </div>
+                  {s.value}
                 </div>
-              );
-            })}
+                <div
+                  style={{
+                    fontSize: '15px',
+                    fontWeight: '600',
+                    color: 'var(--muted)',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Company hiring logos */}
@@ -425,34 +302,21 @@ export default function StatsSection({ onOpenAuth }) {
                 flexWrap: 'wrap',
               }}
             >
-              {hiringCompanies.map((c, i) => {
-                const isCompActive = hoveredCompany === i;
-                return (
-                  <span
-                    key={i}
-                    onMouseEnter={() => {
-                      setHoveredCompany(i);
-                      setCircleColor(c.color, 1.25);
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredCompany(null);
-                      resetCircleColor();
-                    }}
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: '800',
-                      color: isCompActive ? c.color : '#94A3B8',
-                      letterSpacing: '-0.01em',
-                      transition: 'color 0.25s ease',
-                      display: 'inline-block',
-                      cursor: 'pointer',
-                      userSelect: 'none',
-                    }}
-                  >
-                    {c.name}
-                  </span>
-                );
-              })}
+              {hiringCompanies.map((c, i) => (
+                <span
+                  key={i}
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: '800',
+                    color: '#94A3B8',
+                    letterSpacing: '-0.01em',
+                    display: 'inline-block',
+                    userSelect: 'none',
+                  }}
+                >
+                  {c.name}
+                </span>
+              ))}
             </div>
           </div>
         </div>
