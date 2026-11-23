@@ -1292,7 +1292,7 @@ export default function ExploreCoursesView() {
                 </div>
 
                 <div>
-                  <div style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: '700' }}>STUDENT RATING</div>
+                  <div style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: '700' }}>LEARNER RATING</div>
                   <div style={{ fontSize: '13.5px', fontWeight: '800', color: 'var(--navy)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <Star size={14} fill="#F59E0B" color="#F59E0B" />
                     <span>{viewingCourse.rating} / 5.0</span>

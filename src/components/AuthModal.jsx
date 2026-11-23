@@ -111,7 +111,7 @@ export default function AuthModal({ isOpen, initialMode = 'login', onClose, onLo
             </h2>
             <p style={{ fontSize: '13.5px', color: 'var(--muted)', lineHeight: '1.45', marginBottom: '18px' }}>
               {mode === 'login'
-                ? 'Please login to access your student portal, courses, and job tracker.'
+                ? 'Please login to access your learner portal, courses, and job tracker.'
                 : 'Join over 60,000 learners mastering in-demand technical trades and certified craftsman skills.'}
             </p>
 

@@ -86,7 +86,7 @@ export default function Sidebar({ activeTab, setActiveTab, onLogout, onCloseMobi
               SAMURAI TALENT
             </div>
             <div style={{ fontSize: '9.5px', fontWeight: '700', color: 'var(--muted)', letterSpacing: '0.08em', marginTop: '3px' }}>
-              STUDENT PORTAL
+              LEARNER PORTAL
             </div>
           </div>
         </div>

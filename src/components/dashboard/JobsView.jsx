@@ -183,7 +183,7 @@ const INITIAL_JOBS = [
     requirements: [
       'Basic electrical schematic reading and crimping proficiency',
       'High attention to detail with wire bundling and heat shrink tubing',
-      'Current student or recent graduate in electrical or automotive trade track',
+      'Current learner or recent graduate in electrical or automotive trade track',
       'Team-first attitude and eagerness to learn prototype R&D workflows'
     ],
     benefits: [

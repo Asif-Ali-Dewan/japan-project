@@ -116,32 +116,31 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
           minHeight: '100vh',
         }}
       >
-        {/* Top Header Floating Pill */}
+        {/* Full-width Top Navigation Header (Matching Landing Page Navbar Design: Edge-to-edge, Zero Radius) */}
         <header
           className="portal-header"
           style={{
             position: 'sticky',
-            top: '16px',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
             zIndex: 500,
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '0 32px',
-            marginBottom: '36px',
+            backgroundColor: '#FFFFFF',
+            borderBottom: '1px solid #E5E7EB',
+            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
+            padding: '12px 32px',
+            boxSizing: 'border-box',
           }}
         >
           <div
-            className="portal-header-pill"
+            className="portal-header-inner"
             style={{
-              backgroundColor: '#FFFFFF',
-              backdropFilter: 'blur(16px)',
-              borderRadius: '100px',
-              padding: '8px 12px 8px 24px',
+              width: '100%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              width: '100%',
-              boxShadow: '0 10px 30px rgba(11, 18, 47, 0.08)',
-              border: '1px solid rgba(226, 228, 238, 0.85)',
+              boxSizing: 'border-box',
             }}
           >
             {/* Left: Mobile Toggle + Tab Title */}
@@ -416,7 +415,7 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
         </header>
 
         {/* Tab Content Renderer */}
-        <div className="portal-content-container" style={{ flex: 1, padding: '0 32px 64px' }}>
+        <div className="portal-content-container" style={{ flex: 1, padding: '32px 32px 64px' }}>
           {activeTab === 'dashboard' && (
             <InstructorHome onNavigate={(tab) => setActiveTab(tab)} />
           )}
@@ -563,24 +562,15 @@ export default function InstructorPortal({ onLogout, onSelectCourse }) {
             display: none !important;
           }
           .portal-header {
-            padding: 0 16px !important;
-            margin-bottom: 20px !important;
-            top: 10px !important;
-          }
-          .portal-header-pill {
-            padding: 6px 12px 6px 12px !important;
-            border-radius: 16px !important;
+            padding: 10px 16px !important;
           }
           .portal-content-container {
-            padding: 0 16px 48px !important;
+            padding: 20px 16px 48px !important;
           }
         }
         @media (max-width: 600px) {
           .portal-user-name {
             display: none !important;
-          }
-          .portal-header-pill {
-            padding: 6px 10px !important;
           }
         }
       `}</style>

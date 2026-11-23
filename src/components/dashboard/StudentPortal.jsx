@@ -97,30 +97,31 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
           minHeight: '100vh',
         }}
       >
-        {/* Top Header Floating Pill inside Student Portal (Matching Landing Page Navbar Design) */}
+        {/* Full-width Top Navigation Header (Matching Landing Page Navbar Design: Edge-to-edge, Zero Radius) */}
         <header
+          className="portal-header"
           style={{
             position: 'sticky',
-            top: '16px',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
             zIndex: 500, // Elevated so dropdown floats cleanly over page content
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '0 32px',
-            marginBottom: '8px',
+            backgroundColor: '#FFFFFF',
+            borderBottom: '1px solid #E5E7EB',
+            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.05)',
+            padding: '12px 32px',
+            boxSizing: 'border-box',
           }}
         >
           <div
+            className="portal-header-inner"
             style={{
-              backgroundColor: '#FFFFFF',
-              backdropFilter: 'blur(16px)',
-              borderRadius: 'var(--r-pill)',
-              padding: '8px 12px 8px 24px',
+              width: '100%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              width: '100%',
-              boxShadow: '0 10px 30px rgba(11, 18, 47, 0.08)',
-              border: '1px solid var(--line)',
+              boxSizing: 'border-box',
             }}
           >
             {/* Left: Mobile Toggle + Clean Context Indicator */}
@@ -143,7 +144,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ fontSize: '15px', fontWeight: '800', color: 'var(--navy)', letterSpacing: '-0.01em' }}>
                   {activeTab === 'dashboard'
-                    ? 'Student Dashboard'
+                    ? 'Learner Dashboard'
                     : activeTab.split('-').map((s) => s.charAt(0).toUpperCase() + s.slice(1)).join(' ')}
                 </div>
               </div>
@@ -417,7 +418,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
                                 borderRadius: 'var(--r-pill)',
                               }}
                             >
-                              Verified Student
+                              Verified Learner
                             </span>
                           </div>
                         </div>
@@ -559,7 +560,7 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
 
           {['history', 'settings', 'support'].includes(activeTab) && (
             <div style={{ backgroundColor: '#FFFFFF', borderRadius: 'var(--r-xl)', padding: '36px', border: '1px solid var(--line)' }}>
-              <div className="eyebrow">STUDENT ACCOUNT</div>
+              <div className="eyebrow">LEARNER ACCOUNT</div>
               <h2 style={{ fontSize: '22px', fontWeight: '800', color: 'var(--navy)', textTransform: 'capitalize' }}>
                 {activeTab.replace('-', ' ')}
               </h2>
@@ -578,6 +579,9 @@ export default function StudentPortal({ onLogout, onSelectCourse }) {
           }
           .portal-search-wrapper {
             display: none !important;
+          }
+          .portal-header {
+            padding: 10px 16px !important;
           }
         }
       `}</style>
