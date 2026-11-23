@@ -9,11 +9,11 @@ export default function Footer({ onOpenAuth }) {
   return (
     <footer
       style={{
-        backgroundColor: '#08090C',
+        backgroundColor: 'var(--blue)',
         width: '100%',
         padding: '72px 32px 40px 32px',
         boxSizing: 'border-box',
-        borderTop: '1px solid #1A1D26',
+        borderTop: '1px solid rgba(255, 255, 255, 0.15)',
         color: '#FFFFFF',
       }}
     >
@@ -41,7 +41,7 @@ export default function Footer({ onOpenAuth }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: '4px',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.4)',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
                   }}
                 >
                   <img
@@ -55,7 +55,7 @@ export default function Footer({ onOpenAuth }) {
                 </span>
               </div>
 
-              <p style={{ fontSize: '13.5px', lineHeight: '1.65', color: '#9CA3AF', maxWidth: '320px', marginBottom: '24px' }}>
+              <p style={{ fontSize: '13.5px', lineHeight: '1.65', color: '#DCE3FF', maxWidth: '320px', marginBottom: '24px' }}>
                 {isJa
                   ? '現代の技術・職業キャリアを支援する実践型ラーニングOS。日本の熟練マイスターと世界を結び、確かな技能を証明します。'
                   : 'The premier technical trade & vocational learning operating system. Built for ambitious craftsmen, verified by leading industrial and manufacturing employers.'}
@@ -71,22 +71,22 @@ export default function Footer({ onOpenAuth }) {
                     width: '36px',
                     height: '36px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#D1D5DB',
+                    color: '#FFFFFF',
                     textDecoration: 'none',
                     transition: 'all 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#08090C';
+                    e.currentTarget.style.color = 'var(--blue)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
-                    e.currentTarget.style.color = '#D1D5DB';
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                    e.currentTarget.style.color = '#FFFFFF';
                   }}
                 >
                   <Github size={16} />
@@ -100,22 +100,22 @@ export default function Footer({ onOpenAuth }) {
                     width: '36px',
                     height: '36px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#D1D5DB',
+                    color: '#FFFFFF',
                     textDecoration: 'none',
                     transition: 'all 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#08090C';
+                    e.currentTarget.style.color = 'var(--blue)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
-                    e.currentTarget.style.color = '#D1D5DB';
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                    e.currentTarget.style.color = '#FFFFFF';
                   }}
                 >
                   <Twitter size={16} />
@@ -129,22 +129,22 @@ export default function Footer({ onOpenAuth }) {
                     width: '36px',
                     height: '36px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#D1D5DB',
+                    color: '#FFFFFF',
                     textDecoration: 'none',
                     transition: 'all 0.2s ease',
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.color = '#08090C';
+                    e.currentTarget.style.color = 'var(--blue)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.06)';
-                    e.currentTarget.style.color = '#D1D5DB';
+                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.12)';
+                    e.currentTarget.style.color = '#FFFFFF';
                   }}
                 >
                   <Linkedin size={16} />
@@ -292,7 +292,7 @@ export default function Footer({ onOpenAuth }) {
           {/* Bottom Bar: Copyright & Standards */}
           <div
             style={{
-              borderTop: '1px solid #1A1D26',
+              borderTop: '1px solid rgba(255, 255, 255, 0.18)',
               paddingTop: '28px',
               display: 'flex',
               alignItems: 'center',
@@ -300,7 +300,7 @@ export default function Footer({ onOpenAuth }) {
               flexWrap: 'wrap',
               gap: '16px',
               fontSize: '12.5px',
-              color: '#6B7280',
+              color: '#DCE3FF',
             }}
           >
             <div>
@@ -309,7 +309,7 @@ export default function Footer({ onOpenAuth }) {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <span>{isJa ? '日本産業規格（JIS）準拠' : 'Japanese Industrial Standards (JIS) Aligned'}</span>
-              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#374151' }} />
+              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
               <span>{isJa ? '公認技術者育成プラットフォーム' : 'Verified Trade Career OS'}</span>
             </div>
           </div>
@@ -317,7 +317,7 @@ export default function Footer({ onOpenAuth }) {
 
       <style>{`
         .footer-link {
-          color: #9CA3AF;
+          color: #DCE3FF;
           font-size: 13.5px;
           text-decoration: none;
           transition: all 0.2s ease;
