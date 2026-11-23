@@ -75,9 +75,6 @@ export default function InstructorEarningsView() {
           <h1 style={{ fontSize: '26px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.02em', margin: 0 }}>
             Earnings & Payout Statements
           </h1>
-          <p style={{ fontSize: '14px', color: '#687588', margin: '6px 0 0' }}>
-            Automated monthly payouts for JIS trade curriculum enrollments, capstone inspection seal verifications, and enterprise sponsor royalties.
-          </p>
         </div>
 
         {/* Invoice Download Action */}

@@ -91,9 +91,6 @@ export default function LiveWorkshopsView() {
           <h1 style={{ fontSize: '22px', fontWeight: '800', color: '#0B122F', margin: 0 }}>
             Live Master Workshops & Broadcast Studio
           </h1>
-          <p style={{ fontSize: '13px', color: '#64748B', margin: '4px 0 0' }}>
-            Host live practical training sessions from your certified workshop studio with real-time apprentice telemetry and Q&A.
-          </p>
         </div>
 
         <button

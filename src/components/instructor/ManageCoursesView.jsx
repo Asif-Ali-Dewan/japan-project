@@ -383,9 +383,6 @@ export default function ManageCoursesView() {
           <h1 style={{ fontSize: '22px', fontWeight: '800', color: '#0B122F', margin: 0 }}>
             My Courses & Workshop Curriculums
           </h1>
-          <p style={{ fontSize: '13px', color: '#64748B', margin: '4px 0 0' }}>
-            Manage published technical training tracks, syllabus modules, and apprentice progress metrics.
-          </p>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>

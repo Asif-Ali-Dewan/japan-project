@@ -316,9 +316,6 @@ export default function InstructorHome({ onNavigate }) {
               <h2 style={{ fontSize: '16px', fontWeight: '800', color: '#0B122F', margin: 0 }}>
                 Pending Apprentice Inspections
               </h2>
-              <p style={{ fontSize: '12.5px', color: '#64748B', margin: '2px 0 0' }}>
-                Requires your master craftsman sign-off for JIS certification
-              </p>
             </div>
             <button
               onClick={() => onNavigate('inspections')}

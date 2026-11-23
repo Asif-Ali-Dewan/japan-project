@@ -156,9 +156,6 @@ export default function InspectionsGradingView() {
           <h1 style={{ fontSize: '22px', fontWeight: '800', color: '#0B122F', margin: 0 }}>
             Master Inspection Queue
           </h1>
-          <p style={{ fontSize: '13px', color: '#64748B', margin: '4px 0 0' }}>
-            Review, calibrate, and digitally stamp apprentice trade capstone assignments against Japanese Industrial Standards.
-          </p>
         </div>
 
         {/* Filter Tabs */}
