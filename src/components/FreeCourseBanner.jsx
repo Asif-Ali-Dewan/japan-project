@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, BookOpen } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 
 export default function FreeCourseBanner({ onOpenAuth }) {
   const freeTracks = [
@@ -25,21 +25,23 @@ export default function FreeCourseBanner({ onOpenAuth }) {
             boxShadow: 'var(--shadow)',
           }}
         >
-          {/* Subtle pill tag */}
+          {/* Clean Editorial Pill Badge (Zero AI Stars / Sparkles) */}
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
+              padding: '6px 16px',
               borderRadius: 'var(--r-pill)',
-              backgroundColor: 'rgba(255, 255, 255, 0.18)',
+              backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.25)',
               fontSize: '12px',
-              fontWeight: '600',
+              fontWeight: '700',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+              color: '#FFFFFF',
               marginBottom: '20px',
             }}
           >
-            <Sparkles size={14} color="#FFF1D2" />
             <span>100% Free · No Credit Card Required</span>
           </div>
 
