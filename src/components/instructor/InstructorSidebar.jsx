@@ -147,22 +147,22 @@ export default function InstructorSidebar({
         style={{
           flex: 1,
           overflowY: 'auto',
-          padding: '12px 16px',
+          padding: '16px 16px 20px 16px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '14px'
+          gap: '22px'
         }}
       >
         {menuGroups.map((group, groupIdx) => (
-          <div key={groupIdx} style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          <div key={groupIdx} style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
             <div
               style={{
-                fontSize: '10.5px',
+                fontSize: '11px',
                 fontWeight: '700',
                 color: '#94A3B8',
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                padding: '6px 12px 4px'
+                padding: '6px 12px 6px'
               }}
             >
               {group.title}
@@ -184,13 +184,13 @@ export default function InstructorSidebar({
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     width: '100%',
-                    padding: '9px 12px',
-                    borderRadius: '8px',
+                    padding: '12px 14px',
+                    borderRadius: '10px',
                     border: 'none',
                     backgroundColor: isActive ? '#EEF2FF' : 'transparent',
                     color: isActive ? '#304FE8' : '#475569',
                     fontWeight: isActive ? '700' : '500',
-                    fontSize: '13px',
+                    fontSize: '13.5px',
                     cursor: 'pointer',
                     transition: 'all 0.15s ease',
                     textAlign: 'left'
@@ -208,17 +208,17 @@ export default function InstructorSidebar({
                     }
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
-                    <Icon size={16} color={isActive ? '#304FE8' : '#64748B'} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <Icon size={17} color={isActive ? '#304FE8' : '#64748B'} />
                     <span>{item.label}</span>
                   </div>
 
                   {item.badge && (
                     <span
                       style={{
-                        fontSize: '10.5px',
+                        fontSize: '11px',
                         fontWeight: '700',
-                        padding: '2px 7px',
+                        padding: '2.5px 8px',
                         borderRadius: '999px',
                         backgroundColor:
                           item.badge === 'Live'
@@ -242,7 +242,7 @@ export default function InstructorSidebar({
       {/* 4. Bottom Sign Out */}
       <div
         style={{
-          padding: '14px 16px',
+          padding: '16px 16px',
           borderTop: '1px solid rgba(226, 228, 238, 0.85)',
           display: 'flex',
           flexDirection: 'column',
@@ -254,14 +254,14 @@ export default function InstructorSidebar({
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '11px',
             width: '100%',
-            padding: '8px 12px',
-            borderRadius: '8px',
+            padding: '11px 14px',
+            borderRadius: '10px',
             border: 'none',
             backgroundColor: 'transparent',
             color: '#64748B',
-            fontSize: '13px',
+            fontSize: '13.5px',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.15s ease'
