@@ -55,7 +55,7 @@ export default function Footer({ onOpenAuth }) {
                 </span>
               </div>
 
-              <p style={{ fontSize: '13.5px', lineHeight: '1.65', color: '#DCE3FF', maxWidth: '320px', marginBottom: '24px' }}>
+              <p style={{ fontSize: '13.5px', lineHeight: '1.65', color: '#FFFFFF', maxWidth: '320px', marginBottom: '24px', opacity: 0.95 }}>
                 {isJa
                   ? '現代の技術・職業キャリアを支援する実践型ラーニングOS。日本の熟練マイスターと世界を結び、確かな技能を証明します。'
                   : 'The premier technical trade & vocational learning operating system. Built for ambitious craftsmen, verified by leading industrial and manufacturing employers.'}
@@ -300,7 +300,7 @@ export default function Footer({ onOpenAuth }) {
               flexWrap: 'wrap',
               gap: '16px',
               fontSize: '12.5px',
-              color: '#DCE3FF',
+              color: '#FFFFFF',
             }}
           >
             <div>
@@ -309,7 +309,7 @@ export default function Footer({ onOpenAuth }) {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
               <span>{isJa ? '日本産業規格（JIS）準拠' : 'Japanese Industrial Standards (JIS) Aligned'}</span>
-              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.4)' }} />
+              <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255, 255, 255, 0.6)' }} />
               <span>{isJa ? '公認技術者育成プラットフォーム' : 'Verified Trade Career OS'}</span>
             </div>
           </div>
@@ -317,7 +317,7 @@ export default function Footer({ onOpenAuth }) {
 
       <style>{`
         .footer-link {
-          color: #DCE3FF;
+          color: #FFFFFF;
           font-size: 13.5px;
           text-decoration: none;
           transition: all 0.2s ease;
@@ -325,6 +325,7 @@ export default function Footer({ onOpenAuth }) {
         }
         .footer-link:hover {
           color: #FFFFFF;
+          opacity: 0.8;
           transform: translateX(2px);
         }
         @media (max-width: 900px) {

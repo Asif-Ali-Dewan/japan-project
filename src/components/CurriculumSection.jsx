@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { curriculumAccordion } from '../data/courses';
-import { Minus, Plus, CheckCircle, Award, ShieldCheck, QrCode, Sparkles, Check } from 'lucide-react';
+import { Minus, Plus, Award, ShieldCheck, QrCode, Sparkles, Check } from 'lucide-react';
 
 export default function CurriculumSection({ onOpenAuth }) {
   const [activeId, setActiveId] = useState('courses');
@@ -93,31 +93,9 @@ export default function CurriculumSection({ onOpenAuth }) {
                   <div className={`accordion-content-wrapper ${isOpen ? 'is-open' : ''}`}>
                     <div className="accordion-inner">
                       <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px solid var(--line)' }}>
-                        <p style={{ fontSize: '14px', lineHeight: '1.6', color: 'var(--muted)', marginBottom: '16px' }}>
+                        <p style={{ fontSize: '14.5px', lineHeight: '1.65', color: 'var(--muted)', margin: 0 }}>
                           {item.content}
                         </p>
-
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                          {item.metrics.map((m, i) => (
-                            <span
-                              key={i}
-                              style={{
-                                fontSize: '12px',
-                                fontWeight: '600',
-                                padding: '4px 12px',
-                                borderRadius: 'var(--r-pill)',
-                                backgroundColor: 'var(--surface)',
-                                color: 'var(--navy)',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '6px',
-                              }}
-                            >
-                              <CheckCircle size={12} color="var(--green)" />
-                              {m}
-                            </span>
-                          ))}
-                        </div>
                       </div>
                     </div>
                   </div>
