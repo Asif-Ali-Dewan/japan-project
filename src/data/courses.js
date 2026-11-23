@@ -366,7 +366,7 @@ export const learnerNotes = [
     to: "Certified Electrician",
     company: "Industrial Power Corp",
     quote: "I doubled my income and gained a life-long technical trade in under 4 months.",
-    color: "var(--lav)"
+    color: "#0E1118"
   },
   {
     name: "Ren Kobayashi",
@@ -374,7 +374,7 @@ export const learnerNotes = [
     to: "AC & HVAC Specialist",
     company: "Daikin Authorized Partner",
     quote: "The hands-on refrigerant recovery labs gave me the exact confidence needed on job sites.",
-    color: "var(--mint)"
+    color: "#FFFFFF"
   },
   {
     name: "Shota Watanabe",
@@ -382,6 +382,6 @@ export const learnerNotes = [
     to: "Motorcycle Mechanic",
     company: "Powersports Workshop",
     quote: "Hands down the most practical, zero-fluff technical training program available.",
-    color: "var(--peach)"
+    color: "#F1F4F8"
   }
 ];
