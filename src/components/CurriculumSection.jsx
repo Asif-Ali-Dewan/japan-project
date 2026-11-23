@@ -52,23 +52,16 @@ export default function CurriculumSection({ onOpenAuth }) {
                 >
                   {/* Row Header */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                      <span
-                        style={{
-                          fontSize: '18px',
-                          fontWeight: '700',
-                          color: isOpen ? 'var(--blue)' : 'var(--navy)',
-                          transition: 'color 0.4s ease',
-                        }}
-                      >
-                        {item.title}
-                      </span>
-                      {isOpen && (
-                        <span className="badge badge-blue" style={{ fontSize: '11px', transition: 'all 0.4s ease' }}>
-                          {item.badge}
-                        </span>
-                      )}
-                    </div>
+                    <span
+                      style={{
+                        fontSize: '18px',
+                        fontWeight: '700',
+                        color: isOpen ? 'var(--blue)' : 'var(--navy)',
+                        transition: 'color 0.4s ease',
+                      }}
+                    >
+                      {item.title}
+                    </span>
 
                     {/* Smooth Rotating / Morphing Toggle Button */}
                     <div
