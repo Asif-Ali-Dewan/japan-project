@@ -140,47 +140,7 @@ export default function InstructorSidebar({
         )}
       </div>
 
-      {/* 2. Status Pill */}
-      <div style={{ padding: '16px 20px 8px' }}>
-        <div
-          style={{
-            padding: '10px 14px',
-            backgroundColor: '#F8FAFC',
-            borderRadius: '10px',
-            border: '1px solid #E2E4EE',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                backgroundColor: '#10B981',
-                boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.2)'
-              }}
-            />
-            <span style={{ fontSize: '12px', fontWeight: '700', color: '#0B122F' }}>
-              Instructor Mode
-            </span>
-          </div>
-          <span
-            style={{
-              fontSize: '10.5px',
-              fontWeight: '700',
-              color: '#304FE8',
-              backgroundColor: '#EEF2FF',
-              padding: '2px 6px',
-              borderRadius: '4px'
-            }}
-          >
-            Active
-          </span>
-        </div>
-      </div>
+
 
       {/* 3. Navigation Links List */}
       <div
