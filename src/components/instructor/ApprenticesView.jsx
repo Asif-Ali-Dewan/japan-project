@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Users,
   Search,
   Filter,
   Award,
@@ -158,10 +157,6 @@ export default function ApprenticesView() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
         <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '100px', backgroundColor: '#EEF2FF', color: '#304FE8', fontSize: '12px', fontWeight: '700', marginBottom: '8px' }}>
-            <Users size={14} />
-            Master Mentorship Roster
-          </div>
           <h1 style={{ fontSize: '26px', fontWeight: '800', color: '#0B122F', letterSpacing: '-0.02em', margin: 0 }}>
             Students & Apprentice Roster
           </h1>
